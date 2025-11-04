@@ -1,5 +1,4 @@
 <script setup>
-
 </script>
 
 <template>
@@ -11,6 +10,7 @@
       <p class="text-gray-500 dark:text-gray-400">You have a new message!</p>
     </div>
   </div>
+<Button label="Submit"></Button>
 </template>
 <style>
  
