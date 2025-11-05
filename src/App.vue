@@ -5,11 +5,11 @@ import Footer from '@/components/Footer.vue'
 </script>
 
 <template>
-  <div id="app">
+  <v-app id="app" theme="dark">
     <Navbar />
     <RouterView />
     <Footer />
-  </div>
+  </v-app>
 </template>
 
 <style>

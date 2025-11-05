@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*", "components.d.ts"],
+  "include": ["src/**/*"],
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"]

@@ -128,8 +128,7 @@
 </template>
 
 <script setup>
-import Avatar from 'primevue/avatar';
-import Button from 'primevue/button';
+defineOptions({ name: 'AboutView' });
 </script>
 
 <style scoped>
@@ -148,4 +147,4 @@ import Button from 'primevue/button';
 .value-card:hover {
   transform: translateY(-10px);
 }
-</style>  
+</style>
