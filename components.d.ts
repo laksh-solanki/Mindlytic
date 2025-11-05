@@ -11,14 +11,17 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Accordion: typeof import('primevue/accordion')['default']
+    AccordionTab: typeof import('primevue/accordiontab')['default']
     Avatar: typeof import('primevue/avatar')['default']
-    Badge: typeof import('primevue/badge')['default']
     Button: typeof import('primevue/button')['default']
+    Card: typeof import('primevue/card')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     InputText: typeof import('primevue/inputtext')['default']
     Menubar: typeof import('primevue/menubar')['default']
     Navbar: typeof import('./src/components/Navbar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SettingsSidebar: typeof import('./src/components/SettingsSidebar.vue')['default']
   }
 }

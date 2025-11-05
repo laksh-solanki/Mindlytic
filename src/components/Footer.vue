@@ -1,5 +1,5 @@
 <template>
-  <footer class="py-4">
+  <footer class="bg-gray-900 text-gray-400 py-6">
     <div class="container mx-auto text-center">
       <p>&copy; 2025 Mindlytic. All rights reserved.</p>
     </div>
@@ -8,8 +8,8 @@
 
 <script>
 export default {
-  name: 'Footer'
-}
+  name: 'FooterComponent',
+};
 </script>
 
 <style scoped>
