@@ -4,16 +4,14 @@
       <h1 class="text-4xl font-bold mb-8 text-purple-400">Settings</h1>
       <div class="flex sm:flex-row flex-col gap-8">
         <!-- Left Sidebar -->
-        <div>
-          <div class="bg-gray-800 rounded-lg p-4">
-            <ul>
-              <li v-for="item in menuItems" :key="item.key" @click="activeTab = item.key"
-                :class="['flex items-center p-4 cursor-pointer rounded-lg transition-colors', { 'bg-purple-600 text-white': activeTab === item.key, 'hover:bg-gray-700': activeTab !== item.key }]">
-                <i :class="['cyber', item.icon, 'text-2xl mr-4']"></i>
-                <span>{{ item.label }}</span>
-              </li>
-            </ul>
-          </div>
+        <div class="bg-gray-800 rounded-lg p-4">
+          <ul>
+            <li v-for="item in menuItems" :key="item.key" @click="activeTab = item.key"
+              :class="['flex items-center p-4 cursor-pointer rounded-lg transition-colors', { 'bg-purple-600 text-white': activeTab === item.key, 'hover:bg-gray-700': activeTab !== item.key }]">
+              <i :class="['cyber', item.icon, 'text-2xl mr-4']"></i>
+              <span>{{ item.label }}</span>
+            </li>
+          </ul>
         </div>
 
         <!-- Right Content -->
