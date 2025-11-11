@@ -11,12 +11,19 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
+import '@mdi/font/css/materialdesignicons.css'
 
 /* import the fontawesome icon */
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
+
+// import all bootstrap css, js, icon
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 // add icon packs (or import individual icons instead to reduce bundle size)
 library.add(fas, fab)
@@ -26,6 +33,13 @@ const vuetify = createVuetify({
   directives,
   theme: {
     defaultTheme: 'light',
+  },
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    },
   },
 })
 

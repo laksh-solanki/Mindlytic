@@ -2,13 +2,10 @@
 import { RouterView } from 'vue-router'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
-import { useTheme } from 'vuetify'
-
-const theme = useTheme()
 </script>
 
 <template>
-  <v-app :theme="theme.global.name.value">
+  <v-app>
     <Navbar />
     <v-main>
       <RouterView />
