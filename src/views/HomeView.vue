@@ -2,11 +2,11 @@
   <section id="home" class="hero text-center align-content-center">
     <div class="container">
       <div class="hero-content">
-        <h1>Build Amazing Websites with <span>Vue.js</span></h1>
+        <h1>Build Amazing Websites with <span>Mindlytic</span></h1>
         <p>Create modern, responsive, and lightning-fast web apps with Vue 3 and modern tooling.</p>
         <div class="hero-buttons">
-          <button class="btn btn-primary">Start Building</button>
-          <button class="btn btn-secondary">View Demo</button>
+          <v-btn class="btn btn-primary" to="/">Start Building</v-btn>
+          <v-btn class="btn btn-secondary" to="/about">About</v-btn>
         </div>
       </div>
     </div>

@@ -71,7 +71,7 @@ const routes = [
     path: '/notfound',
     name: 'NotMatch',
     component: NotmatchView,
-    meta: { requiresAuth: false, title: 'Mindlytic - Not Found', description: 'Page Not Found' },
+    meta: { requiresAuth: false, title: 'Mindlytic - Not Found', description: 'Page Not Found' }, 
   },
   {
     path: '/:pathMatch(.*)*',

@@ -28,6 +28,8 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 // add icon packs (or import individual icons instead to reduce bundle size)
 library.add(fas, fab)
 
+document.addEventListener('contextmenu', (event) => event.preventDefault())
+
 const vuetify = createVuetify({
   components,
   directives,
