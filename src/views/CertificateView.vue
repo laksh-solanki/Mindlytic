@@ -66,68 +66,63 @@ watch(dialog, (newValue) => {
 });
 </script>
 <template>
-  <v-row>
-    <v-col cols="12">
-      <v-btn to="/project" variant="flat" icon="mdi-arrow-left"></v-btn>
-    </v-col>
-    <v-col>
-      <div class="profile-card-for-pdf">
-        <div id="profile-card-container">
-          <p class="certi_name">{{ form.fname }}</p>
-          <p class="certi_course">
-            {{ form.course }}
-          </p>
-        </div>
-      </div>
-
-      <!-- Student Form -->
-      <v-card class="pa-5 card-animation w-100" border="0" elevation="0">
-        <v-card-title class="text-h5 text-wrap text-center">
-          Student Certificate
-        </v-card-title>
-        <v-card-text class="mt-4">
-          <v-form ref="studentForm">
-            <v-row>
-              <v-col cols="12">
-                <h3 class="text-h6 mt-4 text-lg-start text-md-start text-center">Personal Details</h3>
-                <v-divider class="my-3"></v-divider>
-              </v-col>
-              <v-col cols="12" md="6">
-                <v-text-field v-model="form.fname" :rules="[v => !!v || 'Full Name is required']" label="Full Name"
-                  variant="outlined" name="fname" id="fname" rounded="2" aria-required="true"></v-text-field>
-              </v-col>
-              <v-col cols="12" md="6">
-                <v-select v-model="form.course" :items="courses" :rules="[v => !!v || 'Course is required']"
-                  label="Course" variant="outlined" name="course" id="course" rounded="2"></v-select>
-              </v-col>
-            </v-row>
-            <v-row class="mt-5 justify-content-center">
-              <v-col cols="12" md="3" class="d-flex justify-center">
-                <v-tooltip text="Preview and Download the certificate" location="top">
-                  <template v-slot:activator="{ props }">
-                    <v-btn v-bind="props" @click="generatePdf" color="primary" text="Certificate"
-                      prepend-icon="mdi-file-certificate-outline" size="large"></v-btn>
-                  </template>
-                </v-tooltip>
-              </v-col>
-            </v-row>
-          </v-form>
-        </v-card-text>
-      </v-card>
-
-      <!-- PDF Preview Dialog -->
-      <v-dialog v-model="dialog" max-width="800">
-        <v-card>
-          <v-card-title class="p-0 d-flex justify-space-between align-center">
-            <v-btn color="primary" @click="downloadPdf" text="Download" prepend-icon="mdi-download" :loading="loading"
-              variant="text"></v-btn>
-            <v-btn icon="mdi-close" @click="dialog = false" variant="text"></v-btn>
-          </v-card-title>
-          <embed :src="pdfUrl" style="width: 100%; height: 500px;" frameborder="0" allowfullscreen></embed>
-        </v-card>
-      </v-dialog>
-    </v-col>
-  </v-row>
+  <v-btn to="/project" variant="flat" icon="mdi-arrow-left"></v-btn>
+  <div class="profile-card-for-pdf">
+    <div id="profile-card-container">
+      <p class="certi_name">{{ form.fname }}</p>
+      <p class="certi_course">
+        {{ form.course }}
+      </p>
+    </div>
+  </div>
+  <v-container>
+    <!-- Student Form -->
+    <v-card class="card-animation">
+      <v-card-title class="text-h4 text-wrap text-center bg-primary">
+        Student Certificate
+      </v-card-title>
+      <v-card-text>
+        <v-form ref="studentForm">
+          <v-row>
+            <v-col cols="12">
+              <h3 class="text-h6 mt-4 text-lg-start text-md-start text-center">Personal Details</h3>
+              <v-divider class="my-3"></v-divider>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field v-model="form.fname" :rules="[v => !!v || 'Full Name is required']" label="Full Name"
+                variant="outlined" name="fname" id="fname" rounded="2" aria-required="true"></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-select v-model="form.course" :items="courses" :rules="[v => !!v || 'Course is required']"
+                label="Course" variant="outlined" name="course" id="course" rounded="2"></v-select>
+            </v-col>
+          </v-row>
+          <v-row class="mt-5 justify-content-center">
+            <v-col cols="12" md="3" class="d-flex justify-center">
+              <v-tooltip text="Preview and Download the certificate" location="top">
+                <template v-slot:activator="{ props }">
+                  <v-btn v-bind="props" @click="generatePdf" color="primary" text="Certificate"
+                    prepend-icon="mdi-file-certificate-outline" size="large"></v-btn>
+                </template>
+              </v-tooltip>
+            </v-col>
+          </v-row>
+        </v-form>
+      </v-card-text>
+    </v-card>
+  </v-container>
+  
+  <!-- PDF Preview Dialog -->
+  <v-dialog v-model="dialog" max-width="800">
+    <v-card>
+      <v-card-title class="p-0 d-flex justify-space-between align-center">
+        <v-btn color="primary" @click="downloadPdf" text="Download" prepend-icon="mdi-download" :loading="loading"
+          variant="text"></v-btn>
+        <v-btn icon="mdi-close" @click="dialog = false" variant="text"></v-btn>
+      </v-card-title>
+      <embed :src="pdfUrl" style="width: 100%; height: 500px;" frameborder="0" allowfullscreen></embed>
+    </v-card>
+  </v-dialog>
 </template>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');

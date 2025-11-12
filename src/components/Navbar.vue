@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg border-1 border-bottom border-black w-100 z-3 position-sticky top-0 bg-light">
+  <nav class="navbar navbar-expand-lg border-1 border-bottom border-black w-100 z-3 position-sticky top-0 bg-white">
     <div class="container">
       <router-link class="navbar-brand" to="/">Mindlytic</router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
@@ -23,15 +23,13 @@
             </a>
             <ul class="dropdown-menu rounded-3 position-absolute z-3">
               <li>
-                <router-link class="dropdown-item" to="/settings"><i
-                    class="fa-solid fa-gear me-2"></i>Settings</router-link>
+                <router-link class="dropdown-item" to="/settings"><v-icon class="me-2">mdi-cog</v-icon> Settings</router-link>
               </li>
               <li>
                 <hr class="dropdown-divider" />
               </li>
               <li>
-                <router-link class="dropdown-item" to="/Help"><i
-                    class="fa-solid fa-circle-question me-2"></i>Help</router-link>
+                <router-link class="dropdown-item" to="/Help"><v-icon class="me-2">mdi-help-circle-outline</v-icon> Help</router-link>
               </li>
             </ul>
           </li>
