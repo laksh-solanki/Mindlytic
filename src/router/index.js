@@ -14,7 +14,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
-    meta: { requiresAuth: false, title: 'Mindlytic - Home', description: 'Welcome to the Home Page' },
+    meta: {
+      requiresAuth: false,
+      title: 'Mindlytic - Home',
+      description: 'Welcome to the Home Page',
+    },
   },
   {
     path: '/about',
@@ -26,19 +30,31 @@ const routes = [
     path: '/project',
     name: 'project',
     component: ProjectView,
-    meta: { requiresAuth: false, title: 'Mindlytic - Projects', description: 'Explore your Projects' },
+    meta: {
+      requiresAuth: false,
+      title: 'Mindlytic - Projects',
+      description: 'Explore your Projects',
+    },
   },
   {
     path: '/project/certificate',
     name: 'certificate',
     component: CertificateView,
-    meta: { requiresAuth: false, title: 'Mindlytic - Certificate', description: 'Your Certificate Details' },
+    meta: {
+      requiresAuth: false,
+      title: 'Mindlytic - Certificate',
+      description: 'Your Certificate Details',
+    },
   },
   {
     path: '/settings',
     name: 'settings',
     component: SettingsView,
-    meta: { requiresAuth: false, title: 'Mindlytic - Settings', description: 'Adjust your Settings' },
+    meta: {
+      requiresAuth: false,
+      title: 'Mindlytic - Settings',
+      description: 'Adjust your Settings',
+    },
   },
   {
     path: '/help',
