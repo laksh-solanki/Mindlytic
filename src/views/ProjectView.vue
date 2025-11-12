@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="12" md="4">
-        <Folder :to="'/project/Certificate'" text="Certificate" />
+        <Folder :to="'/project/certificate'" text="Certificate" />
       </v-col>
       <v-col cols="12" md="4">
         <Folder :to="'/project/Id-card'" text="Id Card" />

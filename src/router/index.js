@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
-import ProjectView from '../views/ProjectView.vue'
-import SettingsView from '../views/SettingsView.vue'
-import HelpView from '../views/HelpView.vue'
-import CertificateView from '../views/CertificateView.vue'
-import NotmatchView from '../views/NotmatchView.vue'
+import HomeView from '@/views/HomeView.vue'
+import AboutView from '@/views/AboutView.vue'
+import ProjectView from '@/views/ProjectView.vue'
+import SettingsView from '@/views/SettingsView.vue'
+import HelpView from '@/views/HelpView.vue'
+import CertificateView from '@/views/CertificateView.vue'
+import NotmatchView from '@/views/NotmatchView.vue'
 import GlobalLoader from '@/views/GlobalLoader.vue'
 import { useLoadingStore } from '@/stores/loading'
 
@@ -26,6 +26,11 @@ const routes = [
     component: ProjectView,
   },
   {
+    path: '/project/certificate',
+    name: 'certificate',
+    component: CertificateView,
+  },
+  {
     path: '/settings',
     name: 'settings',
     component: SettingsView,
@@ -36,13 +41,8 @@ const routes = [
     component: HelpView,
   },
   {
-    path: '/project/Certificate',
-    name: 'Certificate',
-    component: CertificateView,
-  },
-  {
-    path:'/Globalloader',
-    name:'Globalloader',
+    path: '/Globalloader',
+    name: 'Globalloader',
     component: GlobalLoader,
   },
   {
@@ -50,10 +50,10 @@ const routes = [
     name: 'NotMatch',
     component: NotmatchView,
   },
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: '/notfound',
-  },
+  // {
+  //   path: '/:pathMatch(.*)*',
+  //   redirect: '/notfound',
+  // },
 ]
 
 const router = createRouter({
