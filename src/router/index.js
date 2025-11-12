@@ -6,6 +6,7 @@ import SettingsView from '../views/SettingsView.vue'
 import HelpView from '../views/HelpView.vue'
 import CertificateView from '../views/CertificateView.vue'
 import NotmatchView from '../views/NotmatchView.vue'
+import GlobalLoader from '@/views/GlobalLoader.vue'
 import { useLoadingStore } from '@/stores/loading'
 
 const routes = [
@@ -40,13 +41,18 @@ const routes = [
     component: CertificateView,
   },
   {
-    path: '/NotMatch',
+    path:'/Globalloader',
+    name:'Globalloader',
+    component: GlobalLoader,
+  },
+  {
+    path: '/notfound',
     name: 'NotMatch',
     component: NotmatchView,
   },
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/NotMatch',
+    redirect: '/notfound',
   },
 ]
 

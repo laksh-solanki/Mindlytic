@@ -66,7 +66,7 @@ watch(dialog, (newValue) => {
 });
 </script>
 <template>
-  <v-btn to="/project" variant="flat" icon="mdi-arrow-left"></v-btn>
+  <v-btn to="/project" variant="flat" color="secondary" icon="mdi-arrow-left" class="rounded-start-0"></v-btn>
   <div class="profile-card-for-pdf">
     <div id="profile-card-container">
       <p class="certi_name">{{ form.fname }}</p>
@@ -77,7 +77,7 @@ watch(dialog, (newValue) => {
   </div>
   <v-container>
     <!-- Student Form -->
-    <v-card class="card-animation">
+    <v-card>
       <v-card-title class="text-h4 text-wrap text-center bg-primary text-white pa-4">
         Student Certificate
       </v-card-title>
@@ -113,7 +113,7 @@ watch(dialog, (newValue) => {
   </v-container>
 
   <!-- PDF Preview Dialog -->
-  <v-dialog v-model="dialog" max-width="800">
+  <v-dialog v-model="dialog" max-width="900">
     <v-card>
       <v-card-title class="p-0 d-flex justify-space-between align-center">
         <v-btn color="primary" @click="downloadPdf" text="Download" prepend-icon="mdi-download" :loading="loading"
