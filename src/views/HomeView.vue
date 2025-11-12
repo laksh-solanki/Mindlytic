@@ -1,5 +1,5 @@
 <template>
-  <section id="home" class="hero" >
+  <section id="home" class="hero text-center align-content-center">
     <div class="container">
       <div class="hero-content">
         <h1>Build Amazing Websites with <span>Vue.js</span></h1>
@@ -20,8 +20,7 @@
   padding: 5rem 0;
   position: relative;
   overflow: hidden;
-  text-align: center;
-
+  min-height: 80vh;
 }
 
 .hero::before,
