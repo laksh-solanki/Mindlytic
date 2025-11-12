@@ -78,7 +78,7 @@ watch(dialog, (newValue) => {
   <v-container>
     <!-- Student Form -->
     <v-card class="card-animation">
-      <v-card-title class="text-h4 text-wrap text-center bg-primary">
+      <v-card-title class="text-h4 text-wrap text-center bg-primary text-white pa-4">
         Student Certificate
       </v-card-title>
       <v-card-text>
@@ -111,7 +111,7 @@ watch(dialog, (newValue) => {
       </v-card-text>
     </v-card>
   </v-container>
-  
+
   <!-- PDF Preview Dialog -->
   <v-dialog v-model="dialog" max-width="800">
     <v-card>

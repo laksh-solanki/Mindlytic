@@ -13,7 +13,7 @@ function showContent(identifier) {
 </script>
 
 <template>
-  <v-layout ref="app" class="fill-height z-0">
+  <v-layout ref="app" class="z-0" >
     <v-navigation-drawer v-model="drawer" class="border-secondary border-end container-animate" elevation="2" app>
       <v-sheet class="pa-4 border-bottom border-black">
         <v-avatar class="mb-4" color="grey-darken-1" size="70"><img src="@/assets/Picture/profile-pic.webp" alt=""
@@ -34,7 +34,7 @@ function showContent(identifier) {
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-main class="main-content overflow-hidden">
+    <v-main class="overflow-hidden">
       <!-- Container 1 -->
       <v-container v-if="activeContent === 'content1'" class="content1">
         <v-row>

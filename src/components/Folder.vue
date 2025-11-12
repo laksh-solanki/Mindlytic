@@ -1,5 +1,5 @@
 <template>
-  <v-btn :to="to" prepend-icon="mdi-folder" variant="flat" size="large" color="primary" :text="text">
+  <v-btn :to="to" prepend-icon="mdi-folder" variant="flat" size="large" color="white" border="3" width="365" height="50" :text="text">
   </v-btn>
 </template>
 
