@@ -1,45 +1,189 @@
 <template>
-  <div class="about-content">
-    <div class="about-text">
-      <h3>About VueSite</h3>
+  <section class="about-container">
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1>About Us</h1>
+      <p>We are a creative team passionate about crafting modern, high-quality web experiences.</p>
+    </div>
+
+    <!-- Team Section -->
+    <div class="team-section">
+      <h2>Meet Our Team</h2>
+      <div class="team-grid">
+        <div v-for="(member, index) in team" :key="index" class="team-card">
+          <img :src="member.image" :alt="member.name" />
+          <h3>{{ member.name }}</h3>
+          <p class="role">{{ member.role }}</p>
+          <p class="bio">{{ member.bio }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mission Section -->
+    <div class="mission-section">
+      <h2>Our Mission</h2>
       <p>
-        We help developers build beautiful, performant websites using the latest Vue.js ecosystem.
-        No bloat, no complexity — just clean, maintainable code.
-      </p>
-      <p class="mt-4">
-        Our templates are designed with accessibility, performance, and developer experience in mind.
+        Our mission is to deliver innovative digital solutions that empower users and help businesses
+        succeed through technology, creativity, and design.
       </p>
     </div>
-    <div class="about-image">
-      <img
-        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-        alt="Development">
-    </div>
-  </div>
+  </section>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+const team = ref([
+  {
+    name: "Laksh Patel",
+    role: "Founder & Developer",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    bio: "Specializes in full-stack development and crafting seamless user experiences.",
+  },
+  {
+    name: "Priya Sharma",
+    role: "UI/UX Designer",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    bio: "Creates visually appealing and intuitive designs that users love.",
+  },
+  {
+    name: "Ravi Kumar",
+    role: "Backend Engineer",
+    image: "https://randomuser.me/api/portraits/men/18.jpg",
+    bio: "Focuses on secure, scalable backend systems and database architecture.",
+  },
+]);
+</script>
+
 <style scoped>
-/* About */
-.about-content {
+/* ===== Basic Layout ===== */
+.about-container {
+  min-height: 100vh;
+  padding: 60px 20px;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  background: #f8f9fb;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px;
+  animation: fadeIn 1s ease;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 10px;
+}
+
+/* ===== Team Section ===== */
+.team-section {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.team-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.team-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  justify-items: center;
 }
 
-.about-text h3 {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
-}
-
-.about-image {
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-.about-image img {
+.team-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 25px;
   width: 100%;
-  height: auto;
-  display: block;
+  max-width: 300px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.team-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 4px solid #eaeaea;
+}
+
+.team-card h3 {
+  margin: 10px 0 5px;
+  font-size: 1.2rem;
+  color: #111;
+}
+
+.role {
+  font-weight: 600;
+  color: #4a74f7;
+  margin-bottom: 8px;
+}
+
+.bio {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* ===== Mission Section ===== */
+.mission-section {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.mission-section h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.mission-section p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* ===== Animation ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  .team-grid {
+    gap: 20px;
+  }
 }
 </style>
