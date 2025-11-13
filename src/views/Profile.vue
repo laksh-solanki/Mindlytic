@@ -14,7 +14,7 @@
               <v-card-title>Laksh Solanki</v-card-title>
               <v-card-subtitle>lakshsolanki848@gmail.com</v-card-subtitle>
             </v-col>
-            <v-col cols="12" md="2">
+            <v-col cols="12" md="2" class="d-flex justify-center align-center">
               <v-btn prepend-icon="mdi-account-edit" variant="flat" text="Edit"></v-btn>
             </v-col>
           </v-row>

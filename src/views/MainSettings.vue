@@ -1,16 +1,24 @@
+<script setup>
+</script>
+
 <template>
   <v-container fluid>
     <v-row>
       <v-col cols="12" md="9">
         <v-sheet min-height="268" rounded="lg" elevation="2" class="rounded-4 sheet1-animation" color="teal-accent-1">
-          <!--  -->
+          <!-- Content for the main settings area -->
         </v-sheet>
       </v-col>
 
       <v-col cols="12" md="3">
-        <v-sheet min-height="268" rounded="lg" elevation="2" class="rounded-4 sheet2-animation"
+        <v-sheet min-height="268" rounded="lg" elevation="2" class="pa-4 rounded-4 sheet2-animation"
           color="orange-lighten-4">
-          <!--  -->
+          <!-- <div class="d-flex justify-space-between align-center">
+            <v-card-title>Theme</v-card-title>
+            <v-btn @click="toggleTheme"
+              :icon="theme.global.name.value === 'dark' ? 'mdi-weather-night' : 'mdi-weather-sunny'" variant="text">
+            </v-btn>
+          </div> -->
         </v-sheet>
       </v-col>
 
