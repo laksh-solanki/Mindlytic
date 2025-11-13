@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import AboutView from '@/views/AboutView.vue'
 import ProjectView from '@/views/ProjectView.vue'
+import ProjectHome from '@/views/ProjectHome.vue'
 import SettingsView from '@/views/SettingsView.vue'
 import HelpView from '@/views/HelpView.vue'
 import CertificateView from '@/views/CertificateView.vue'
@@ -30,23 +31,29 @@ const routes = [
   },
   {
     path: '/project',
-    name: 'project',
     component: ProjectView,
-    meta: {
-      requiresAuth: false,
-      title: 'Mindlytic - Projects',
-      description: 'Explore your Projects',
-    },
-  },
-  {
-    path: '/project/certificate',
-    name: 'certificate',
-    component: CertificateView,
-    meta: {
-      requiresAuth: false,
-      title: 'Mindlytic - Certificate',
-      description: 'Your Certificate Details',
-    },
+    children: [
+      {
+        path: '',
+        name: 'project',
+        component: ProjectHome,
+        meta: {
+          requiresAuth: false,
+          title: 'Mindlytic - Projects',
+          description: 'Explore your Projects',
+        },
+      },
+      {
+        path: 'certificate',
+        name: 'certificate',
+        component: CertificateView,
+        meta: {
+          requiresAuth: false,
+          title: 'Mindlytic - Certificate',
+          description: 'Your Certificate Details',
+        },
+      },
+    ],
   },
   {
     path: '/settings',

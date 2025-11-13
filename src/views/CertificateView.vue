@@ -89,42 +89,20 @@ watch(dialog, (newValue) => {
               <v-divider class="my-3"></v-divider>
             </v-col>
             <v-col cols="12" md="6">
-              <v-text-field
-                v-model="form.fname"
-                :rules="[(v) => !!v || 'Full Name is required']"
-                label="Full Name"
-                variant="outlined"
-                name="fname"
-                id="fname"
-                rounded="2"
-                aria-required="true"
-              ></v-text-field>
+              <v-text-field v-model="form.fname" :rules="[(v) => !!v || 'Full Name is required']" label="Full Name"
+                variant="outlined" name="fname" id="fname" rounded="2" aria-required="true"></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
-              <v-select
-                v-model="form.course"
-                :items="courses"
-                :rules="[(v) => !!v || 'Course is required']"
-                label="Course"
-                variant="outlined"
-                name="course"
-                id="course"
-                rounded="2"
-              ></v-select>
+              <v-select v-model="form.course" :items="courses" :rules="[(v) => !!v || 'Course is required']"
+                label="Course" variant="outlined" name="course" id="course" rounded="2"></v-select>
             </v-col>
           </v-row>
           <v-row class="mt-5 justify-content-center">
             <v-col cols="12" md="3" class="d-flex justify-center">
               <v-tooltip text="Preview and Download the certificate" location="top">
                 <template v-slot:activator="{ props }">
-                  <v-btn
-                    v-bind="props"
-                    @click="generatePdf"
-                    color="primary"
-                    text="Certificate"
-                    prepend-icon="mdi-file-certificate-outline"
-                    size="large"
-                  ></v-btn>
+                  <v-btn v-bind="props" @click="generatePdf" color="primary" text="Certificate"
+                    prepend-icon="mdi-file-certificate-outline" size="large"></v-btn>
                 </template>
               </v-tooltip>
             </v-col>
@@ -138,14 +116,8 @@ watch(dialog, (newValue) => {
   <v-dialog v-model="dialog" max-width="900">
     <v-card>
       <v-card-title class="p-0 d-flex justify-space-between align-center">
-        <v-btn
-          color="primary"
-          @click="downloadPdf"
-          text="Download"
-          prepend-icon="mdi-download"
-          :loading="loading"
-          variant="text"
-        ></v-btn>
+        <v-btn color="primary" @click="downloadPdf" text="Download" prepend-icon="mdi-download" :loading="loading"
+          variant="text"></v-btn>
         <v-btn icon="mdi-close" @click="dialog = false" variant="text"></v-btn>
       </v-card-title>
       <embed :src="pdfUrl" style="width: 100%; height: 500px" frameborder="0" allowfullscreen />

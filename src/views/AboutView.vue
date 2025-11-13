@@ -171,6 +171,7 @@ const team = ref([
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -182,6 +183,7 @@ const team = ref([
   .hero h1 {
     font-size: 2.2rem;
   }
+
   .team-grid {
     gap: 20px;
   }
