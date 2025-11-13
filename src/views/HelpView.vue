@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card class="pa-4 rounded-4 text-center">
+        <v-card class="pa-4 text-center">
           <h1 class="display-1 font-weight-bold">How can we help you?</h1>
           <v-text-field v-model="search" label="Search for help" outlined clearable class="mt-4"></v-text-field>
         </v-card>
@@ -10,7 +10,7 @@
     </v-row>
     <v-row>
       <v-col v-for="topic in filteredTopics" :key="topic.title" cols="12" md="4">
-        <v-card class="pa-4 rounded-4" height="100%">
+        <v-card class="pa-4 text-center" height="100%">
           <v-card-title>{{ topic.title }}</v-card-title>
           <v-card-text>{{ topic.description }}</v-card-text>
           <v-card-actions>

@@ -66,7 +66,7 @@ watch(dialog, (newValue) => {
 });
 </script>
 <template>
-  <v-btn to="/project" variant="flat" color="secondary" icon="mdi-arrow-left" class="rounded-start-0"></v-btn>
+  <v-btn to="/project" variant="flat" color="info" icon="mdi-arrow-left" class="btn-css"></v-btn>
   <div class="profile-card-for-pdf">
     <div id="profile-card-container">
       <p class="certi_name">{{ form.fname }}</p>
@@ -169,5 +169,11 @@ watch(dialog, (newValue) => {
   color: black;
   padding: 0;
   line-height: 1;
+}
+
+.btn-css {
+  border-start-start-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-top-right-radius: 0% !important;
 }
 </style>
