@@ -1,9 +1,20 @@
 <template>
-  <nav class="navbar navbar-expand-lg border-1 border-bottom border-black w-100 z-3 position-sticky top-0 bg-white">
+  <nav
+    class="navbar navbar-expand-lg border-1 border-bottom border-black w-100 z-3 position-sticky top-0 bg-white"
+  >
     <div class="container">
-      <router-link class="navbar-brand" to="/"><img src="../assets/Picture/mindlytic-Main-logo.png" alt="" width="120"></router-link>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-        aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <router-link class="navbar-brand" to="/"
+        ><img src="../assets/Picture/mindlytic-Main-logo.png" alt="" width="120"
+      /></router-link>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarScroll"
+        aria-controls="navbarScroll"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse w-100 navbar-collapse justify-content-center" id="navbarScroll">
@@ -18,18 +29,27 @@
             <router-link class="nav-link" to="/project">project</router-link>
           </li>
           <li class="dropdown nav-item">
-            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Settings
             </a>
             <ul class="dropdown-menu rounded-3 position-absolute z-3">
               <li>
-                <router-link class="dropdown-item" to="/settings"><v-icon class="me-2">mdi-cog</v-icon> Settings</router-link>
+                <router-link class="dropdown-item" to="/settings"
+                  ><v-icon class="me-2">mdi-cog</v-icon> Settings</router-link
+                >
               </li>
               <li>
                 <hr class="dropdown-divider" />
               </li>
               <li>
-                <router-link class="dropdown-item" to="/Help"><v-icon class="me-2">mdi-help-circle-outline</v-icon> Help</router-link>
+                <router-link class="dropdown-item" to="/Help"
+                  ><v-icon class="me-2">mdi-help-circle-outline</v-icon> Help</router-link
+                >
               </li>
             </ul>
           </li>
@@ -107,16 +127,16 @@ import { RouterLink } from 'vue-router'
   top: 8px;
 }
 
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+.navbar-toggler[aria-expanded='true'] .navbar-toggler-icon {
   background-color: transparent;
 }
 
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+.navbar-toggler[aria-expanded='true'] .navbar-toggler-icon::before {
   transform: rotate(45deg);
   top: 0;
 }
 
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+.navbar-toggler[aria-expanded='true'] .navbar-toggler-icon::after {
   transform: rotate(-45deg);
   top: 0;
 }

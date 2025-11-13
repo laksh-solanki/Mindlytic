@@ -23,36 +23,36 @@
     <div class="mission-section">
       <h2>Our Mission</h2>
       <p>
-        Our mission is to deliver innovative digital solutions that empower users and help businesses
-        succeed through technology, creativity, and design.
+        Our mission is to deliver innovative digital solutions that empower users and help
+        businesses succeed through technology, creativity, and design.
       </p>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue'
 
 const team = ref([
   {
-    name: "Laksh Patel",
-    role: "Founder & Developer",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
-    bio: "Specializes in full-stack development and crafting seamless user experiences.",
+    name: 'Laksh Patel',
+    role: 'Founder & Developer',
+    image: 'https://randomuser.me/api/portraits/men/32.jpg',
+    bio: 'Specializes in full-stack development and crafting seamless user experiences.',
   },
   {
-    name: "Priya Sharma",
-    role: "UI/UX Designer",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-    bio: "Creates visually appealing and intuitive designs that users love.",
+    name: 'Priya Sharma',
+    role: 'UI/UX Designer',
+    image: 'https://randomuser.me/api/portraits/women/44.jpg',
+    bio: 'Creates visually appealing and intuitive designs that users love.',
   },
   {
-    name: "Ravi Kumar",
-    role: "Backend Engineer",
-    image: "https://randomuser.me/api/portraits/men/18.jpg",
-    bio: "Focuses on secure, scalable backend systems and database architecture.",
+    name: 'Ravi Kumar',
+    role: 'Backend Engineer',
+    image: 'https://randomuser.me/api/portraits/men/18.jpg',
+    bio: 'Focuses on secure, scalable backend systems and database architecture.',
   },
-]);
+])
 </script>
 
 <style scoped>
@@ -60,7 +60,7 @@ const team = ref([
 .about-container {
   min-height: 100vh;
   padding: 60px 20px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #333;
   background: #f8f9fb;
 }

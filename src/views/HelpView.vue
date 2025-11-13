@@ -4,7 +4,13 @@
       <v-col cols="12">
         <v-card class="pa-4 text-center">
           <h1 class="display-1 font-weight-bold">How can we help you?</h1>
-          <v-text-field v-model="search" label="Search for help" outlined clearable class="mt-4"></v-text-field>
+          <v-text-field
+            v-model="search"
+            label="Search for help"
+            outlined
+            clearable
+            class="mt-4"
+          ></v-text-field>
         </v-card>
       </v-col>
     </v-row>
@@ -23,58 +29,58 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed } from 'vue'
 
-const search = ref('');
+const search = ref('')
 const topics = ref([
   {
     title: 'Getting Started',
     description: 'Learn the basics of setting up and using our application.',
-    link: '/help/getting-started'
+    link: '/help/getting-started',
   },
   {
     title: 'Account Settings',
     description: 'Manage your profile, password, and notification preferences.',
-    link: '/help/account'
+    link: '/help/account',
   },
   {
     title: 'Troubleshooting',
     description: 'Find solutions to common issues and problems.',
-    link: '/help/troubleshooting'
+    link: '/help/troubleshooting',
   },
   {
     title: 'FAQs',
     description: 'Browse frequently asked questions.',
-    link: '/help/faq'
+    link: '/help/faq',
   },
   {
     title: 'Contact Us',
     description: 'Get in touch with our support team for further assistance.',
-    link: '/help/contact'
+    link: '/help/contact',
   },
   {
     title: 'Privacy Policy',
     description: 'Read our privacy policy to understand how we handle your data.',
-    link: '/help/privacy'
-  }
-]);
+    link: '/help/privacy',
+  },
+])
 
 const filteredTopics = computed(() => {
   if (!search.value) {
-    return topics.value;
+    return topics.value
   }
-  const searchTerm = search.value.toLowerCase();
-  return topics.value.filter(topic => {
+  const searchTerm = search.value.toLowerCase()
+  return topics.value.filter((topic) => {
     return (
       topic.title.toLowerCase().includes(searchTerm) ||
       topic.description.toLowerCase().includes(searchTerm)
-    );
-  });
-});
+    )
+  })
+})
 </script>
 
 <style scoped>
 .display-1 {
-  color: #1976D2;
+  color: #1976d2;
 }
 </style>

@@ -7,6 +7,8 @@ import HelpView from '@/views/HelpView.vue'
 import CertificateView from '@/views/CertificateView.vue'
 import NotmatchView from '@/views/NotmatchView.vue'
 import GlobalLoader from '@/views/GlobalLoader.vue'
+import Profile from '@/views/Profile.vue'
+import MainSettings from '@/views/MainSettings.vue'
 import { useLoadingStore } from '@/stores/loading'
 
 const routes = [
@@ -48,13 +50,39 @@ const routes = [
   },
   {
     path: '/settings',
-    name: 'settings',
     component: SettingsView,
-    meta: {
-      requiresAuth: false,
-      title: 'Mindlytic - Settings',
-      description: 'Adjust your Settings',
-    },
+    children: [
+      {
+        path: '',
+        name: 'settings',
+        redirect: '/settings/profile',
+        meta: {
+          requiresAuth: false,
+          title: 'Mindlytic - Settings',
+          description: 'Adjust your Settings',
+        },
+      },
+      {
+        path: 'profile',
+        name: 'settings-profile',
+        component: Profile,
+        meta: {
+          requiresAuth: false,
+          title: 'Mindlytic - Profile',
+          description: 'Your Profile page',
+        },
+      },
+      {
+        path: 'main-settings',
+        name: 'settings-main',
+        component: MainSettings,
+        meta: {
+          requiresAuth: false,
+          title: 'Mindlytic - Main Settings',
+          description: 'Main Settings page',
+        },
+      },
+    ],
   },
   {
     path: '/help',
@@ -71,7 +99,7 @@ const routes = [
     path: '/notfound',
     name: 'NotMatch',
     component: NotmatchView,
-    meta: { requiresAuth: false, title: 'Mindlytic - Not Found', description: 'Page Not Found' }, 
+    meta: { requiresAuth: false, title: 'Mindlytic - Not Found', description: 'Page Not Found' },
   },
   {
     path: '/:pathMatch(.*)*',
