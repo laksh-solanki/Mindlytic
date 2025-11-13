@@ -1,6 +1,11 @@
+<script setup>
+import marqueee from "@/components/marquee.vue";
+</script>
+
 <template>
+  <marqueee />
   <section id="home" class="hero text-center align-content-center">
-    <div class="container">
+    <v-container>
       <div class="hero-content">
         <h1>Build Amazing Websites with <span>Mindlytic</span></h1>
         <p>Create modern, responsive, and lightning-fast web apps with Vue 3 and modern tooling.</p>
@@ -9,7 +14,7 @@
           <v-btn class="btn btn-secondary" to="/about">About</v-btn>
         </div>
       </div>
-    </div>
+    </v-container>
   </section>
 </template>
 
@@ -73,4 +78,5 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
 </style>

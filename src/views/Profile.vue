@@ -10,9 +10,12 @@
                 <img src="@/assets/Picture/profile-pic.webp" width="70" alt="Profile Picture" />
               </v-avatar>
             </v-col>
-            <v-col md="10" class="d-flex flex-column text-center text-lg-start text-md-start text-wrap">
+            <v-col cols="12" md="8" class="d-flex flex-column text-center text-lg-start text-md-start text-wrap">
               <v-card-title>Laksh Solanki</v-card-title>
               <v-card-subtitle>lakshsolanki848@gmail.com</v-card-subtitle>
+            </v-col>
+            <v-col cols="12" md="2">
+              <v-btn prepend-icon="mdi-account-edit" variant="flat" text="Edit"></v-btn>
             </v-col>
           </v-row>
         </v-sheet>

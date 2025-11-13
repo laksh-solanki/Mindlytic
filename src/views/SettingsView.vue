@@ -25,14 +25,15 @@ const links = [
         </v-btn>
       </v-sheet>
       <v-list>
-        <v-list-item v-for="[icon, text, to] in links" :key="icon" :prepend-icon="icon" :title="text" :to="to" link>
+        <v-list-item v-for="[icon, text, to] in links" class="rounded-3 m-1" :key="icon" :prepend-icon="icon"
+          :title="text" :to="to" link>
           <template v-slot:append>
             <v-icon v-if="route.path.startsWith(to)">mdi-chevron-right</v-icon>
           </template>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-main class="overflow-hidden">
+    <v-main class="overflow-x-hidden overflow-y-scroll" max-height="85.79vh">
       <router-view></router-view>
     </v-main>
   </v-layout>
