@@ -5,7 +5,7 @@
         <Folder :to="'/project/certificate'" text="Certificate" />
       </v-col>
       <v-col cols="12" md="4">
-        <Folder :to="'/project/Id-card'" text="Id Card" />
+        <Folder :to="'/project/pdfView'" text="pdf" />
       </v-col>
       <v-col cols="12" md="4">
         <Folder :to="'/project/New'" text="Folder-2" />

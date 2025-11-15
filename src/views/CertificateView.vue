@@ -1,8 +1,6 @@
 <script setup>
-import { ref, reactive, watch, nextTick } from 'vue'
-import { jsPDF } from 'jspdf'
-import html2canvas from 'html2canvas'
-import backgroundImage from '@/assets/Picture/IMCA.jpeg'
+import { ref, reactive } from 'vue'
+import html2pdf from 'html2pdf.js/dist/html2pdf.min.js'
 
 const studentForm = ref(null)
 const form = reactive({
@@ -20,61 +18,22 @@ const courses = [
 
 const loading = ref(false)
 const dialog = ref(false)
-const pdfUrl = ref('')
 
-const generatePdf = async () => {
-  console.time('generatePdf execution')
-  loading.value = true
-  const cardElement = document.getElementById('profile-card-container')
-  await nextTick() // Ensure DOM is updated before capturing
-  if (cardElement) {
-    console.time('html2canvas rendering')
-    const canvas = await html2canvas(cardElement, { backgroundColor: null, useCORS: true })
-    console.timeEnd('html2canvas rendering')
-    const cardImgData = canvas.toDataURL('image/png')
-    const pdf = new jsPDF('p', 'mm', 'a4')
-    const pdfWidth = pdf.internal.pageSize.getWidth()
-    const pdfHeight = pdf.internal.pageSize.getHeight()
-    pdf.addImage(backgroundImage, 'JPEG', 0, 0, pdfWidth, pdfHeight)
-    const cardWidth = pdfWidth
-    const cardHeight = (canvas.height * cardWidth) / canvas.width
-    const x = (pdfWidth - cardWidth) / 2
-    const y = (pdfHeight - cardHeight) / 2
-    pdf.addImage(cardImgData, 'PNG', x, y, cardWidth, cardHeight)
-    console.time('jsPDF output')
-    const blob = pdf.output('blob')
-    console.timeEnd('jsPDF output')
-    pdfUrl.value = URL.createObjectURL(blob) + '#toolbar=0'
-    dialog.value = true
+const pdfSection = ref(null)
+const generatePdf = () => {
+  if (pdfSection.value) {
+    html2pdf(pdfSection.value.$el, {
+      margin: 0,
+      filename: 'document.pdf',
+      image: { type: 'jpeg', quality: 0.9 },
+      html2canvas: { scale: 1.2, useCORS: true },
+      jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    })
   }
-  loading.value = false
-  console.timeEnd('generatePdf execution')
 }
-
-const downloadPdf = () => {
-  const a = document.createElement('a')
-  a.href = pdfUrl.value
-  a.download = `${form.course}.pdf`
-  a.click()
-}
-
-// Revoke the object URL to prevent memory leaks when the dialog is closed
-watch(dialog, (newValue) => {
-  if (!newValue && pdfUrl.value) {
-    URL.revokeObjectURL(pdfUrl.value)
-  }
-})
 </script>
 <template>
   <v-btn to="/project" variant="flat" color="info" icon="mdi-arrow-left" class="btn-css"></v-btn>
-  <div class="profile-card-for-pdf">
-    <div id="profile-card-container">
-      <p class="certi_name">{{ form.fname }}</p>
-      <p class="certi_course">
-        {{ form.course }}
-      </p>
-    </div>
-  </div>
   <v-container>
     <!-- Student Form -->
     <v-card>
@@ -101,7 +60,7 @@ watch(dialog, (newValue) => {
             <v-col cols="12" md="3" class="d-flex justify-center">
               <v-tooltip text="Preview and Download the certificate" location="top">
                 <template v-slot:activator="{ props }">
-                  <v-btn v-bind="props" @click="generatePdf" color="primary" text="Certificate"
+                  <v-btn v-bind="props" @click="dialog = true" color="primary" text="Certificate"
                     prepend-icon="mdi-file-certificate-outline" size="large"></v-btn>
                 </template>
               </v-tooltip>
@@ -116,59 +75,350 @@ watch(dialog, (newValue) => {
   <v-dialog v-model="dialog" max-width="900">
     <v-card>
       <v-card-title class="p-0 d-flex justify-space-between align-center">
-        <v-btn color="primary" @click="downloadPdf" text="Download" prepend-icon="mdi-download" :loading="loading"
+        <v-btn color="primary" @click="generatePdf" text="Download" prepend-icon="mdi-download" :loading="loading"
           variant="text"></v-btn>
         <v-btn icon="mdi-close" @click="dialog = false" variant="text"></v-btn>
       </v-card-title>
-      <embed :src="pdfUrl" style="width: 100%; height: 500px" frameborder="0" allowfullscreen />
+      <v-card ref="pdfSection" class="overflow-scroll">
+        <div class="certificate" style="background-image: url(/src/assets/Picture/CoursePathway_BG.jpg);">
+          <div class="logo">
+            <div class="partnerLogo commonLogo">
+              <div class="figure">
+                <img src="/src/assets/Picture/sk.jfif" alt="">
+              </div>
+            </div>
+            <div class="figure eduTechLogo commonLogo">
+              <img src="/src/assets/Picture/L&T EduTech.png" alt="">
+            </div>
+          </div>
+          <p class="certificateHeading">Certificate of Course <br> Pathway Completion</p>
+          <div class="nameContent">
+            <p>{{ form.fname }}</p>
+          </div>
+          <div class="content">
+            <p>
+              has completed the Course pathway titled
+              <br>
+              <span>{{ form.course }}</span>
+              <br>
+              which covers
+              <br>
+              <em>7</em>
+              courses and
+              <em>13</em>
+              learning hours
+            </p>
+          </div>
+          <footer style="display: block;">
+            <div class="sign">
+              <div class="left profLogo">
+                <div class="figure">
+                  <img src="/src/assets/Picture/profSignature.png" alt="">
+                </div>
+                <p class="ceoName">Prof. (Dr.) Prafulkumar Udani</p>
+                <p class="ceo">Provost
+                  <span>Sankalchand Patel University</span>
+                </p>
+              </div>
+              <div class="right">
+                <div class="figure">
+                  <img src="/src/assets/Picture/febinsign.png" alt="">
+                </div>
+                <p class="ceoName">M.F.Febin</p>
+                <p class="ceo">Head <span>L&T EduTech</span></p>
+              </div>
+            </div>
+            <div class="lnt">
+              <div class="borderr">
+                <div></div>
+              </div>
+              <div class="figure">
+                <img src="/src/assets/Picture/LnT.png" alt="">
+              </div>
+            </div>
+          </footer>
+        </div>
+      </v-card>
     </v-card>
   </v-dialog>
 </template>
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-.profile-card-for-pdf {
-  position: absolute;
-  left: -9999px;
-  top: -9999px;
-  width: 1123px;
-  /* A4 width in pixels at 96 DPI for landscape */
-  height: 794px;
-  /* A4 height in pixels at 96 DPI for landscape */
+.figure {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 40px;
+  margin-inline-end: 40px;
+  unicode-bidi: isolate;
+  margin: 0;
 }
 
-#profile-card-container {
+.inside {
+  width: 21cm !important;
+  overflow-y: hidden !important;
+}
+
+.certificate {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.logo {
+  margin: 150px auto 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo .partnerLogo {
+  padding-right: 30px;
+  margin-right: 30px;
+  position: relative;
+}
+
+.logo .partnerLogo:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 100px;
+  background-color: #707070;
+  opacity: .5;
+}
+
+.logo .partnerLogo .figure {
+  width: auto;
+  height: 85px;
+}
+
+.logo .commonLogo img {
+  width: 100%;
+  height: 100% 85px;
+  object-fit: contain;
+  object-position: left;
+}
+
+img,
+picture {
+  outline: 0;
+  max-width: 100%;
+  border-style: none;
+}
+
+.logo .eduTechLogo {
+  width: 175px;
+  position: relative;
+  height: 85px;
+}
+
+.logo .commonLogo img {
   width: 100%;
   height: 100%;
-  padding: 0;
+  object-fit: contain;
+  object-position: left;
+}
+
+.certificateHeading {
+  font-family: Open Sans, sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: #222;
+  line-height: 38px;
+  text-transform: uppercase;
+  margin: 50px auto 0;
+  text-align: center;
+  width: 16cm;
+}
+
+.nameContent {
+  width: 16cm;
+  margin: 50px auto 40px;
+  border-top: 2px solid #222222;
+  border-bottom: 2px solid #222222;
+}
+
+.nameContent p {
+  font-family: Poppins, sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 46px;
+  margin: 17px 0;
+  letter-spacing: 1px;
+}
+
+.content {
+  width: 18cm;
+  margin: 0 auto 60px;
+}
+
+.content p {
+  font-family: Poppins, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 36px;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
   margin: 0;
+}
+
+.content p span {
+  font-weight: 800;
+}
+
+.content p em {
+  font-style: normal;
+  font-weight: 800;
+}
+
+.sign {
+  width: 16cm;
+  margin: 20px auto 0;
+  align-items: flex-end;
+}
+
+.sign,
+.lnt {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
 }
 
-.certi_name {
-  font-family: 'Inter', sans-serif;
-  width: 100%;
-  text-align: center;
-  font-size: 72px;
-  margin-top: 240px;
-  font-weight: 800;
-  color: black;
-  padding: 0;
-  line-height: 1;
+.sign .left.profLogo {
+  width: auto;
 }
 
-.certi_course {
-  font-family: 'Inter', sans-serif;
-  width: 100%;
-  text-align: center;
-  font-size: 35px;
-  letter-spacing: 0;
+.sign .left {
+  width: 125px;
+}
+
+.sign .left.profLogo .figure {
+  width: 135px;
+  margin: 0 auto;
+}
+
+.sign .left.profLogo .ceoName {
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
   font-weight: 800;
-  margin-top: 132px;
-  color: black;
-  padding: 0;
-  line-height: 1;
+  color: #222;
+  line-height: normal;
+  margin: 0;
+  text-align: center;
+}
+
+.sign .left p {
+  font-family: Open Sans, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: #222;
+  line-height: normal;
+  margin: 0;
+  text-align: center;
+}
+
+.sign .left.profLogo .ceo {
+  font-family: Poppins, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  border-top: 1px solid #222222;
+  text-align: center;
+  margin: 3px 0 0;
+  padding-top: 6px;
+}
+
+.sign .left p {
+  font-family: Open Sans, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: #222;
+  line-height: normal;
+  margin: 0;
+  text-align: center;
+}
+
+.sign .left.profLogo .ceo span {
+  display: block;
+  font-weight: 700;
+}
+
+.sign .right .figure {
+  width: 135px;
+  margin: 0 auto;
+}
+
+.sign .right .figure img {
+  width: 100%;
+}
+
+.sign .right .ceoName {
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #222;
+  line-height: normal;
+  margin: 0;
+  text-align: center;
+}
+
+.sign .right .ceo {
+  font-family: Poppins, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  border-top: 1px solid #222222;
+  text-align: center;
+  margin: 3px 0 0;
+  padding-top: 6px;
+}
+
+.sign .right .ceo span {
+  display: block;
+  font-weight: 700;
+}
+
+.figure {
+  margin: 0;
+}
+
+.lnt {
+  width: 17cm;
+  margin: 40px auto;
+}
+
+.lnt {
+  align-items: center;
+}
+
+.sign,
+.lnt {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lnt .borderr {
+  width: calc(100% - 75px);
+}
+
+.lnt .borderr>div {
+  border: 1px solid #222222;
+  width: 100%;
+  display: block;
+}
+
+.lnt .figure {
+  width: 60px;
+  margin: 0 0 0 20px;
+}
+
+.lnt .figure img {
+  width: 100%;
 }
 
 .btn-css {
