@@ -1,9 +1,8 @@
 <script setup>
-import marqueee from "@/components/marquee.vue";
+
 </script>
 
 <template>
-  <marqueee />
   <section id="home" class="hero text-center align-content-center">
     <v-container>
       <div class="hero-content">

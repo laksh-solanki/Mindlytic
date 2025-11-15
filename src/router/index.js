@@ -19,7 +19,7 @@ const routes = [
     component: HomeView,
     meta: {
       requiresAuth: false,
-      title: 'Mindlytic - Home',
+      title: 'Mindlytic | Home',
       description: 'Welcome to the Home Page',
     },
   },
@@ -27,7 +27,7 @@ const routes = [
     path: '/about',
     name: 'about',
     component: AboutView,
-    meta: { requiresAuth: false, title: 'Mindlytic - About', description: 'Learn more About Us' },
+    meta: { requiresAuth: false, title: 'Mindlytic | About', description: 'Learn more About Us' },
   },
   {
     path: '/project',
@@ -39,7 +39,7 @@ const routes = [
         component: ProjectHome,
         meta: {
           requiresAuth: false,
-          title: 'Mindlytic - Projects',
+          title: 'Mindlytic | Projects',
           description: 'Explore your Projects',
         },
       },
@@ -49,7 +49,7 @@ const routes = [
         component: CertificateView,
         meta: {
           requiresAuth: false,
-          title: 'Mindlytic - Certificate',
+          title: 'Mindlytic | Certificate',
           description: 'Your Certificate Details',
         },
       },
@@ -65,7 +65,7 @@ const routes = [
         redirect: '/settings/profile',
         meta: {
           requiresAuth: false,
-          title: 'Mindlytic - Settings',
+          title: 'Mindlytic | Settings',
           description: 'Adjust your Settings',
         },
       },
@@ -75,7 +75,7 @@ const routes = [
         component: Profile,
         meta: {
           requiresAuth: false,
-          title: 'Mindlytic - Profile',
+          title: 'Mindlytic | Profile Settings',
           description: 'Your Profile page',
         },
       },
@@ -85,7 +85,7 @@ const routes = [
         component: MainSettings,
         meta: {
           requiresAuth: false,
-          title: 'Mindlytic - Main Settings',
+          title: 'Mindlytic | Main Settings',
           description: 'Main Settings page',
         },
       },
@@ -95,7 +95,7 @@ const routes = [
     path: '/help',
     name: 'help',
     component: HelpView,
-    meta: { requiresAuth: false, title: 'Mindlytic - Help', description: 'Get Help and Support' },
+    meta: { requiresAuth: false, title: 'Mindlytic | Help', description: 'Get Help and Support' },
   },
   {
     path: '/Globalloader',
@@ -106,7 +106,7 @@ const routes = [
     path: '/notfound',
     name: 'NotMatch',
     component: NotmatchView,
-    meta: { requiresAuth: false, title: 'Mindlytic - Not Found', description: 'Page Not Found' },
+    meta: { requiresAuth: false, title: 'Mindlytic | Not Found', description: 'Page Not Found' },
   },
   {
     path: '/:pathMatch(.*)*',
