@@ -23,11 +23,11 @@ const pdfSection = ref(null)
 const generatePdf = () => {
   if (pdfSection.value) {
     html2pdf(pdfSection.value.$el, {
-      margin: 0,
-      filename: 'document.pdf',
-      image: { type: 'jpeg', quality: 0.9 },
+      margin: 0.5,
+      filename: form.course + '.pdf',
+      image: { type: 'jpeg', quality: 1 },
       html2canvas: { scale: 1.2, useCORS: true },
-      jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+      jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' }
     })
   }
 }
@@ -72,14 +72,14 @@ const generatePdf = () => {
   </v-container>
 
   <!-- PDF Preview Dialog -->
-  <v-dialog v-model="dialog" max-width="900">
+  <v-dialog v-model="dialog" max-width="800">
     <v-card>
       <v-card-title class="p-0 d-flex justify-space-between align-center">
         <v-btn color="primary" @click="generatePdf" text="Download" prepend-icon="mdi-download" :loading="loading"
           variant="text"></v-btn>
         <v-btn icon="mdi-close" @click="dialog = false" variant="text"></v-btn>
       </v-card-title>
-      <v-card ref="pdfSection" class="overflow-scroll">
+      <v-container ref="pdfSection" class="w-100 p-0 m-0" fluid>
         <div class="certificate" style="background-image: url(/src/assets/Picture/CoursePathway_BG.jpg);">
           <div class="logo">
             <div class="partnerLogo commonLogo">
@@ -91,7 +91,7 @@ const generatePdf = () => {
               <img src="/src/assets/Picture/L&T EduTech.png" alt="">
             </div>
           </div>
-          <p class="certificateHeading">Certificate of Course <br> Pathway Completion</p>
+          <p class="certificateHeading text-center">Certificate of Course <br> Pathway Completion</p>
           <div class="nameContent">
             <p>{{ form.fname }}</p>
           </div>
@@ -138,7 +138,7 @@ const generatePdf = () => {
             </div>
           </footer>
         </div>
-      </v-card>
+      </v-container>
     </v-card>
   </v-dialog>
 </template>
@@ -154,8 +154,8 @@ const generatePdf = () => {
 }
 
 .inside {
-  width: 21cm !important;
-  overflow-y: hidden !important;
+  width: 22cm !important;
+  overflow-y: hidden;
 }
 
 .certificate {
@@ -166,7 +166,7 @@ const generatePdf = () => {
 }
 
 .logo {
-  margin: 150px auto 0;
+  margin: 155px 0 0;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -229,8 +229,9 @@ picture {
   font-weight: 700;
   color: #222;
   line-height: 38px;
-  text-transform: uppercase;
+  text-transform: uppercase !important;
   margin: 50px auto 0;
+  letter-spacing: 0;
   text-align: center;
   width: 16cm;
 }
@@ -240,6 +241,7 @@ picture {
   margin: 50px auto 40px;
   border-top: 2px solid #222222;
   border-bottom: 2px solid #222222;
+  letter-spacing: 0;
 }
 
 .nameContent p {
@@ -248,6 +250,7 @@ picture {
   font-weight: 700;
   text-align: center;
   line-height: 46px;
+  text-transform: uppercase;
   margin: 17px 0;
   letter-spacing: 1px;
 }
@@ -279,7 +282,7 @@ picture {
 
 .sign {
   width: 16cm;
-  margin: 20px auto 0;
+  margin: 30px auto 0;
   align-items: flex-end;
 }
 
@@ -390,9 +393,6 @@ picture {
 .lnt {
   width: 17cm;
   margin: 40px auto;
-}
-
-.lnt {
   align-items: center;
 }
 
