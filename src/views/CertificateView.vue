@@ -20,24 +20,37 @@ const loading = ref(false)
 const dialog = ref(false)
 
 const pdfSection = ref(null)
-const generatePdf = () => {
-  if (pdfSection.value) {
-    html2pdf(pdfSection.value.$el, {
-      margin: 0.5,
-      filename: form.course + '.pdf',
-      image: { type: 'jpeg', quality: 1 },
-      html2canvas: { scale: 1.2, useCORS: true },
-      jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' }
-    })
+
+  const generatePdf = () => {
+    if (pdfSection.value) {
+      html2pdf(pdfSection.value.$el, {
+        margin: 0.5,
+        filename: form.course + '.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 1.2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' }
+      })
+    }
   }
-}
+
+// const generatePdf = () => {
+//   const printDiv = pdfSection.value;
+//   if (printDiv) {
+//     const printContents = printDiv.innerHTML;
+//     const original = document.body.innerHTML;
+
+//     document.body.innerHTML = printContents;
+//     window.print();
+//     document.body.innerHTML = original;
+//   }
+// }
 </script>
 <template>
   <v-btn to="/project" variant="flat" color="info" icon="mdi-arrow-left" class="btn-css"></v-btn>
   <v-container>
     <!-- Student Form -->
     <v-card>
-      <v-card-title class="text-h4 text-wrap text-center bg-primary text-white pa-4">
+      <v-card-title class="text-h4 text-wrap text-center text-white pa-4 bg-info">
         Student Certificate
       </v-card-title>
       <v-card-text>
@@ -60,7 +73,7 @@ const generatePdf = () => {
             <v-col cols="12" md="3" class="d-flex justify-center">
               <v-tooltip text="Preview and Download the certificate" location="top">
                 <template v-slot:activator="{ props }">
-                  <v-btn v-bind="props" @click="dialog = true" color="primary" text="Certificate"
+                  <v-btn v-bind="props" @click="dialog = true" color="info" text="Certificate"
                     prepend-icon="mdi-file-certificate-outline" size="large"></v-btn>
                 </template>
               </v-tooltip>
