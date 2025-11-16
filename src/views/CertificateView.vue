@@ -27,7 +27,7 @@ const pdfSection = ref(null)
         margin: 0.5,
         filename: form.course + '.pdf',
         image: { type: 'jpeg', quality: 1 },
-        html2canvas: { scale: 1.2, useCORS: true },
+        html2canvas: { scale: 2, useCORS: true },
         jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' }
       })
     }
