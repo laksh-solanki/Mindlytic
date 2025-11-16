@@ -21,17 +21,17 @@ const dialog = ref(false)
 
 const pdfSection = ref(null)
 
-  const generatePdf = () => {
-    if (pdfSection.value) {
-      html2pdf(pdfSection.value.$el, {
-        margin: 0.5,
-        filename: form.course + '.pdf',
-        image: { type: 'jpeg', quality: 1 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' }
-      })
-    }
+const generatePdf = () => {
+  if (pdfSection.value) {
+    html2pdf(pdfSection.value.$el, {
+      margin: 0,
+      filename: form.course + '.pdf',
+      image: { type: 'jpeg', quality: 2 },
+      html2canvas: { scale: 5, useCORS: true },
+      jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' }
+    })
   }
+}
 
 // const generatePdf = () => {
 //   const printDiv = pdfSection.value;
@@ -86,76 +86,78 @@ const pdfSection = ref(null)
 
   <!-- PDF Preview Dialog -->
   <v-dialog v-model="dialog" max-width="800">
-    <v-card>
+    <v-card class="overflow-scroll">
       <v-card-title class="p-0 d-flex justify-space-between align-center">
         <v-btn color="primary" @click="generatePdf" text="Download" prepend-icon="mdi-download" :loading="loading"
           variant="text"></v-btn>
         <v-btn icon="mdi-close" @click="dialog = false" variant="text"></v-btn>
       </v-card-title>
-      <v-container ref="pdfSection" class="w-100 p-0 m-0" fluid>
-        <div class="certificate" style="background-image: url(/src/assets/Picture/CoursePathway_BG.jpg);">
-          <div class="logo">
-            <div class="partnerLogo commonLogo">
-              <div class="figure">
-                <img src="/src/assets/Picture/sk.jfif" alt="">
-              </div>
-            </div>
-            <div class="figure eduTechLogo commonLogo">
-              <img src="/src/assets/Picture/L&T EduTech.png" alt="">
+      <v-container ref="pdfSection" class="certificate"
+        style="background-image: url(/src/assets/Picture/CoursePathway_BG.jpg);" fluid>
+        <div class="logo">
+          <div class="partnerLogo commonLogo">
+            <div class="figure">
+              <img src="/src/assets/Picture/sk.jfif" alt="">
             </div>
           </div>
-          <p class="certificateHeading text-center">Certificate of Course <br> Pathway Completion</p>
-          <div class="nameContent">
-            <p>{{ form.fname }}</p>
+          <div class="figure eduTechLogo commonLogo">
+            <img src="/src/assets/Picture/L&T EduTech.png" alt="">
           </div>
-          <div class="content">
-            <p>
-              has completed the Course pathway titled
-              <br>
-              <span>{{ form.course }}</span>
-              <br>
-              which covers
-              <br>
-              <em>7</em>
-              courses and
-              <em>13</em>
-              learning hours
-            </p>
-          </div>
-          <footer style="display: block;">
-            <div class="sign">
-              <div class="left profLogo">
-                <div class="figure">
-                  <img src="/src/assets/Picture/profSignature.png" alt="">
-                </div>
-                <p class="ceoName">Prof. (Dr.) Prafulkumar Udani</p>
-                <p class="ceo">Provost
-                  <span>Sankalchand Patel University</span>
-                </p>
-              </div>
-              <div class="right">
-                <div class="figure">
-                  <img src="/src/assets/Picture/febinsign.png" alt="">
-                </div>
-                <p class="ceoName">M.F.Febin</p>
-                <p class="ceo">Head <span>L&T EduTech</span></p>
-              </div>
-            </div>
-            <div class="lnt">
-              <div class="borderr">
-                <div></div>
-              </div>
-              <div class="figure">
-                <img src="/src/assets/Picture/LnT.png" alt="">
-              </div>
-            </div>
-          </footer>
         </div>
+        <p class="certificateHeading text-center">Certificate of Course <br> Pathway Completion</p>
+        <div class="nameContent">
+          <p>{{ form.fname }}</p>
+        </div>
+        <div class="content">
+          <p>
+            has completed the Course pathway titled
+            <br>
+            <span>{{ form.course }}</span>
+            <br>
+            which covers
+            <br>
+            <em>7</em>
+            courses and
+            <em>13</em>
+            learning hours
+          </p>
+        </div>
+        <footer style="display: block;">
+          <div class="sign">
+            <div class="left profLogo">
+              <div class="figure">
+                <img src="/src/assets/Picture/profSignature.png" alt="">
+              </div>
+              <p class="ceoName">Prof. (Dr.) Prafulkumar Udani</p>
+              <p class="ceo">Provost
+                <span>Sankalchand Patel University</span>
+              </p>
+            </div>
+            <div class="right">
+              <div class="figure">
+                <img src="/src/assets/Picture/febinsign.png" alt="">
+              </div>
+              <p class="ceoName">M.F.Febin</p>
+              <p class="ceo">Head <span>L&T EduTech</span></p>
+            </div>
+          </div>
+          <div class="lnt">
+            <div class="borderr">
+              <div></div>
+            </div>
+            <div class="figure">
+              <img src="/src/assets/Picture/LnT.png" alt="">
+            </div>
+          </div>
+        </footer>
       </v-container>
     </v-card>
   </v-dialog>
 </template>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
 .figure {
   display: block;
   margin-block-start: 1em;
@@ -172,8 +174,12 @@ const pdfSection = ref(null)
 }
 
 .certificate {
-  position: relative;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 1117px !important;
   overflow: hidden;
+  position: relative;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
@@ -244,7 +250,7 @@ picture {
   line-height: 38px;
   text-transform: uppercase !important;
   margin: 50px auto 0;
-  letter-spacing: 0;
+  letter-spacing: 0 !important;
   text-align: center;
   width: 16cm;
 }
