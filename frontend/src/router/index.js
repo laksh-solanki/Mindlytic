@@ -11,112 +11,112 @@ import GlobalLoader from '@/views/GlobalLoader.vue'
 import Profile from '@/views/Profile.vue'
 import MainSettings from '@/views/MainSettings.vue'
 import { useLoadingStore } from '@/stores/loading'
-
-const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView,
-    meta: {
-      requiresAuth: false,
-      title: 'Mindlytic | Home',
-      description: 'Welcome to the Home Page',
-    },
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: AboutView,
-    meta: { requiresAuth: false, title: 'Mindlytic | About', description: 'Learn more About Us' },
-  },
-  {
-    path: '/project',
-    component: ProjectView,
-    children: [
-      {
-        path: '',
-        name: 'project',
-        component: ProjectHome,
-        meta: {
-          requiresAuth: false,
-          title: 'Mindlytic | Projects',
-          description: 'Explore your Projects',
-        },
-      },
-      {
-        path: 'certificate',
-        name: 'certificate',
-        component: CertificateView,
-        meta: {
-          requiresAuth: false,
-          title: 'Mindlytic | Certificate',
-          description: 'Your Certificate Details',
-        },
-      },
-    ],
-  },
-  {
-    path: '/settings',
-    component: SettingsView,
-    children: [
-      {
-        path: '',
-        name: 'settings',
-        redirect: '/settings/profile',
-        meta: {
-          requiresAuth: false,
-          title: 'Mindlytic | Settings',
-          description: 'Adjust your Settings',
-        },
-      },
-      {
-        path: 'profile',
-        name: 'settings-profile',
-        component: Profile,
-        meta: {
-          requiresAuth: false,
-          title: 'Mindlytic | Profile Settings',
-          description: 'Your Profile page',
-        },
-      },
-      {
-        path: 'main-settings',
-        name: 'settings-main',
-        component: MainSettings,
-        meta: {
-          requiresAuth: false,
-          title: 'Mindlytic | Main Settings',
-          description: 'Main Settings page',
-        },
-      },
-    ],
-  },
-  {
-    path: '/help',
-    name: 'help',
-    component: HelpView,
-    meta: { requiresAuth: false, title: 'Mindlytic | Help', description: 'Get Help and Support' },
-  },
-  {
-    path: '/Globalloader',
-    name: 'Globalloader',
-    component: GlobalLoader,
-  },
-  {
-    path: '/notfound',
-    name: 'NotMatch',
-    component: NotmatchView,
-    meta: { requiresAuth: false, title: 'Mindlytic | Not Found', description: 'Page Not Found' },
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: '/notfound',
-  },
-]
-
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView,
+      meta: {
+        title: 'Mindlytic | Home',
+        description: 'Welcome to the Home Page',
+      },
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: AboutView,
+      meta: {
+        title: 'Mindlytic | About',
+        description: 'Learn more About Us',
+      },
+    },
+    {
+      path: '/project',
+      component: ProjectView,
+      children: [
+        {
+          path: '',
+          name: 'project',
+          component: ProjectHome,
+          meta: {
+            title: 'Mindlytic | Projects',
+            description: 'Explore your Projects',
+          },
+        },
+        {
+          path: 'certificate',
+          name: 'certificate',
+          component: CertificateView,
+          meta: {
+            title: 'Mindlytic | Certificate',
+            description: 'Your Certificate Details',
+          },
+        },
+      ],
+    },
+    {
+      path: '/settings',
+      component: SettingsView,
+      children: [
+        {
+          path: '',
+          name: 'settings',
+          redirect: '/settings/profile',
+          meta: {
+            title: 'Mindlytic | Settings',
+            description: 'Adjust your Settings',
+          },
+        },
+        {
+          path: 'profile',
+          name: 'settings-profile',
+          component: Profile,
+          meta: {
+            title: 'Mindlytic | Profile Settings',
+            description: 'Your Profile page',
+          },
+        },
+        {
+          path: 'main-settings',
+          name: 'settings-main',
+          component: MainSettings,
+          meta: {
+            title: 'Mindlytic | Main Settings',
+            description: 'Main Settings page',
+          },
+        },
+      ],
+    },
+    {
+      path: '/help',
+      name: 'help',
+      component: HelpView,
+      meta: {
+        title: 'Mindlytic | Help',
+        description: 'Get Help and Support',
+      },
+    },
+    {
+      path: '/Globalloader',
+      name: 'Globalloader',
+      component: GlobalLoader,
+    },
+    {
+      path: '/notfound',
+      name: 'NotMatch',
+      component: NotmatchView,
+      meta: {
+        title: 'Mindlytic | Not Found',
+        description: 'Page Not Found',
+      },
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/notfound',
+    },
+  ],
 })
 
 router.beforeEach((to, from, next) => {
