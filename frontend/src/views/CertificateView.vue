@@ -28,7 +28,7 @@ const generatePdf = () => {
       filename: form.course + '.pdf',
       image: { type: 'jpeg', quality: 2 },
       html2canvas: { scale: 5, useCORS: true },
-      jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' }
+      jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' },
     })
   }
 }
@@ -61,20 +61,42 @@ const generatePdf = () => {
               <v-divider class="my-3"></v-divider>
             </v-col>
             <v-col cols="12" md="6">
-              <v-text-field v-model="form.fname" :rules="[(v) => !!v || 'Full Name is required']" label="Full Name"
-                variant="outlined" name="fname" id="fname" rounded="2" aria-required="true"></v-text-field>
+              <v-text-field
+                v-model="form.fname"
+                :rules="[(v) => !!v || 'Full Name is required']"
+                label="Full Name"
+                variant="outlined"
+                name="fname"
+                id="fname"
+                rounded="2"
+                aria-required="true"
+              ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
-              <v-select v-model="form.course" :items="courses" :rules="[(v) => !!v || 'Course is required']"
-                label="Course" variant="outlined" name="course" id="course" rounded="2"></v-select>
+              <v-select
+                v-model="form.course"
+                :items="courses"
+                :rules="[(v) => !!v || 'Course is required']"
+                label="Course"
+                variant="outlined"
+                name="course"
+                id="course"
+                rounded="2"
+              ></v-select>
             </v-col>
           </v-row>
           <v-row class="mt-5 justify-content-center">
             <v-col cols="12" md="3" class="d-flex justify-center">
               <v-tooltip text="Preview and Download the certificate" location="top">
                 <template v-slot:activator="{ props }">
-                  <v-btn v-bind="props" @click="dialog = true" color="info" text="Certificate"
-                    prepend-icon="mdi-file-certificate-outline" size="large"></v-btn>
+                  <v-btn
+                    v-bind="props"
+                    @click="dialog = true"
+                    color="info"
+                    text="Certificate"
+                    prepend-icon="mdi-file-certificate-outline"
+                    size="large"
+                  ></v-btn>
                 </template>
               </v-tooltip>
             </v-col>
@@ -88,54 +110,68 @@ const generatePdf = () => {
   <v-dialog v-model="dialog" max-width="800">
     <v-card class="overflow-scroll">
       <v-card-title class="p-0 d-flex justify-space-between align-center">
-        <v-btn color="primary" @click="generatePdf" text="Download" prepend-icon="mdi-download" :loading="loading"
-          variant="text"></v-btn>
+        <v-btn
+          color="primary"
+          @click="generatePdf"
+          text="Download"
+          prepend-icon="mdi-download"
+          :loading="loading"
+          variant="text"
+        ></v-btn>
         <v-btn icon="mdi-close" @click="dialog = false" variant="text"></v-btn>
       </v-card-title>
-      <v-container ref="pdfSection" class="certificate"
-        style="background-image: url(/src/assets/Picture/CoursePathway_BG.jpg);" fluid>
+      <v-container
+        ref="pdfSection"
+        class="certificate"
+        style="background-image: url(/src/assets/Picture/CoursePathway_BG.jpg)"
+        fluid
+      >
         <div class="logo">
           <div class="partnerLogo commonLogo">
             <div class="figure">
-              <img src="/src/assets/Picture/sk.jfif" alt="">
+              <img src="/src/assets/Picture/sk.jfif" alt="" />
             </div>
           </div>
           <div class="figure eduTechLogo commonLogo">
-            <img src="/src/assets/Picture/L&T EduTech.png" alt="">
+            <img src="/src/assets/Picture/L&T EduTech.png" alt="" />
           </div>
         </div>
-        <p class="certificateHeading text-center">Certificate of Course <br> Pathway Completion</p>
+        <p class="certificateHeading text-center">
+          Certificate of Course <br />
+          Pathway Completion
+        </p>
         <div class="nameContent">
           <p>{{ form.fname }}</p>
         </div>
         <div class="content">
           <p>
             has completed the Course pathway titled
-            <br>
+            <br />
             <span>{{ form.course }}</span>
-            <br>
+            <br />
             which covers
-            <br>
+            <br />
             <em>7</em>
             courses and
             <em>13</em>
             learning hours
           </p>
         </div>
-        <footer style="display: block;">
+        <footer style="display: block">
           <div class="sign">
             <div class="left profLogo">
               <div class="figure">
-                <img src="/src/assets/Picture/profSignature.png" alt="">
+                <img src="/src/assets/Picture/profSignature.png" alt="" />
               </div>
               <p class="ceoName">Prof. (Dr.) Prafulkumar Udani</p>
-              <p class="ceo">Provost
+              <p class="ceo">
+                Provost
                 <span>Sankalchand Patel University</span>
               </p>
             </div>
             <div class="right">
               <div class="figure">
-                <img src="/src/assets/Picture/febinsign.png" alt="">
+                <img src="/src/assets/Picture/febinsign.png" alt="" />
               </div>
               <p class="ceoName">M.F.Febin</p>
               <p class="ceo">Head <span>L&T EduTech</span></p>
@@ -146,7 +182,7 @@ const generatePdf = () => {
               <div></div>
             </div>
             <div class="figure">
-              <img src="/src/assets/Picture/LnT.png" alt="">
+              <img src="/src/assets/Picture/LnT.png" alt="" />
             </div>
           </div>
         </footer>
@@ -156,7 +192,6 @@ const generatePdf = () => {
 </template>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
 
 .figure {
   display: block;
@@ -199,7 +234,7 @@ const generatePdf = () => {
 }
 
 .logo .partnerLogo:before {
-  content: "";
+  content: '';
   position: absolute;
   right: 0;
   top: 50%;
@@ -207,7 +242,7 @@ const generatePdf = () => {
   width: 1px;
   height: 100px;
   background-color: #707070;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .logo .partnerLogo .figure {
@@ -243,7 +278,9 @@ picture {
 }
 
 .certificateHeading {
-  font-family: Open Sans, sans-serif;
+  font-family:
+    Open Sans,
+    sans-serif;
   font-size: 34px;
   font-weight: 700;
   color: #222;
@@ -335,7 +372,9 @@ picture {
 }
 
 .sign .left p {
-  font-family: Open Sans, sans-serif;
+  font-family:
+    Open Sans,
+    sans-serif;
   font-size: 12px;
   font-weight: 800;
   color: #222;
@@ -356,7 +395,9 @@ picture {
 }
 
 .sign .left p {
-  font-family: Open Sans, sans-serif;
+  font-family:
+    Open Sans,
+    sans-serif;
   font-size: 12px;
   font-weight: 800;
   color: #222;
@@ -425,7 +466,7 @@ picture {
   width: calc(100% - 75px);
 }
 
-.lnt .borderr>div {
+.lnt .borderr > div {
   border: 1px solid #222222;
   width: 100%;
   display: block;

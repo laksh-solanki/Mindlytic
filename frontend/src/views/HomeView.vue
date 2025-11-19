@@ -1,6 +1,4 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
   <section id="home" class="hero text-center align-content-center">
@@ -77,5 +75,4 @@
   justify-content: center;
   flex-wrap: wrap;
 }
-
 </style>
