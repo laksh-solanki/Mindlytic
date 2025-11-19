@@ -61,42 +61,20 @@ const generatePdf = () => {
               <v-divider class="my-3"></v-divider>
             </v-col>
             <v-col cols="12" md="6">
-              <v-text-field
-                v-model="form.fname"
-                :rules="[(v) => !!v || 'Full Name is required']"
-                label="Full Name"
-                variant="outlined"
-                name="fname"
-                id="fname"
-                rounded="2"
-                aria-required="true"
-              ></v-text-field>
+              <v-text-field v-model="form.fname" :rules="[(v) => !!v || 'Full Name is required']" label="Full Name"
+                variant="outlined" name="fname" id="fname" rounded="2" aria-required="true"></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
-              <v-select
-                v-model="form.course"
-                :items="courses"
-                :rules="[(v) => !!v || 'Course is required']"
-                label="Course"
-                variant="outlined"
-                name="course"
-                id="course"
-                rounded="2"
-              ></v-select>
+              <v-select v-model="form.course" :items="courses" :rules="[(v) => !!v || 'Course is required']"
+                label="Course" variant="outlined" name="course" id="course" rounded="2"></v-select>
             </v-col>
           </v-row>
           <v-row class="mt-5 justify-content-center">
             <v-col cols="12" md="3" class="d-flex justify-center">
               <v-tooltip text="Preview and Download the certificate" location="top">
                 <template v-slot:activator="{ props }">
-                  <v-btn
-                    v-bind="props"
-                    @click="dialog = true"
-                    color="info"
-                    text="Certificate"
-                    prepend-icon="mdi-file-certificate-outline"
-                    size="large"
-                  ></v-btn>
+                  <v-btn v-bind="props" @click="dialog = true" color="info" text="Certificate"
+                    prepend-icon="mdi-file-certificate-outline" size="large"></v-btn>
                 </template>
               </v-tooltip>
             </v-col>
@@ -110,22 +88,11 @@ const generatePdf = () => {
   <v-dialog v-model="dialog" max-width="800">
     <v-card class="overflow-scroll">
       <v-card-title class="p-0 d-flex justify-space-between align-center">
-        <v-btn
-          color="primary"
-          @click="generatePdf"
-          text="Download"
-          prepend-icon="mdi-download"
-          :loading="loading"
-          variant="text"
-        ></v-btn>
+        <v-btn color="primary" @click="generatePdf" text="Download" prepend-icon="mdi-download" :loading="loading"
+          variant="text"></v-btn>
         <v-btn icon="mdi-close" @click="dialog = false" variant="text"></v-btn>
       </v-card-title>
-      <v-container
-        ref="pdfSection"
-        class="certificate"
-        style="background-image: url(/src/assets/Picture/CoursePathway_BG.jpg)"
-        fluid
-      >
+      <v-container ref="pdfSection" class="certificate" fluid>
         <div class="logo">
           <div class="partnerLogo commonLogo">
             <div class="figure">
@@ -209,6 +176,7 @@ const generatePdf = () => {
 }
 
 .certificate {
+  background-image: url(/src/assets/Picture/CoursePathway_BG.jpg);
   padding: 0;
   margin: 0;
   width: 100%;
@@ -466,7 +434,7 @@ picture {
   width: calc(100% - 75px);
 }
 
-.lnt .borderr > div {
+.lnt .borderr>div {
   border: 1px solid #222222;
   width: 100%;
   display: block;
