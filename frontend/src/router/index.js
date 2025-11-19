@@ -12,7 +12,7 @@ import Profile from '@/views/Profile.vue'
 import MainSettings from '@/views/MainSettings.vue'
 import { useLoadingStore } from '@/stores/loading'
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
