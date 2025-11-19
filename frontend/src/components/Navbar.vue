@@ -18,7 +18,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse w-100 navbar-collapse justify-content-center" id="navbarScroll">
-        <ul class="nav navbar-nav nav-underline gap-3 flex-row w-100 justify-content-center">
+        <ul class="nav navbar-nav nav-underline gap-4 gap-lg-3 flex-row w-100 justify-content-center">
           <li class="nav-item">
             <router-link class="nav-link" to="/">Home</router-link>
           </li>

@@ -455,6 +455,8 @@ picture {
 }
 
 .btn-css {
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
   border-start-start-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
   border-top-right-radius: 0% !important;
