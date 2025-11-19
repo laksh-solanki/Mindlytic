@@ -87,73 +87,78 @@ const generatePdf = () => {
   <!-- PDF Preview Dialog -->
   <v-dialog v-model="dialog" max-width="800">
     <v-card>
-      <v-card-title class="p-0 d-flex justify-space-between align-center">
-        <v-btn color="primary" @click="generatePdf" text="Download" prepend-icon="mdi-download" :loading="loading"
-          variant="text"></v-btn>
-        <v-btn icon="mdi-close" @click="dialog = false" variant="text"></v-btn>
+      <v-card-title class="p-0 d-flex justify-space-between">
+        <v-btn @click="generatePdf" text="Download"
+          style="border-top-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 10px;"
+          prepend-icon="mdi-download" :loading="loading" variant="text" class="bg-primary" height="45"></v-btn>
+        <v-btn icon="mdi-close" class="bg-primary"
+          style="border-top-right-radius: 0; border-top-left-radius: 0; border-bottom-right-radius: 0;"
+          @click="dialog = false" variant="text"></v-btn>
       </v-card-title>
-      <v-container ref="pdfSection" class="certificate" fluid>
-        <div class="logo">
-          <div class="partnerLogo commonLogo">
-            <div class="figure">
-              <img src="/src/assets/Picture/sk.jfif" alt="" />
+      <v-card-text class="p-0">
+        <v-container ref="pdfSection" class="certificate" fluid>
+          <div class="logo">
+            <div class="partnerLogo commonLogo">
+              <div class="figure">
+                <img src="/src/assets/Picture/sk.jfif" alt="" />
+              </div>
+            </div>
+            <div class="figure eduTechLogo commonLogo">
+              <img src="/src/assets/Picture/L&T EduTech.png" alt="" />
             </div>
           </div>
-          <div class="figure eduTechLogo commonLogo">
-            <img src="/src/assets/Picture/L&T EduTech.png" alt="" />
-          </div>
-        </div>
-        <p class="certificateHeading text-center">
-          Certificate of Course <br />
-          Pathway Completion
-        </p>
-        <div class="nameContent">
-          <p>{{ form.fname }}</p>
-        </div>
-        <div class="content">
-          <p>
-            has completed the Course pathway titled
-            <br />
-            <span>{{ form.course }}</span>
-            <br />
-            which covers
-            <br />
-            <em>7</em>
-            courses and
-            <em>13</em>
-            learning hours
+          <p class="certificateHeading text-center">
+            Certificate of Course <br />
+            Pathway Completion
           </p>
-        </div>
-        <footer style="display: block">
-          <div class="sign">
-            <div class="left profLogo">
-              <div class="figure">
-                <img src="/src/assets/Picture/profSignature.png" alt="" />
-              </div>
-              <p class="ceoName">Prof. (Dr.) Prafulkumar Udani</p>
-              <p class="ceo">
-                Provost
-                <span>Sankalchand Patel University</span>
-              </p>
-            </div>
-            <div class="right">
-              <div class="figure">
-                <img src="/src/assets/Picture/febinsign.png" alt="" />
-              </div>
-              <p class="ceoName">M.F.Febin</p>
-              <p class="ceo">Head <span>L&T EduTech</span></p>
-            </div>
+          <div class="nameContent">
+            <p>{{ form.fname }}</p>
           </div>
-          <div class="lnt">
-            <div class="borderr">
-              <div></div>
-            </div>
-            <div class="figure">
-              <img src="/src/assets/Picture/LnT.png" alt="" />
-            </div>
+          <div class="content">
+            <p>
+              has completed the Course pathway titled
+              <br />
+              <span>{{ form.course }}</span>
+              <br />
+              which covers
+              <br />
+              <em>7</em>
+              courses and
+              <em>13</em>
+              learning hours
+            </p>
           </div>
-        </footer>
-      </v-container>
+          <footer style="display: block">
+            <div class="sign">
+              <div class="left profLogo">
+                <div class="figure">
+                  <img src="/src/assets/Picture/profSignature.png" alt="" />
+                </div>
+                <p class="ceoName">Prof. (Dr.) Prafulkumar Udani</p>
+                <p class="ceo">
+                  Provost
+                  <span>Sankalchand Patel University</span>
+                </p>
+              </div>
+              <div class="right">
+                <div class="figure">
+                  <img src="/src/assets/Picture/febinsign.png" alt="" />
+                </div>
+                <p class="ceoName">M.F.Febin</p>
+                <p class="ceo">Head <span>L&T EduTech</span></p>
+              </div>
+            </div>
+            <div class="lnt">
+              <div class="borderr">
+                <div></div>
+              </div>
+              <div class="figure">
+                <img src="/src/assets/Picture/LnT.png" alt="" />
+              </div>
+            </div>
+          </footer>
+        </v-container>
+      </v-card-text>
     </v-card>
   </v-dialog>
 </template>
@@ -180,7 +185,7 @@ const generatePdf = () => {
   padding: 0;
   margin: 0;
   width: 100%;
-  height: 1117px !important;
+  height: 1120px !important;
   overflow: hidden;
   position: relative;
   background-repeat: no-repeat;
