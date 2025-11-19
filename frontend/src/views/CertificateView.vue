@@ -86,7 +86,7 @@ const generatePdf = () => {
 
   <!-- PDF Preview Dialog -->
   <v-dialog v-model="dialog" max-width="800">
-    <v-card class="overflow-scroll">
+    <v-card>
       <v-card-title class="p-0 d-flex justify-space-between align-center">
         <v-btn color="primary" @click="generatePdf" text="Download" prepend-icon="mdi-download" :loading="loading"
           variant="text"></v-btn>
@@ -179,6 +179,8 @@ const generatePdf = () => {
   background-image: url(/src/assets/Picture/CoursePathway_BG.jpg);
   padding: 0;
   margin: 0;
+  width: 100%;
+  height: 1117px !important;
   overflow: hidden;
   position: relative;
   background-repeat: no-repeat;
