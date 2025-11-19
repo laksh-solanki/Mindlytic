@@ -28,7 +28,7 @@ const generatePdf = () => {
       filename: form.course + '.pdf',
       image: { type: 'jpeg', quality: 3 },
       html2canvas: { scale: 7, useCORS: true },
-      jsPDF: { orientation: 'portrait' },
+      jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' },
     })
   }
 }
@@ -85,8 +85,8 @@ const generatePdf = () => {
   </v-container>
 
   <!-- PDF Preview Dialog -->
-  <v-dialog v-model="dialog" max-width="800" scrollable>
-    <v-card>
+  <v-dialog v-model="dialog" max-width="800">
+    <v-card class="overflow-scroll">
       <v-card-title class="p-0 d-flex justify-space-between align-center">
         <v-btn color="primary" @click="generatePdf" text="Download" prepend-icon="mdi-download" :loading="loading"
           variant="text"></v-btn>
