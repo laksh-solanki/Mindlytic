@@ -49,7 +49,6 @@
           class="rounded-4 sheet2-animation"
           color="deep-purple-lighten-3"
         >
-          <!--  -->
         </v-sheet>
       </v-col>
     </v-row>

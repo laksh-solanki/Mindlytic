@@ -11,7 +11,6 @@
           class="rounded-4 sheet1-animation"
           color="teal-accent-1"
         >
-          <!-- Content for the main settings area -->
         </v-sheet>
       </v-col>
 
@@ -40,7 +39,6 @@
           class="rounded-4 sheet2-animation"
           color="deep-purple-accent-1"
         >
-          <!--  -->
         </v-sheet>
       </v-col>
     </v-row>

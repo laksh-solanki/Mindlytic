@@ -16,7 +16,6 @@
 </template>
 
 <style scoped>
-/* Hero */
 .hero {
   background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
   padding: 5rem 0;

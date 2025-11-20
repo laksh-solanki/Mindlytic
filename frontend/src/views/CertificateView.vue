@@ -33,22 +33,14 @@ const generatePdf = () => {
   }
 }
 
-// const generatePdf = () => {
-//   const printDiv = pdfSection.value;
-//   if (printDiv) {
-//     const printContents = printDiv.innerHTML;
-//     const original = document.body.innerHTML;
+const goBack = () => {
+  window.history.back();
+}
 
-//     document.body.innerHTML = printContents;
-//     window.print();
-//     document.body.innerHTML = original;
-//   }
-// }
 </script>
 <template>
-  <v-btn to="/project" variant="flat" color="info" icon="mdi-arrow-left" class="btn-css"></v-btn>
+  <v-btn @click="goBack" variant="flat" color="info" icon="mdi-arrow-left" class="btn-css"></v-btn>
   <v-container>
-    <!-- Student Form -->
     <v-card class="border-2 rounded-2 border-black">
       <v-card-title class="text-h4 text-wrap text-center text-white pa-4 bg-info">
         Student Certificate
@@ -84,7 +76,6 @@ const generatePdf = () => {
     </v-card>
   </v-container>
 
-  <!-- PDF Preview Dialog -->
   <v-dialog v-model="dialog" max-width="800">
     <v-card>
       <v-card-title class="p-0 d-flex justify-space-between">

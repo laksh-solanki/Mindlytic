@@ -1,12 +1,10 @@
 <template>
   <section class="about-container">
-    <!-- Hero Section -->
     <div class="hero">
       <h1>About Us</h1>
       <p>We are a creative team passionate about crafting modern, high-quality web experiences.</p>
     </div>
 
-    <!-- Team Section -->
     <div class="team-section">
       <h2>Meet Our Team</h2>
       <div class="team-grid">
@@ -19,7 +17,6 @@
       </div>
     </div>
 
-    <!-- Mission Section -->
     <div class="mission-section">
       <h2>Our Mission</h2>
       <p>
@@ -35,7 +32,7 @@ import { ref } from 'vue'
 
 const team = ref([
   {
-    name: 'Laksh Patel',
+    name: 'Laksh Solanki',
     role: 'Founder & Developer',
     image: 'https://randomuser.me/api/portraits/men/32.jpg',
     bio: 'Specializes in full-stack development and crafting seamless user experiences.',
@@ -56,7 +53,6 @@ const team = ref([
 </script>
 
 <style scoped>
-/* ===== Basic Layout ===== */
 .about-container {
   min-height: 100vh;
   padding: 60px 20px;
@@ -65,7 +61,6 @@ const team = ref([
   background: #f8f9fb;
 }
 
-/* ===== Hero Section ===== */
 .hero {
   text-align: center;
   max-width: 800px;
@@ -85,7 +80,6 @@ const team = ref([
   margin-top: 10px;
 }
 
-/* ===== Team Section ===== */
 .team-section {
   text-align: center;
   margin-bottom: 60px;
@@ -146,7 +140,6 @@ const team = ref([
   color: #666;
 }
 
-/* ===== Mission Section ===== */
 .mission-section {
   text-align: center;
   max-width: 700px;
@@ -165,7 +158,6 @@ const team = ref([
   line-height: 1.7;
 }
 
-/* ===== Animation ===== */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -178,7 +170,6 @@ const team = ref([
   }
 }
 
-/* ===== Responsive Design ===== */
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 2.2rem;
