@@ -1,5 +1,5 @@
 <template>
-  <section class="about-container">
+  <section class="about-container animation-bottom">
     <div class="hero">
       <h1>About Us</h1>
       <p>We are a creative team passionate about crafting modern, high-quality web experiences.</p>
@@ -65,7 +65,6 @@ const team = ref([
   text-align: center;
   max-width: 800px;
   margin: 0 auto 60px;
-  animation: fadeIn 1s ease;
 }
 
 .hero h1 {
@@ -158,15 +157,36 @@ const team = ref([
   line-height: 1.7;
 }
 
-@keyframes fadeIn {
-  from {
+.animation-bottom {
+  -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
     opacity: 0;
-    transform: translateY(20px);
   }
 
-  to {
-    opacity: 1;
+  100% {
+    -webkit-transform: translateY(0);
     transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 

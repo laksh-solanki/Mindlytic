@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="animation-bottom">
     <!-- Hero -->
     <v-row justify="center" class="mb-8">
       <v-col cols="12" md="8" class="text-center">
@@ -38,5 +38,39 @@ const uniqueTech = computed(() => [
 ])
 </script>
 <style scoped>
+.animation-bottom {
+  -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
 /* nothing needed – Vuetify covers it */
 </style>
