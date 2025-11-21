@@ -12,7 +12,7 @@
 
     <!-- Project cards -->
     <v-row>
-      <v-col v-for="p in filteredProjects" :key="p.id" cols="12" sm="6" lg="4">
+      <v-col v-for="p in projects" :key="p.id" cols="12" sm="6" lg="4">
         <v-card height="100%" hover rounded="3" border="2 black" :to="p.live">
           <v-img :src="p.thumb" height="200" content-class />
           <v-card-title class="font-weight-bold">{{ p.title }}</v-card-title>
@@ -33,17 +33,9 @@
 import { computed, ref } from 'vue'
 import projects from '@/data/Projects.js'
 
-const filter = ref('')
-
 const uniqueTech = computed(() => [
   ...new Set(projects.flatMap(p => p.tech))
 ])
-
-const filteredProjects = computed(() =>
-  filter.value
-    ? projects.filter(p => p.tech.includes(filter.value))
-    : projects
-)
 </script>
 <style scoped>
 /* nothing needed – Vuetify covers it */

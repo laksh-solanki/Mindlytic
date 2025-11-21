@@ -7,7 +7,7 @@
         <h1>Build Amazing Websites with <span>Mindlytic</span></h1>
         <p>Create modern, responsive, and lightning-fast web apps with Vue 3 and modern tooling.</p>
         <div class="hero-buttons">
-          <v-btn class="btn btn-primary" to="/">Start Building</v-btn>
+          <v-btn class="btn btn-primary" to="/portfolio">Start Building</v-btn>
           <v-btn class="btn btn-secondary" to="/about">About</v-btn>
         </div>
       </div>

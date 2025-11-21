@@ -2,9 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["frontend/dist/src/*"]
+      "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.vue", "src/**/*.js"],
+  "include": ["./src/**/*.js", "./src/**/*.vue"],
   "exclude": ["node_modules", "dist"]
 }

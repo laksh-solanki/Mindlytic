@@ -10,6 +10,7 @@ import NotmatchView from '@/views/NotmatchView.vue'
 import GlobalLoader from '@/views/GlobalLoader.vue'
 import Profile from '@/views/Profile.vue'
 import MainSettings from '@/views/MainSettings.vue'
+import 'vuetify/styles'
 import { useLoadingStore } from '@/stores/loading'
 
 const router = createRouter({
