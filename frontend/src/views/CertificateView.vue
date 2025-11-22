@@ -23,7 +23,7 @@ const pdfSection = ref(null)
 
 const generatePdf = () => {
   if (pdfSection.value) {
-    html2pdf(pdfSection.value.$el, {
+    html2pdf(pdfSection.value, {
       margin: 0,
       filename: form.course + '.pdf',
       image: { type: 'jpeg', quality: 3 },
@@ -76,7 +76,7 @@ const goBack = () => {
     </v-card>
   </v-container>
 
-  <v-dialog v-model="dialog" max-width="800">
+  <v-dialog v-model="dialog" max-width="840">
     <v-card>
       <v-card-title class="p-0 d-flex justify-space-between">
         <v-btn @click="generatePdf" text="Download"
@@ -86,8 +86,8 @@ const goBack = () => {
           style="border-top-right-radius: 0; border-top-left-radius: 0; border-bottom-right-radius: 0;"
           @click="dialog = false" variant="text"></v-btn>
       </v-card-title>
-      <v-card-text class="p-0">
-        <v-container ref="pdfSection" class="certificate" fluid>
+      <div>
+        <div ref="pdfSection" class="certificate">
           <div class="logo">
             <div class="partnerLogo commonLogo">
               <div class="figure">
@@ -148,8 +148,8 @@ const goBack = () => {
               </div>
             </div>
           </footer>
-        </v-container>
-      </v-card-text>
+        </div>
+      </div>
     </v-card>
   </v-dialog>
 </template>

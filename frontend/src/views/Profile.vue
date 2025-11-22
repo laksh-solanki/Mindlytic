@@ -33,7 +33,7 @@
         <v-sheet
           min-height="70vh"
           rounded="lg"
-          elevation="2"
+          elevation="3"
           class="rounded-4 sheet3-animation"
           color="blue-lighten-2"
         >
@@ -45,7 +45,7 @@
         <v-sheet
           min-height="70vh"
           rounded="lg"
-          elevation="2"
+          elevation="3"
           class="rounded-4 sheet2-animation"
           color="deep-purple-lighten-3"
         >
