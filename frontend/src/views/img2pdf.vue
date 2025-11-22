@@ -156,7 +156,7 @@ const addImageToPDF = async (pdf, image, addPage) => {
         // Calculate dimensions to fit the image properly
         const pageWidth = pdf.internal.pageSize.getWidth();
         const pageHeight = pdf.internal.pageSize.getHeight();
-        const margin = 20;
+        const margin = 5;
 
         const availableWidth = pageWidth - 2 * margin;
         const availableHeight = pageHeight - 2 * margin;
