@@ -14,7 +14,7 @@ export default [
     slug: 'task-saas',
     desc: 'Multi-tenant kanban board with drag-drop and team invites.',
     tech: ['Vue 3', 'Vuetify', 'Firebase', 'VueUse'],
-    live: 'https://tasksaas.netlify.app',
+    live: '/project/img2pdf',
     thumb: 'https://picsum.photos/seed/task/500/300',
   },
   {

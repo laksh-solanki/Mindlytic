@@ -10,6 +10,8 @@ import NotmatchView from '@/views/NotmatchView.vue'
 import GlobalLoader from '@/views/GlobalLoader.vue'
 import Profile from '@/views/Profile.vue'
 import MainSettings from '@/views/MainSettings.vue'
+import img2pdf from '@/views/img2pdf.vue'
+import 'vuetify/dist/vuetify.min.css'
 import 'vuetify/styles'
 import { useLoadingStore } from '@/stores/loading'
 
@@ -56,6 +58,15 @@ const router = createRouter({
             description: 'Your Certificate Details',
           },
         },
+        {
+          path: 'img2pdf',
+          name: 'img2pdf',
+          component: img2pdf,
+          meta: {
+            title: 'Mindlytic | img2pdf',
+            description: 'Your img2pdf Details',
+          },
+        }
       ],
     },
     {

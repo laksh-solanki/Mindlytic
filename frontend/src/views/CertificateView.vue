@@ -41,7 +41,7 @@ const goBack = () => {
 <template>
   <v-btn @click="goBack" variant="flat" color="info" icon="mdi-arrow-left" class="btn-css"></v-btn>
   <v-container>
-    <v-card class="border-2 rounded-2 border-black">
+    <v-card class="border-1 rounded-2 border-black">
       <v-card-title class="text-h4 text-wrap text-center text-white pa-4 bg-info">
         Student Certificate
       </v-card-title>
