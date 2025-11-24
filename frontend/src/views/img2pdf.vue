@@ -37,11 +37,6 @@ const processFiles = (files) => {
   }
 
   imageFiles.forEach(file => {
-    if (file.size > 1024 * 1024) { // 10MB limit
-      showNotification(`File ${file.name} is too large. Maximum size is 10MB.`, 'error');
-      return;
-    }
-
     const reader = new FileReader();
     reader.onload = (e) => {
       images.value.push({
