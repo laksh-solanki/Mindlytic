@@ -7,8 +7,7 @@ const conversionProgress = ref(0);
 const conversionStatus = ref('');
 const imageIdCounter = ref(0);
 const fileInput = ref(null);
-const show = ref(false);
-let dragCounter = 0;
+const dragOver = ref(false);
 
 const goBack = () => {
   window.history.back();
@@ -23,29 +22,12 @@ const handleFileSelect = (event) => {
   processFiles(files);
 };
 
-const handleDragEnter = (e) => {
-  e.preventDefault();
-  dragCounter++;
-  show.value = true; // show overlay ONCE
-};
-
-const handleDragLeave = (e) => {
-  e.preventDefault();
-  dragCounter--;
-  if (dragCounter === 0) show.value = false; // hide only when fully left
-};
-
-
 const handleDrop = (event) => {
-  event.preventDefault();
-  dragCounter = 0;
-  show.value = false;
-
+  dragOver.value = false;
   const files = Array.from(event.dataTransfer.files);
-  console.log("Dropped:", files[0]);
-
   processFiles(files);
 };
+
 const processFiles = (files) => {
   const imageFiles = files.filter(file => file.type.startsWith('image/'));
 
@@ -257,8 +239,7 @@ const showNotification = (message, type = 'info') => {
     </div>
     <!-- Upload Zone -->
     <div class="mb-12">
-      <div class="upload-zone drop-zone" @dragenter.prevent="handleDragEnter" @dragover.prevent
-        @dragleave.prevent="handleDragLeave" @drop.prevent="handleDrop" @click="triggerFileInput()">
+      <div class="upload-zone" @dragover.prevent @drop.prevent="handleDrop" @click="triggerFileInput()">
         <input ref="fileInput" type="file" multiple accept="image/*" @change="handleFileSelect" style="display: none;">
         <div class="text-center">
           <div class="upload-zone-header">
@@ -283,9 +264,6 @@ const showNotification = (message, type = 'info') => {
             class="text-primary-emphasis bg-primary-subtle border-none border-primary-subtle rounded-3">
             Choose Files
           </v-btn>
-        </div>
-        <div v-if="show" class="overlay">
-          <div class="icon">📁</div>
         </div>
       </div>
     </div>
