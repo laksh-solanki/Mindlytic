@@ -295,8 +295,8 @@ const showNotification = (message, type = 'info') => {
             class="text-h6 font-bold p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
             Uploaded Images <v-icon>mdi-menu-right</v-icon> {{ images.length }}
           </div>
-          <div class="d-flex justify-content-start align-content-center mt-4 gap-2">
-            <v-btn variant="flat" @click="clearAll" append-icon="mdi-window-close"
+          <div class="d-flex justify-content-start align-content-center mt-4 gap-1 flex-wrap">
+            <v-btn variant="outlined" @click="clearAll" append-icon="mdi-window-close"
               class="text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
               Clear All
             </v-btn>
@@ -306,11 +306,10 @@ const showNotification = (message, type = 'info') => {
               {{ isConverting ? 'Converting...' : 'Download PDF' }}
             </v-btn>
             <v-label
-              class="file-btn px-3 text-center opacity-100 align-content-center text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"
-              text="Add More">
-              <input ref="fileInput" type="file" id="fileInput" multiple accept="image/*"
-                @change="handleFileSelect">
-                <v-icon class="ms-1">mdi-plus</v-icon>
+              class="file-btn px-3 py-1 text-center opacity-100 align-content-center text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"
+              text="ADD MORE">
+              <input ref="fileInput" type="file" id="fileInput" multiple accept="image/*" @change="handleFileSelect">
+              <v-icon class="ms-1">mdi-plus</v-icon>
             </v-label>
           </div>
         </div>
