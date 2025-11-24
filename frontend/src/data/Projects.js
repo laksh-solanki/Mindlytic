@@ -10,12 +10,12 @@ export default [
   },
   {
     id: 2,
-    title: 'Task Management SaaS',
+    title: 'Image to PDF Converter',
     slug: 'task-saas',
-    desc: 'Multi-tenant kanban board with drag-drop and team invites.',
-    tech: ['Vue 3', 'Vuetify', 'Firebase', 'VueUse'],
+    desc: 'Multi Image Converter to PDF with drag and drop',
+    tech: ['Vue 3', 'Vuetify', 'Bootstrap'],
     live: '/project/img2pdf',
-    thumb: 'https://picsum.photos/seed/task/500/300',
+    thumb: new URL('../assets/Picture/IMGTOPDF.png', import.meta.url).href,
   },
   {
     id: 3,

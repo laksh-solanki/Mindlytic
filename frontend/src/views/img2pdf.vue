@@ -249,7 +249,7 @@ const showNotification = (message, type = 'info') => {
 <template>
   <v-btn @click="goBack" variant="flat" icon="mdi-arrow-left"
     class="btn-css text-primary-emphasis bg-primary-subtle border border-primary-subtle"></v-btn>
-  <v-container fluid>
+  <v-container>
     <div
       class="text-h5 mb-3 rounded-3 p-3 text-center text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
       Convert Images to PDF
@@ -292,7 +292,7 @@ const showNotification = (message, type = 'info') => {
       <div v-if="images.length > 0" class="mb-12">
         <div class="flex justify-between items-center mb-6">
           <div
-            class="text-h6 font-bold p-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+            class="text-h6 font-bold p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
             Uploaded Images <v-icon>mdi-menu-right</v-icon> {{ images.length }}
           </div>
           <div class="d-flex justify-content-start align-content-center mt-4 gap-2">
@@ -300,20 +300,27 @@ const showNotification = (message, type = 'info') => {
               class="text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
               Clear All
             </v-btn>
-            <v-btn prepend-icon="mdi mdi-file-pdf-box"
+            <v-btn append-icon="mdi mdi-file-pdf-box"
               class="text-success-emphasis bg-success-subtle border border-success-subtle rounded-3" variant="outlined"
               @click="generatePDF" :disabled="isConverting || images.length === 0">
               {{ isConverting ? 'Converting...' : 'Download PDF' }}
             </v-btn>
+            <v-label
+              class="file-btn px-3 text-center opacity-100 align-content-center text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"
+              text="Add More">
+              <input ref="fileInput" type="file" id="fileInput" multiple accept="image/*"
+                @change="handleFileSelect">
+                <v-icon class="ms-1">mdi-plus</v-icon>
+            </v-label>
           </div>
         </div>
 
         <v-row dense>
-          <v-col v-for="(image, index) in images" :key="image.id" cols="12" sm="6" md="4" lg="3">
+          <v-col v-for="(image, index) in images" :key="image.id" cols="12" sm="6" md="5" lg="4">
             <v-card class="mx-auto text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-4"
               max-width="400">
-              <v-img :src="image.url" :alt="image.name" class="align-end text-white img-thumbnail m-2" height="200"
-                contain>
+              <v-img :src="image.url" :alt="image.name" class="align-end text-white img-thumbnail m-2 rounded-4"
+                height="200" contain>
                 <v-card-title>
                   <div class="image-controls">
                     <button @click="moveUp(index)" :disabled="index === 0" class="control-btn" title="Move up">
@@ -329,11 +336,11 @@ const showNotification = (message, type = 'info') => {
                   </div>
                 </v-card-title>
               </v-img>
-              <v-card-text>
-                <p class="text-sm text-slate-600 truncate">{{ image.name }}</p>
+              <v-card-text class="p-2">
+                <p class="p-1 m-0">{{ image.name }}</p>
               </v-card-text>
-              <v-card-subtitle class="pt-1 bg-info-subtle text-center">
-                <p class="text-xs text-slate-500">{{ formatFileSize(image.size) }}</p>
+              <v-card-subtitle class="bg-info d-flex justify-content-center align-items-center">
+                <p class="text-white m-0 p-2">{{ formatFileSize(image.size) }}</p>
               </v-card-subtitle>
             </v-card>
           </v-col>
@@ -371,6 +378,18 @@ const showNotification = (message, type = 'info') => {
   </v-container>
 </template>
 <style>
+#fileInput {
+  display: none;
+  /* hides original file selector + filename */
+}
+
+.file-btn {
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-block;
+}
+
 #overlay {
   position: fixed;
   inset: 0;
@@ -380,7 +399,7 @@ const showNotification = (message, type = 'info') => {
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .icon {
