@@ -9,6 +9,10 @@ const conversionStatus = ref('');
 const imageIdCounter = ref(0);
 const fileInput = ref(null);
 
+const goBack = () => {
+  window.history.back();
+}
+
 const triggerFileInput = () => {
   fileInput.value.click(); // Access ref using .value
 };
@@ -225,27 +229,30 @@ const showNotification = (message, type = 'info') => {
 };
 </script>
 <template>
+  <v-btn @click="goBack" variant="flat" icon="mdi-arrow-left"
+    class="btn-css text-primary-emphasis bg-primary-subtle border border-primary-subtle"></v-btn>
   <v-container fluid>
-    <div class="bg-primary p-3 mb-3 rounded-3">
-      <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">
-          Convert Images to PDF
-        </h1>
-        <p class="text-xl text-gray-200 max-w-2xl mx-auto">
-          Fast, secure, and easy-to-use image to PDF converter.
-          Upload multiple images, reorder them, and generate high-quality PDFs instantly.
-        </p>
-      </div>
+    <div
+      class="text-h5 mb-3 rounded-3 p-3 text-center text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+      Convert Images to PDF
     </div>
     <!-- Upload Zone -->
     <div class="mb-12">
-      <div class="upload-zone" @dragover.prevent @drop.prevent="handleDrop" @dragenter="dragOver = true"
-        @dragleave="dragOver = false" :class="{ 'dragover': dragOver }" @click="triggerFileInput()">
+      <div class="upload-zone" @dragover.prevent @drop.prevent="handleDrop" @click="triggerFileInput()">
         <input ref="fileInput" type="file" multiple accept="image/*" @change="handleFileSelect" style="display: none;">
 
         <div class="text-center">
-          <div class="mx-auto mb-4 d-flex justify-content-center align-content-center">
-            <v-icon color="black" size="30" class="me-2">mdi-file-upload</v-icon>
+          <div class="upload-zone-header">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15"
+                  stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              </g>
+            </svg>
+            <p>Browse File to upload!</p>
           </div>
           <h3 class="text-2xl font-semibold mb-2 text-slate-800">
             Drop images here or click to browse
@@ -253,7 +260,8 @@ const showNotification = (message, type = 'info') => {
           <p class="text-slate-600 mb-4">
             Supports JPG, PNG, GIF, and WebP formats
           </p>
-          <v-btn variant="outlined" color="black">
+          <v-btn variant="outlined"
+            class="text-primary-emphasis bg-primary-subtle border-none border-primary-subtle rounded-3">
             Choose Files
           </v-btn>
         </div>
@@ -264,90 +272,152 @@ const showNotification = (message, type = 'info') => {
     <transition name="slide-up">
       <div v-if="images.length > 0" class="mb-12">
         <div class="flex justify-between items-center mb-6">
-          <h2 class="text-2xl font-bold text-slate-800">
-            Your Images ({{ images.length }})
-          </h2>
+          <div
+            class="text-h6 font-bold p-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+            Uploaded Images <v-icon>mdi-menu-right</v-icon> {{ images.length }}
+          </div>
           <div class="d-flex justify-content-start align-content-center mt-4 gap-2">
-            <v-btn variant="flat" @click="clearAll" class="px-4 py-2">
+            <v-btn variant="flat" @click="clearAll" append-icon="mdi-window-close"
+              class="text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
               Clear All
             </v-btn>
-            <v-btn prepend-icon="mdi mdi-file-pdf-box" color="black" variant="outlined" @click="generatePDF"
-              :disabled="isConverting || images.length === 0">
-              {{ isConverting ? 'Converting...' : 'Generate PDF' }}
+            <v-btn prepend-icon="mdi mdi-file-pdf-box"
+              class="text-success-emphasis bg-success-subtle border border-success-subtle rounded-3" variant="outlined"
+              @click="generatePDF" :disabled="isConverting || images.length === 0">
+              {{ isConverting ? 'Converting...' : 'Download PDF' }}
             </v-btn>
           </div>
         </div>
 
-        <div class="image-grid">
-          <v-card v-for="(image, index) in images" :key="image.id" class="image-item border border-2 border-black"
-            elevation="3">
-            <img :src="image.url" :alt="image.name" />
-            <div class="image-controls">
-              <button @click="moveUp(index)" :disabled="index === 0" class="control-btn" title="Move up">
-                <i class="mdi mdi-arrow-up"></i>
-              </button>
-              <button @click="moveDown(index)" :disabled="index === images.length - 1" class="control-btn"
-                title="Move down">
-                <i class="mdi mdi-arrow-down"></i>
-              </button>
-              <button @click="removeImage(index)" class="control-btn" title="Remove">
-                <i class="mdi mdi-close"></i>
-              </button>
-            </div>
-            <div class="p-3 bg-white">
-              <p class="text-sm text-slate-600 truncate">{{ image.name }}</p>
-              <p class="text-xs text-slate-500">{{ formatFileSize(image.size) }}</p>
-            </div>
-          </v-card>
-        </div>
+        <v-row dense>
+          <v-col v-for="(image, index) in images" :key="image.id" cols="12" sm="6" md="4" lg="3">
+            <v-card class="mx-auto" max-width="400">
+              <v-img :src="image.url" :alt="image.name" class="align-end text-white" height="200" contain>
+                <v-card-title>
+                  <div class="image-controls">
+                    <button @click="moveUp(index)" :disabled="index === 0" class="control-btn" title="Move up">
+                      <i class="mdi mdi-arrow-up"></i>
+                    </button>
+                    <button @click="moveDown(index)" :disabled="index === images.length - 1" class="control-btn"
+                      title="Move down">
+                      <i class="mdi mdi-arrow-down"></i>
+                    </button>
+                    <button @click="removeImage(index)" class="control-btn" title="Remove">
+                      <i class="mdi mdi-close"></i>
+                    </button>
+                  </div>
+                </v-card-title>
+              </v-img>
+              <v-card-text>
+                <p class="text-sm text-slate-600 truncate">{{ image.name }}</p>
+              </v-card-text>
+              <v-card-subtitle class="pt-4">
+                <p class="text-xs text-slate-500">{{ formatFileSize(image.size) }}</p>
+              </v-card-subtitle>
+            </v-card>
+          </v-col>
+        </v-row>
       </div>
     </transition>
 
     <!-- Progress Section -->
     <transition name="fade">
-      <div v-if="isConverting" class="progress-container">
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="text-lg font-semibold text-slate-800">Converting to PDF...</h3>
-          <span class="text-sm text-slate-600">{{ conversionProgress }}%</span>
+      <div class="card" v-if="isConverting">
+        <div class="tools">
+          <div class="circle">
+            <span class="red box"></span>
+          </div>
+          <div class="circle">
+            <span class="yellow box"></span>
+          </div>
+          <div class="circle">
+            <span class="green box"></span>
+          </div>
         </div>
-        <div class="w-full bg-gray-200 rounded-full h-3">
-          <div class="bg-gradient-to-r from-teal-500 to-amber-500 h-3 rounded-full transition-all duration-300"
-            :style="{ width: conversionProgress + '%' }"></div>
+        <div class="card-content p-3">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-lg font-semibold text-slate-800">Converting to PDF...</h3>
+            <span class="text-sm text-slate-600">{{ conversionProgress }}%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-3">
+            <div class="bg-gradient-to-r from-teal-500 to-amber-500 h-3 rounded-full transition-all duration-300"
+              :style="{ width: conversionProgress + '%' }"></div>
+          </div>
+          <p class="text-sm text-slate-600 mt-2">{{ conversionStatus }}</p>
         </div>
-        <p class="text-sm text-slate-600 mt-2">{{ conversionStatus }}</p>
       </div>
     </transition>
   </v-container>
 </template>
 <style>
+.card {
+  width: 100%;
+  height: 300px;
+  margin: 0 auto;
+  background-color: #011522 !important;
+  color: white !important;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  padding: 9px;
+}
+
+.circle {
+  padding: 0 4px;
+}
+
+.box {
+  display: inline-block;
+  align-items: center;
+  width: 10px;
+  height: 10px;
+  padding: 1px;
+  border-radius: 50%;
+}
+
+.red {
+  background-color: #ff605c;
+}
+
+.yellow {
+  background-color: #ffbd44;
+}
+
+.green {
+  background-color: #00ca4e;
+}
+
+.btn-css {
+  border-bottom: 1px solid !important;
+  border-right: 1px solid !important;
+  border-start-start-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-top-right-radius: 0% !important;
+}
+
+.upload-zone-header svg {
+  height: 100px;
+}
+
 .upload-zone {
-  border: 3px dashed var(--secondary-color);
+  border: 3px dashed royalblue;
   border-radius: 16px;
   padding: 60px 40px;
   text-align: center;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   cursor: pointer;
 }
 
 .upload-zone:hover {
-  border-color: var(--accent-color);
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-color: var(--bs-primary-border-subtle) !important;
+  color: var(--bs-primary-text-emphasis) !important;
+  background-color: rgb(207 226 255) !important;
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.upload-zone.dragover {
-  border-color: var(--accent-color);
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-  transform: scale(1.02);
-}
-
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
 }
 
 .image-item {

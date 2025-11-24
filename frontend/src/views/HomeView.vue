@@ -5,10 +5,11 @@
     <v-container>
       <div class="hero-content">
         <h1 class="title animation-left">Build Amazing Websites with <span>Mindlytic</span></h1>
-        <p class="des animation-right">Create modern, responsive, and lightning-fast web apps with Vue 3 and modern tooling.</p>
+        <p class="des animation-right">Create modern, responsive, and lightning-fast web apps with Vue 3 and modern
+          tooling.</p>
         <div class="hero-buttons">
-          <v-btn class="btn btn-primary" to="/portfolio">Start Building</v-btn>
-          <v-btn class="btn btn-secondary" to="/about">About</v-btn>
+          <v-btn class="btn btn-primary" to="/project/Pdfedits">Pdf Merger</v-btn>
+          <v-btn class="text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3" to="/project/img2pdf">img2pdf</v-btn>
         </div>
       </div>
     </v-container>

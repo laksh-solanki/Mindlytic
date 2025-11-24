@@ -5,6 +5,13 @@
   padding: 0;
   box-sizing: border-box !important;
   scrollbar-width: thin;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
   scrollbar-color: var(--scrollbar-color);
+}
+.btn-css {
+  border-bottom: 1px solid black !important;
+  border-right: 1px solid black !important;
+  border-start-start-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-top-right-radius: 0% !important;
 }
