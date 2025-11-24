@@ -37,7 +37,7 @@ const processFiles = (files) => {
   }
 
   imageFiles.forEach(file => {
-    if (file.size > 10 * 1024 * 1024) { // 10MB limit
+    if (file.size > 1024 * 1024) { // 10MB limit
       showNotification(`File ${file.name} is too large. Maximum size is 10MB.`, 'error');
       return;
     }
@@ -240,7 +240,7 @@ const showNotification = (message, type = 'info') => {
     <!-- Upload Zone -->
     <div class="mb-12">
       <div class="upload-zone" @dragover.prevent @drop.prevent="handleDrop" @click="triggerFileInput()">
-        <input ref="fileInput" type="file" multiple accept="image/*" @change="handleFileSelect" style="display: none;">
+        <input ref="fileInput" type="file" multiple accept="image/*" @change="handleFileSelect" class="file-input">
         <div class="text-center">
           <div class="upload-zone-header">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -351,62 +351,10 @@ const showNotification = (message, type = 'info') => {
   </v-container>
 </template>
 <style>
-.page {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Main area */
+.file-input {
+  display: none;
 }
-
-.btn {
-  padding: 14px 28px;
-  border: 2px dashed #555;
-  cursor: pointer;
-  background: white;
-}
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.25);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: fade 0.2s ease;
-}
-
-.icon {
-  font-size: 70px;
-  animation: bounce 0.3s ease;
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes bounce {
-  0% {
-    transform: scale(0.4);
-    opacity: 0;
-  }
-
-  80% {
-    transform: scale(1.1);
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
 
 .card {
   width: 100%;
