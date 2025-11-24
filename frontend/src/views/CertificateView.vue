@@ -39,10 +39,11 @@ const goBack = () => {
 
 </script>
 <template>
-  <v-btn @click="goBack" variant="flat" color="info" icon="mdi-arrow-left" class="btn-css"></v-btn>
+  <v-btn @click="goBack" variant="flat" icon="mdi-arrow-left"
+    class="btn-css text-primary-emphasis bg-primary-subtle border border-primary-subtle"></v-btn>
   <v-container>
-    <v-card class="border-1 rounded-2 border-black">
-      <v-card-title class="text-h4 text-wrap text-center text-white pa-4 bg-info">
+    <v-card class="text-primary-emphasis bg-success-subtle border-2 border-success-subtle rounded-4">
+      <v-card-title class="text-h4 text-wrap text-center text-white pa-4 bg-success">
         Student Certificate
       </v-card-title>
       <v-card-text>
@@ -65,8 +66,9 @@ const goBack = () => {
             <v-col cols="12" md="3" class="d-flex justify-center">
               <v-tooltip text="Preview and Download the certificate" location="top">
                 <template v-slot:activator="{ props }">
-                  <v-btn v-bind="props" @click="dialog = true" color="info" text="Certificate"
-                    prepend-icon="mdi-file-certificate-outline" size="large"></v-btn>
+                  <v-btn v-bind="props" @click="dialog = true" text="Certificate"
+                    prepend-icon="mdi-file-certificate-outline"
+                    class="text-primary-emphasis bg-success-subtle border-3 border-success-subtle rounded-3" size="large"></v-btn>
                 </template>
               </v-tooltip>
             </v-col>

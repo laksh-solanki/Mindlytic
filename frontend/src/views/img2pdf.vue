@@ -2,12 +2,13 @@
 import { ref, reactive } from 'vue';
 import { jsPDF } from 'jspdf'; // Corrected import for jsPDF
 const images = ref([]);
-const dragOver = ref(false);
 const isConverting = ref(false);
 const conversionProgress = ref(0);
 const conversionStatus = ref('');
 const imageIdCounter = ref(0);
 const fileInput = ref(null);
+const show = ref(false);
+let dragCounter = 0;
 
 const goBack = () => {
   window.history.back();
@@ -22,12 +23,29 @@ const handleFileSelect = (event) => {
   processFiles(files);
 };
 
-const handleDrop = (event) => {
-  dragOver.value = false;
-  const files = Array.from(event.dataTransfer.files);
-  processFiles(files);
+const handleDragEnter = (e) => {
+  e.preventDefault();
+  dragCounter++;
+  show.value = true; // show overlay ONCE
 };
 
+const handleDragLeave = (e) => {
+  e.preventDefault();
+  dragCounter--;
+  if (dragCounter === 0) show.value = false; // hide only when fully left
+};
+
+
+const handleDrop = (event) => {
+  event.preventDefault();
+  dragCounter = 0;
+  show.value = false;
+
+  const files = Array.from(event.dataTransfer.files);
+  console.log("Dropped:", files[0]);
+
+  processFiles(files);
+};
 const processFiles = (files) => {
   const imageFiles = files.filter(file => file.type.startsWith('image/'));
 
@@ -227,6 +245,7 @@ const showNotification = (message, type = 'info') => {
     }, 300);
   }, 4000);
 };
+
 </script>
 <template>
   <v-btn @click="goBack" variant="flat" icon="mdi-arrow-left"
@@ -238,9 +257,9 @@ const showNotification = (message, type = 'info') => {
     </div>
     <!-- Upload Zone -->
     <div class="mb-12">
-      <div class="upload-zone" @dragover.prevent @drop.prevent="handleDrop" @click="triggerFileInput()">
+      <div class="upload-zone drop-zone" @dragenter.prevent="handleDragEnter" @dragover.prevent
+        @dragleave.prevent="handleDragLeave" @drop.prevent="handleDrop" @click="triggerFileInput()">
         <input ref="fileInput" type="file" multiple accept="image/*" @change="handleFileSelect" style="display: none;">
-
         <div class="text-center">
           <div class="upload-zone-header">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -265,9 +284,11 @@ const showNotification = (message, type = 'info') => {
             Choose Files
           </v-btn>
         </div>
+        <div v-if="show" class="overlay">
+          <div class="icon">📁</div>
+        </div>
       </div>
     </div>
-
     <!-- Image Gallery -->
     <transition name="slide-up">
       <div v-if="images.length > 0" class="mb-12">
@@ -291,8 +312,10 @@ const showNotification = (message, type = 'info') => {
 
         <v-row dense>
           <v-col v-for="(image, index) in images" :key="image.id" cols="12" sm="6" md="4" lg="3">
-            <v-card class="mx-auto" max-width="400">
-              <v-img :src="image.url" :alt="image.name" class="align-end text-white" height="200" contain>
+            <v-card class="mx-auto text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-4"
+              max-width="400">
+              <v-img :src="image.url" :alt="image.name" class="align-end text-white img-thumbnail m-2" height="200"
+                contain>
                 <v-card-title>
                   <div class="image-controls">
                     <button @click="moveUp(index)" :disabled="index === 0" class="control-btn" title="Move up">
@@ -311,7 +334,7 @@ const showNotification = (message, type = 'info') => {
               <v-card-text>
                 <p class="text-sm text-slate-600 truncate">{{ image.name }}</p>
               </v-card-text>
-              <v-card-subtitle class="pt-4">
+              <v-card-subtitle class="pt-1 bg-info-subtle text-center">
                 <p class="text-xs text-slate-500">{{ formatFileSize(image.size) }}</p>
               </v-card-subtitle>
             </v-card>
@@ -350,6 +373,63 @@ const showNotification = (message, type = 'info') => {
   </v-container>
 </template>
 <style>
+.page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  padding: 14px 28px;
+  border: 2px dashed #555;
+  cursor: pointer;
+  background: white;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fade 0.2s ease;
+}
+
+.icon {
+  font-size: 70px;
+  animation: bounce 0.3s ease;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+
+  80% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
 .card {
   width: 100%;
   height: 300px;
@@ -392,8 +472,6 @@ const showNotification = (message, type = 'info') => {
 }
 
 .btn-css {
-  border-bottom: 1px solid !important;
-  border-right: 1px solid !important;
   border-start-start-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
   border-top-right-radius: 0% !important;

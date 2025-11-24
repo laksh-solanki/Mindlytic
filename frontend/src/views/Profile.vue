@@ -23,7 +23,7 @@
               <v-card-subtitle>lakshsolanki848@gmail.com</v-card-subtitle>
             </v-col>
             <v-col cols="12" md="2" class="d-flex justify-center align-center">
-              <v-btn prepend-icon="mdi-account-edit" variant="flat" text="Edit"></v-btn>
+              <v-btn prepend-icon="mdi-account-edit" variant="flat" text="Edit" class="text-dark-emphasis bg-light-subtle border border-success-subtle rounded-3"></v-btn>
             </v-col>
           </v-row>
         </v-sheet>
