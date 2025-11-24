@@ -8,6 +8,8 @@ const conversionStatus = ref('');
 const imageIdCounter = ref(0);
 const fileInput = ref(null);
 const dragOver = ref(false);
+const show = ref(false);
+let counter = 0;
 
 const goBack = () => {
   window.history.back();
@@ -27,6 +29,26 @@ const handleDrop = (event) => {
   const files = Array.from(event.dataTransfer.files);
   processFiles(files);
 };
+
+window.addEventListener("dragenter", () => {
+  counter++;
+  show.value = true;
+});
+
+window.addEventListener("dragleave", () => {
+  counter--;
+  if (counter === 0) show.value = false;
+});
+
+window.addEventListener("dragover", e => e.preventDefault());
+
+window.addEventListener("drop", e => {
+  e.preventDefault();
+  const files = e.dataTransfer.files;
+  console.log("Dropped files:", files);
+  counter = 0;
+  show.value = false;
+});
 
 const processFiles = (files) => {
   const imageFiles = files.filter(file => file.type.startsWith('image/'));
@@ -261,6 +283,9 @@ const showNotification = (message, type = 'info') => {
           </v-btn>
         </div>
       </div>
+      <div id="overlay" v-show="show">
+        <div class="icon">📁</div>
+      </div>
     </div>
     <!-- Image Gallery -->
     <transition name="slide-up">
@@ -346,7 +371,24 @@ const showNotification = (message, type = 'info') => {
   </v-container>
 </template>
 <style>
-/* Main area */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: none; 
+}
+
+.icon {
+  font-size: 70px;
+  color: white;
+}
+
+
 .file-input {
   display: none;
 }
