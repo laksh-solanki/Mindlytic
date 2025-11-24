@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import AboutView from '@/views/AboutView.vue'
 import ProjectView from '@/views/ProjectView.vue'
-import ProjectHome from '@/views/ProjectHome.vue'
+import Project from '@/views/Project.vue'
 import SettingsView from '@/views/SettingsView.vue'
 import HelpView from '@/views/HelpView.vue'
 import CertificateView from '@/views/CertificateView.vue'
@@ -14,6 +14,7 @@ import img2pdf from '@/views/img2pdf.vue'
 import 'vuetify/dist/vuetify.min.css'
 import 'vuetify/styles'
 import { useLoadingStore } from '@/stores/loading'
+import Spotify from '@/views/Spotify.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,7 +44,7 @@ const router = createRouter({
         {
           path: '',
           name: 'project',
-          component: ProjectHome,
+          component: Project,
           meta: {
             title: 'Mindlytic | Projects',
             description: 'Explore your Projects',
@@ -65,6 +66,15 @@ const router = createRouter({
           meta: {
             title: 'Mindlytic | img2pdf',
             description: 'Your img2pdf Details',
+          },
+        },
+        {
+          path: 'Spotifiy',
+          name: 'Spotifiy',
+          component: Spotify,
+          meta: {
+            title: 'Mindlytic | Spotifiy',
+            description: 'Your Spotifiy Details',
           },
         }
       ],

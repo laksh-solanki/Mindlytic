@@ -23,7 +23,7 @@ export default [
     slug: 'ai-content',
     desc: 'OpenAI-powered blog post generator with markdown export.',
     tech: ['Nuxt 3', 'Vuetify', 'OpenAI API', 'Server-Side Rendering'],
-    live: 'nlasndjn',
+    live: '/project/Spotifiy',
     thumb: 'https://picsum.photos/seed/ai/500/300',
   },
 ]
