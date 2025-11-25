@@ -8,6 +8,7 @@ const route = useRoute()
 const links = [
   ['mdi-account-box-outline', 'Profile', '/settings/profile'],
   ['mdi-cogs', 'Settings', '/settings/main-settings'],
+  ['mdi-help-circle-outline', 'Help', '/settings/help'],
 ]
 </script>
 
@@ -19,7 +20,7 @@ const links = [
             class="rounded-5 object-fit-cover" width="60" /></v-avatar>
         <v-card-title class="p-0">Laksh Solanki</v-card-title>
         <v-card-subtitle class="p-0">lakshsolanki848@gmail.com</v-card-subtitle>
-        <v-btn icon class="mobile-toggle-btn" @click="drawer = !drawer"
+        <v-btn icon class="mobile-toggle-btn z-3" @click="drawer = !drawer"
           :aria-label="drawer ? 'Close navigation drawer' : 'Open navigation drawer'">
           <v-icon>{{ drawer ? 'mdi-menu-open' : 'mdi-menu' }}</v-icon>
         </v-btn>
@@ -33,7 +34,7 @@ const links = [
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-main class="overflow-x-hidden overflow-y-scroll" max-height="85.79vh">
+    <v-main class="overflow-x-hidden overflow-y-scroll" style="max-height: 85.73vh !important;">
       <router-view></router-view>
     </v-main>
   </v-layout>
@@ -43,6 +44,7 @@ const links = [
 .mobile-toggle-btn {
   display: none;
 }
+
 
 @media (max-width: 1300px) {
   .mobile-toggle-btn {

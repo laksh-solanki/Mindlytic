@@ -1,3 +1,7 @@
+<script setup>
+import { RouterLink } from 'vue-router'
+</script>
+
 <template>
   <nav class="navbar navbar-expand-lg border-1 border-bottom border-black w-100 z-3 position-sticky top-0 bg-white">
     <div class="container">
@@ -8,7 +12,15 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse w-100 navbar-collapse justify-content-center" id="navbarScroll">
-        <ul class="nav navbar-nav nav-underline gap-4 gap-lg-3 flex-row w-100 justify-content-center">
+        <v-tabs inset density="comfortable" slider-color="info" style="box-shadow: none;" class="d-flex flex-wrap bg-white border tab-container">
+          <v-tab to="/" class="px-0 tab-size">Home</v-tab>
+          <v-tab to="/about" class="px-0 tab-size">About</v-tab>
+          <v-tab to="/project" class="px-0 tab-size">Project</v-tab>
+          <v-tab to="/Settings" class="px-0 tab-size">Settings</v-tab>
+        </v-tabs>
+        <!-- <ul
+          class="nav navbar-nav nav-underline gap-4 gap-lg-3 flex-row w-100 justify-content-center"
+        >
           <li class="nav-item">
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
@@ -19,59 +31,51 @@
             <router-link class="nav-link" to="/project">project</router-link>
           </li>
           <li class="dropdown nav-item">
-            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Settings
             </a>
             <ul class="dropdown-menu rounded-3 position-absolute z-3">
               <li>
-                <router-link class="dropdown-item" to="/settings"><v-icon class="me-2">mdi-cog</v-icon>
-                  Settings</router-link>
+                <router-link class="dropdown-item" to="/settings"
+                  ><v-icon class="me-2">mdi-cog</v-icon> Settings</router-link
+                >
               </li>
               <li>
                 <hr class="dropdown-divider" />
               </li>
               <li>
-                <router-link class="dropdown-item" to="/Help"><v-icon class="me-2">mdi-help-circle-outline</v-icon>
-                  Help</router-link>
+                <router-link class="dropdown-item" to="/Help"
+                  ><v-icon class="me-2">mdi-help-circle-outline</v-icon> Help</router-link
+                >
               </li>
             </ul>
           </li>
-        </ul>
+        </ul> -->
       </div>
     </div>
   </nav>
 </template>
-<script setup>
-import { RouterLink } from 'vue-router'
-</script>
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-.nav-link {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  width: 100%;
-  transition: all 0.3s ease-in-out;
+.tab-container {
+  max-width: 340px;
+  height: 49px !important;
 }
 
-.dropdown-menu[data-bs-popper] {
-  top: 55px !important;
-  left: -70px !important;
-}
-
-.dropdown-menu {
-  z-index: 1000;
-  border: 1px solid rgb(0, 0, 0);
-}
-
-.nav-link.router-link-active {
-  border-bottom: 2px solid #000;
-  color: #000 !important;
-}
-
-.nav-link:hover {
-  color: #007bff !important;
+.tab-size {
+  min-width: 76px !important;
+  height: 40px !important;
+  font-size: 12px !important;
+  background-color: none !important;
+  border: none !important;
 }
 
 .navbar-toggler {

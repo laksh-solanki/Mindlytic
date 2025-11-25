@@ -14,7 +14,6 @@ import img2pdf from '@/views/img2pdf.vue'
 import 'vuetify/dist/vuetify.min.css'
 import 'vuetify/styles'
 import { useLoadingStore } from '@/stores/loading'
-import Spotify from '@/views/Spotify.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -68,15 +67,6 @@ const router = createRouter({
             description: 'Your img2pdf Details',
           },
         },
-        {
-          path: 'Spotifiy',
-          name: 'Spotifiy',
-          component: Spotify,
-          meta: {
-            title: 'Mindlytic | Spotifiy',
-            description: 'Your Spotifiy Details',
-          },
-        }
       ],
     },
     {
@@ -110,16 +100,16 @@ const router = createRouter({
             description: 'Main Settings page',
           },
         },
+        {
+          path: 'help',
+          name: 'help',
+          component: HelpView,
+          meta: {
+            title: 'Mindlytic | Help',
+            description: 'Get Help and Support',
+          },
+        },
       ],
-    },
-    {
-      path: '/help',
-      name: 'help',
-      component: HelpView,
-      meta: {
-        title: 'Mindlytic | Help',
-        description: 'Get Help and Support',
-      },
     },
     {
       path: '/Globalloader',

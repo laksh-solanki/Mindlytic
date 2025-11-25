@@ -125,8 +125,18 @@
           <path d="M680 340 H570 V270 H474" class="trace-flow yellow"></path>
         </g>
 
-        <rect x="330" y="190" width="140" height="100" rx="20" ry="20" fill="url(#chipGradient)" stroke="#222"
-          stroke-width="3" filter="drop-shadow(0 0 6px rgba(0,0,0,0.8))"></rect>
+        <rect
+          x="330"
+          y="190"
+          width="140"
+          height="100"
+          rx="20"
+          ry="20"
+          fill="url(#chipGradient)"
+          stroke="#222"
+          stroke-width="3"
+          filter="drop-shadow(0 0 6px rgba(0,0,0,0.8))"
+        ></rect>
 
         <g>
           <rect x="322" y="205" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
@@ -142,8 +152,15 @@
           <rect x="470" y="265" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
         </g>
 
-        <text x="400" y="240" font-family="Arial, sans-serif" font-size="22" fill="url(#textGradient)"
-          text-anchor="middle" alignment-baseline="middle">
+        <text
+          x="400"
+          y="240"
+          font-family="Arial, sans-serif"
+          font-size="22"
+          fill="url(#textGradient)"
+          text-anchor="middle"
+          alignment-baseline="middle"
+        >
           Loading
         </text>
 

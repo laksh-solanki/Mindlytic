@@ -1,65 +1,65 @@
 <script setup>
-import { ref, reactive } from 'vue';
-import { jsPDF } from 'jspdf'; // Corrected import for jsPDF
-const images = ref([]);
-const isConverting = ref(false);
-const conversionProgress = ref(0);
-const conversionStatus = ref('');
-const imageIdCounter = ref(0);
-const fileInput = ref(null);
-const dragOver = ref(false);
-const show = ref(false);
-let counter = 0;
+import { ref, reactive } from 'vue'
+import { jsPDF } from 'jspdf' // Corrected import for jsPDF
+const images = ref([])
+const isConverting = ref(false)
+const conversionProgress = ref(0)
+const conversionStatus = ref('')
+const imageIdCounter = ref(0)
+const fileInput = ref(null)
+const dragOver = ref(false)
+const show = ref(false)
+let counter = 0
 
 const goBack = () => {
-  window.history.back();
+  window.history.back()
 }
 
 const triggerFileInput = () => {
-  fileInput.value.click(); // Access ref using .value
-};
+  fileInput.value.click() // Access ref using .value
+}
 
 const handleFileSelect = (event) => {
-  const files = Array.from(event.target.files);
-  processFiles(files);
-};
+  const files = Array.from(event.target.files)
+  processFiles(files)
+}
 
 const handleDrop = (event) => {
-  dragOver.value = false;
-  const files = Array.from(event.dataTransfer.files);
-  processFiles(files);
-};
+  dragOver.value = false
+  const files = Array.from(event.dataTransfer.files)
+  processFiles(files)
+}
 
-window.addEventListener("dragenter", () => {
-  counter++;
-  show.value = true;
-});
+window.addEventListener('dragenter', () => {
+  counter++
+  show.value = true
+})
 
-window.addEventListener("dragleave", () => {
-  counter--;
-  if (counter === 0) show.value = false;
-});
+window.addEventListener('dragleave', () => {
+  counter--
+  if (counter === 0) show.value = false
+})
 
-window.addEventListener("dragover", e => e.preventDefault());
+window.addEventListener('dragover', (e) => e.preventDefault())
 
-window.addEventListener("drop", e => {
-  e.preventDefault();
-  const files = e.dataTransfer.files;
-  console.log("Dropped files:", files);
-  counter = 0;
-  show.value = false;
-});
+window.addEventListener('drop', (e) => {
+  e.preventDefault()
+  const files = e.dataTransfer.files
+  console.log('Dropped files:', files)
+  counter = 0
+  show.value = false
+})
 
 const processFiles = (files) => {
-  const imageFiles = files.filter(file => file.type.startsWith('image/'));
+  const imageFiles = files.filter((file) => file.type.startsWith('image/'))
 
   if (imageFiles.length === 0) {
-    showNotification('Please select valid image files.', 'error');
-    return;
+    showNotification('Please select valid image files.', 'error')
+    return
   }
 
-  imageFiles.forEach(file => {
-    const reader = new FileReader();
+  imageFiles.forEach((file) => {
+    const reader = new FileReader()
     reader.onload = (e) => {
       images.value.push({
         id: imageIdCounter.value++,
@@ -67,197 +67,211 @@ const processFiles = (files) => {
         url: e.target.result,
         name: file.name,
         size: file.size,
-        type: file.type
-      });
-    };
-    reader.readAsDataURL(file);
-  });
-};
+        type: file.type,
+      })
+    }
+    reader.readAsDataURL(file)
+  })
+}
 
 const removeImage = (index) => {
-  images.value.splice(index, 1);
-};
+  images.value.splice(index, 1)
+}
 
 const moveUp = (index) => {
   if (index > 0) {
-    const temp = images.value[index];
-    images.value.splice(index, 1);
-    images.value.splice(index - 1, 0, temp);
+    const temp = images.value[index]
+    images.value.splice(index, 1)
+    images.value.splice(index - 1, 0, temp)
   }
-};
+}
 
 const moveDown = (index) => {
   if (index < images.value.length - 1) {
-    const temp = images.value[index];
-    images.value.splice(index, 1);
-    images.value.splice(index + 1, 0, temp);
+    const temp = images.value[index]
+    images.value.splice(index, 1)
+    images.value.splice(index + 1, 0, temp)
   }
-};
+}
 
 const clearAll = () => {
-  images.value = [];
+  images.value = []
   if (fileInput.value) {
-    fileInput.value.value = '';
+    fileInput.value.value = ''
   }
-};
+}
 
 const formatFileSize = (bytes) => {
-  if (bytes === 0) return '0 Bytes';
-  const k = 1024;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-};
+  if (bytes === 0) return '0 Bytes'
+  const k = 1024
+  const sizes = ['Bytes', 'KB', 'MB', 'GB']
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
+}
 
 const generatePDF = async () => {
   if (images.value.length === 0) {
-    showNotification('Please add some images first.', 'error');
-    return;
+    showNotification('Please add some images first.', 'error')
+    return
   }
 
-  isConverting.value = true;
-  conversionProgress.value = 0;
-  conversionStatus.value = 'Initializing PDF document...';
+  isConverting.value = true
+  conversionProgress.value = 0
+  conversionStatus.value = 'Initializing PDF document...'
 
   try {
-    const pdf = new jsPDF();
-    const totalImages = images.value.length;
+    const pdf = new jsPDF()
+    const totalImages = images.value.length
 
     for (let i = 0; i < totalImages; i++) {
-      const image = images.value[i];
-      conversionStatus.value = `Processing image ${i + 1} of ${totalImages}: ${image.name}`;
-      conversionProgress.value = Math.round((i / totalImages) * 100);
+      const image = images.value[i]
+      conversionStatus.value = `Processing image ${i + 1} of ${totalImages}: ${image.name}`
+      conversionProgress.value = Math.round((i / totalImages) * 100)
 
-      await addImageToPDF(pdf, image, i > 0);
+      await addImageToPDF(pdf, image, i > 0)
 
       // Small delay for smooth progress animation
-      await new Promise(resolve => setTimeout(resolve, 50)); // Reduced delay
+      await new Promise((resolve) => setTimeout(resolve, 50)) // Reduced delay
     }
 
-    conversionStatus.value = 'Finalizing PDF...';
-    conversionProgress.value = 95;
+    conversionStatus.value = 'Finalizing PDF...'
+    conversionProgress.value = 95
 
     // Generate filename with timestamp
-    const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
-    const filename = `converted-images-${timestamp}.pdf`;
+    const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-')
+    const filename = `converted-images-${timestamp}.pdf`
 
     // Save the PDF
-    pdf.save(filename);
+    pdf.save(filename)
 
-    conversionProgress.value = 100;
-    conversionStatus.value = 'Conversion completed successfully!';
+    conversionProgress.value = 100
+    conversionStatus.value = 'Conversion completed successfully!'
 
-    showNotification('PDF generated successfully!', 'success');
+    showNotification('PDF generated successfully!', 'success')
 
     // Reset after a delay
     setTimeout(() => {
-      isConverting.value = false;
-      conversionProgress.value = 0;
-      conversionStatus.value = '';
-    }, 2000);
-
+      isConverting.value = false
+      conversionProgress.value = 0
+      conversionStatus.value = ''
+    }, 2000)
   } catch (error) {
-    console.error('PDF generation error:', error);
-    showNotification('Error generating PDF. Please try again.', 'error');
-    isConverting.value = false;
-    conversionProgress.value = 0;
-    conversionStatus.value = '';
+    console.error('PDF generation error:', error)
+    showNotification('Error generating PDF. Please try again.', 'error')
+    isConverting.value = false
+    conversionProgress.value = 0
+    conversionStatus.value = ''
   }
-};
+}
 
 const addImageToPDF = async (pdf, image, addPage) => {
   return new Promise((resolve, reject) => {
-    const img = new Image();
+    const img = new Image()
     img.onload = () => {
       try {
         if (addPage) {
-          pdf.addPage();
+          pdf.addPage()
         }
 
         // Calculate dimensions to fit the image properly
-        const pageWidth = pdf.internal.pageSize.getWidth();
-        const pageHeight = pdf.internal.pageSize.getHeight();
-        const margin = 5;
+        const pageWidth = pdf.internal.pageSize.getWidth()
+        const pageHeight = pdf.internal.pageSize.getHeight()
+        const margin = 5
 
-        const availableWidth = pageWidth - 2 * margin;
-        const availableHeight = pageHeight - 2 * margin;
+        const availableWidth = pageWidth - 2 * margin
+        const availableHeight = pageHeight - 2 * margin
 
-        let imgWidth = img.width;
-        let imgHeight = img.height;
+        let imgWidth = img.width
+        let imgHeight = img.height
 
         // Calculate scaling to fit the image within available space
-        const scaleX = availableWidth / imgWidth;
-        const scaleY = availableHeight / imgHeight;
-        const scale = Math.min(scaleX, scaleY, 1); // Don't scale up, only down
+        const scaleX = availableWidth / imgWidth
+        const scaleY = availableHeight / imgHeight
+        const scale = Math.min(scaleX, scaleY, 1) // Don't scale up, only down
 
-        imgWidth *= scale;
-        imgHeight *= scale;
+        imgWidth *= scale
+        imgHeight *= scale
 
         // Center the image on the page
-        const x = (pageWidth - imgWidth) / 2;
-        const y = (pageHeight - imgHeight) / 2;
+        const x = (pageWidth - imgWidth) / 2
+        const y = (pageHeight - imgHeight) / 2
 
         // Add the image to PDF
-        pdf.addImage(
-          img,
-          image.type === 'image/jpeg' ? 'JPEG' : 'PNG',
-          x, y, imgWidth, imgHeight
-        );
+        pdf.addImage(img, image.type === 'image/jpeg' ? 'JPEG' : 'PNG', x, y, imgWidth, imgHeight)
 
-        resolve();
+        resolve()
       } catch (error) {
-        reject(error);
+        reject(error)
       }
-    };
+    }
 
     img.onerror = () => {
-      reject(new Error(`Failed to load image: ${image.name}`));
-    };
+      reject(new Error(`Failed to load image: ${image.name}`))
+    }
 
-    img.src = image.url;
-  });
-};
+    img.src = image.url
+  })
+}
 
 const showNotification = (message, type = 'info') => {
   // Create notification element
-  const notification = document.createElement('div');
-  notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg max-w-sm ${type === 'success' ? 'bg-green-500 text-white' :
-    type === 'error' ? 'bg-red-500 text-white' :
-      'bg-blue-500 text-white'
-    }`;
-  notification.textContent = message;
+  const notification = document.createElement('div')
+  notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg max-w-sm ${
+    type === 'success'
+      ? 'bg-green-500 text-white'
+      : type === 'error'
+        ? 'bg-red-500 text-white'
+        : 'bg-blue-500 text-white'
+  }`
+  notification.textContent = message
 
-  document.body.appendChild(notification);
+  document.body.appendChild(notification)
 
   // Animate in
   setTimeout(() => {
-    notification.style.transform = 'translateX(0)';
-    notification.style.opacity = '1';
-  }, 100);
+    notification.style.transform = 'translateX(0)'
+    notification.style.opacity = '1'
+  }, 100)
 
   // Remove after 4 seconds
   setTimeout(() => {
-    notification.style.transform = 'translateX(100%)';
-    notification.style.opacity = '0';
+    notification.style.transform = 'translateX(100%)'
+    notification.style.opacity = '0'
     setTimeout(() => {
-      document.body.removeChild(notification);
-    }, 300);
-  }, 4000);
-};
-
+      document.body.removeChild(notification)
+    }, 300)
+  }, 4000)
+}
 </script>
 <template>
-  <v-btn @click="goBack" variant="flat" icon="mdi-arrow-left"
-    class="btn-css text-primary-emphasis bg-primary-subtle border border-primary-subtle"></v-btn>
+  <v-btn
+    @click="goBack"
+    variant="flat"
+    icon="mdi-arrow-left"
+    class="btn-css text-primary-emphasis bg-primary-subtle border border-primary-subtle"
+  ></v-btn>
   <v-container>
     <div
-      class="text-h5 mb-3 rounded-3 p-3 text-center text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+      class="text-h5 mb-3 rounded-3 p-3 text-center text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"
+    >
       Convert Images to PDF
     </div>
     <!-- Upload Zone -->
     <div class="mb-12">
-      <div class="upload-zone" @dragover.prevent @drop.prevent="handleDrop" @click="triggerFileInput()">
-        <input ref="fileInput" type="file" multiple accept="image/*" @change="handleFileSelect" class="file-input">
+      <div
+        class="upload-zone"
+        @dragover.prevent
+        @drop.prevent="handleDrop"
+        @click="triggerFileInput()"
+      >
+        <input
+          ref="fileInput"
+          type="file"
+          multiple
+          accept="image/*"
+          @change="handleFileSelect"
+          class="file-input"
+        />
         <div class="text-center">
           <div class="upload-zone-header">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -266,7 +280,11 @@ const showNotification = (message, type = 'info') => {
               <g id="SVGRepo_iconCarrier">
                 <path
                   d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15"
-                  stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  stroke="#000000"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
               </g>
             </svg>
             <p>Browse File to upload!</p>
@@ -274,11 +292,11 @@ const showNotification = (message, type = 'info') => {
           <h3 class="text-2xl font-semibold mb-2 text-slate-800">
             Drop images here or click to browse
           </h3>
-          <p class="text-slate-600 mb-4">
-            Supports JPG, PNG, GIF, and WebP formats
-          </p>
-          <v-btn variant="outlined"
-            class="text-primary-emphasis bg-primary-subtle border-none border-primary-subtle rounded-3">
+          <p class="text-slate-600 mb-4">Supports JPG, PNG, GIF, and WebP formats</p>
+          <v-btn
+            variant="outlined"
+            class="text-primary-emphasis bg-primary-subtle border-none border-primary-subtle rounded-3"
+          >
             Choose Files
           </v-btn>
         </div>
@@ -292,23 +310,40 @@ const showNotification = (message, type = 'info') => {
       <div v-if="images.length > 0" class="mb-12">
         <div class="flex justify-between items-center mb-6">
           <div
-            class="text-h6 font-bold p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+            class="text-h6 font-bold p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"
+          >
             Uploaded Images <v-icon>mdi-menu-right</v-icon> {{ images.length }}
           </div>
           <div class="d-flex justify-content-start align-content-center mt-4 gap-1 flex-wrap">
-            <v-btn variant="outlined" @click="clearAll" append-icon="mdi-window-close"
-              class="text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
+            <v-btn
+              variant="outlined"
+              @click="clearAll"
+              append-icon="mdi-window-close"
+              class="text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3"
+            >
               Clear All
             </v-btn>
-            <v-btn append-icon="mdi mdi-file-pdf-box"
-              class="text-success-emphasis bg-success-subtle border border-success-subtle rounded-3" variant="outlined"
-              @click="generatePDF" :disabled="isConverting || images.length === 0">
+            <v-btn
+              append-icon="mdi mdi-file-pdf-box"
+              class="text-success-emphasis bg-success-subtle border border-success-subtle rounded-3"
+              variant="outlined"
+              @click="generatePDF"
+              :disabled="isConverting || images.length === 0"
+            >
               {{ isConverting ? 'Converting...' : 'Download PDF' }}
             </v-btn>
             <v-label
               class="file-btn px-3 py-1 text-center opacity-100 align-content-center text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"
-              text="ADD MORE">
-              <input ref="fileInput" type="file" id="fileInput" multiple accept="image/*" @change="handleFileSelect">
+              text="ADD MORE"
+            >
+              <input
+                ref="fileInput"
+                type="file"
+                id="fileInput"
+                multiple
+                accept="image/*"
+                @change="handleFileSelect"
+              />
               <v-icon class="ms-1">mdi-plus</v-icon>
             </v-label>
           </div>
@@ -316,17 +351,33 @@ const showNotification = (message, type = 'info') => {
 
         <v-row dense>
           <v-col v-for="(image, index) in images" :key="image.id" cols="12" sm="6" md="5" lg="4">
-            <v-card class="mx-auto text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-4"
-              max-width="400">
-              <v-img :src="image.url" :alt="image.name" class="align-end text-white img-thumbnail m-2 rounded-4"
-                height="200" contain>
+            <v-card
+              class="mx-auto text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-4"
+              max-width="400"
+            >
+              <v-img
+                :src="image.url"
+                :alt="image.name"
+                class="align-end text-white img-thumbnail m-2 rounded-4"
+                height="200"
+                contain
+              >
                 <v-card-title>
                   <div class="image-controls">
-                    <button @click="moveUp(index)" :disabled="index === 0" class="control-btn" title="Move up">
+                    <button
+                      @click="moveUp(index)"
+                      :disabled="index === 0"
+                      class="control-btn"
+                      title="Move up"
+                    >
                       <i class="mdi mdi-arrow-up"></i>
                     </button>
-                    <button @click="moveDown(index)" :disabled="index === images.length - 1" class="control-btn"
-                      title="Move down">
+                    <button
+                      @click="moveDown(index)"
+                      :disabled="index === images.length - 1"
+                      class="control-btn"
+                      title="Move down"
+                    >
                       <i class="mdi mdi-arrow-down"></i>
                     </button>
                     <button @click="removeImage(index)" class="control-btn" title="Remove">
@@ -367,8 +418,10 @@ const showNotification = (message, type = 'info') => {
             <span class="text-sm text-slate-600">{{ conversionProgress }}%</span>
           </div>
           <div class="w-full bg-gray-200 rounded-full h-3">
-            <div class="bg-gradient-to-r from-teal-500 to-amber-500 h-3 rounded-full transition-all duration-300"
-              :style="{ width: conversionProgress + '%' }"></div>
+            <div
+              class="bg-gradient-to-r from-teal-500 to-amber-500 h-3 rounded-full transition-all duration-300"
+              :style="{ width: conversionProgress + '%' }"
+            ></div>
           </div>
           <p class="text-sm text-slate-600 mt-2">{{ conversionStatus }}</p>
         </div>
@@ -405,7 +458,6 @@ const showNotification = (message, type = 'info') => {
   font-size: 70px;
   color: white;
 }
-
 
 .file-input {
   display: none;

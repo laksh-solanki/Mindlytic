@@ -5,12 +5,16 @@
     <v-container>
       <div class="hero-content">
         <h1 class="title animation-left">Build Amazing Websites with <span>Mindlytic</span></h1>
-        <p class="des animation-right">Create modern, responsive, and lightning-fast web apps with Vue 3 and modern
-          tooling.</p>
+        <p class="des animation-right">
+          Create modern, responsive, and lightning-fast web apps with Vue 3 and modern tooling.
+        </p>
         <div class="hero-buttons">
           <v-btn class="btn btn-primary" to="/project/Pdfedits">Start Build</v-btn>
-          <v-btn class="text-primary-emphasis bg-primary-subtle border-3 border-primary rounded-3"
-            to="/project/img2pdf">img2pdf</v-btn>
+          <v-btn
+            class="text-primary-emphasis bg-primary-subtle border-3 border-primary rounded-3"
+            to="/project/img2pdf"
+            >img2pdf</v-btn
+          >
         </div>
       </div>
     </v-container>
@@ -93,11 +97,11 @@
   margin: 0 auto;
 
   & .title {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
   & .des {
-    font-family: "Lato", sans-serif;
+    font-family: 'Lato', sans-serif;
     font-size: 20px;
     font-weight: 300;
     font-style: normal;
@@ -135,13 +139,13 @@
     margin: 0 auto;
 
     & .title {
-      font-family: "Montserrat", sans-serif;
+      font-family: 'Montserrat', sans-serif;
       margin-top: -90px;
       font-size: 40px;
     }
 
     & .des {
-      font-family: "Lato", sans-serif;
+      font-family: 'Lato', sans-serif;
       font-weight: 300;
       font-size: 20px;
       font-style: normal;

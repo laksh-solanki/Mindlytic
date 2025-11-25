@@ -13,8 +13,12 @@
     <!-- Project cards -->
     <v-row>
       <v-col v-for="p in projects" :key="p.id" cols="12" sm="6" lg="4">
-        <v-card height="100%" hover
-          class="text-primary-emphasis bg-primary-subtle border-none border-primary-subtle rounded-4" :to="p.live">
+        <v-card
+          height="100%"
+          hover
+          class="text-primary-emphasis bg-primary-subtle border-none border-primary-subtle rounded-4"
+          :to="p.live"
+        >
           <v-img :src="p.thumb" height="200" class="m-2 img-thumbnail rounded-4" content-class />
           <v-card-title class="font-weight-bold">{{ p.title }}</v-card-title>
           <v-card-text>
@@ -34,14 +38,12 @@
 import { computed, ref } from 'vue'
 import projects from '@/data/Projects.js'
 
-const uniqueTech = computed(() => [
-  ...new Set(projects.flatMap(p => p.tech))
-])
+const uniqueTech = computed(() => [...new Set(projects.flatMap((p) => p.tech))])
 </script>
 <style scoped>
 .animation-bottom {
-  -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 @-webkit-keyframes slide-in-bottom {
@@ -71,7 +73,6 @@ const uniqueTech = computed(() => [
     opacity: 1;
   }
 }
-
 
 /* nothing needed – Vuetify covers it */
 </style>
