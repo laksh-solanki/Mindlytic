@@ -13,7 +13,8 @@
     <!-- Project cards -->
     <v-row>
       <v-col v-for="p in projects" :key="p.id" cols="12" sm="6" lg="4">
-        <v-card height="100%" hover class="text-primary-emphasis bg-primary-subtle border-none border-primary-subtle rounded-4" :to="p.live">
+        <v-card height="100%" hover
+          class="text-primary-emphasis bg-primary-subtle border-none border-primary-subtle rounded-4" :to="p.live">
           <v-img :src="p.thumb" height="200" class="m-2 img-thumbnail rounded-4" content-class />
           <v-card-title class="font-weight-bold">{{ p.title }}</v-card-title>
           <v-card-text>

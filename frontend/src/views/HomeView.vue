@@ -9,7 +9,8 @@
           tooling.</p>
         <div class="hero-buttons">
           <v-btn class="btn btn-primary" to="/project/Pdfedits">Start Build</v-btn>
-          <v-btn class="text-primary-emphasis bg-primary-subtle border-3 border-primary rounded-3" to="/project/img2pdf">img2pdf</v-btn>
+          <v-btn class="text-primary-emphasis bg-primary-subtle border-3 border-primary rounded-3"
+            to="/project/img2pdf">img2pdf</v-btn>
         </div>
       </div>
     </v-container>

@@ -68,7 +68,8 @@ const goBack = () => {
                 <template v-slot:activator="{ props }">
                   <v-btn v-bind="props" @click="dialog = true" text="Certificate"
                     prepend-icon="mdi-file-certificate-outline"
-                    class="text-primary-emphasis bg-success-subtle border-3 border-success-subtle rounded-3" size="large"></v-btn>
+                    class="text-primary-emphasis bg-success-subtle border-3 border-success-subtle rounded-3"
+                    size="large"></v-btn>
                 </template>
               </v-tooltip>
             </v-col>
