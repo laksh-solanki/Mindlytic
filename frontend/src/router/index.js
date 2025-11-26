@@ -4,16 +4,15 @@ import AboutView from '@/views/AboutView.vue'
 import ProjectView from '@/views/ProjectView.vue'
 import Project from '@/views/Project.vue'
 import SettingsView from '@/views/SettingsView.vue'
+import Settings from '@/views/MainSettings.vue'
 import HelpView from '@/views/HelpView.vue'
 import CertificateView from '@/views/CertificateView.vue'
 import NotmatchView from '@/views/NotmatchView.vue'
 import GlobalLoader from '@/views/GlobalLoader.vue'
 import Profile from '@/views/Profile.vue'
-import MainSettings from '@/views/MainSettings.vue'
 import img2pdf from '@/views/img2pdf.vue'
 import 'vuetify/dist/vuetify.min.css'
 import 'vuetify/styles'
-import { useLoadingStore } from '@/stores/loading'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -70,13 +69,13 @@ const router = createRouter({
       ],
     },
     {
-      path: '/settings',
+      path: '/settingsView',
       component: SettingsView,
       children: [
         {
           path: '',
           name: 'settings',
-          redirect: '/settings/profile',
+          redirect: '/settingsView/profile',
           meta: {
             title: 'Mindlytic | Settings',
             description: 'Adjust your Settings',
@@ -92,9 +91,9 @@ const router = createRouter({
           },
         },
         {
-          path: 'main-settings',
+          path: 'settings',
           name: 'settings-main',
-          component: MainSettings,
+          component: Settings,
           meta: {
             title: 'Mindlytic | Main Settings',
             description: 'Main Settings page',

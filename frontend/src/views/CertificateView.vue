@@ -1,6 +1,8 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import html2pdf from 'html2pdf.js/dist/html2pdf.min.js'
+import RedAlert from '@/components/Red-alert.vue'
+import GreenAlert from '@/components/Green-alert.vue'
 
 const studentForm = ref(null)
 const form = reactive({
@@ -18,17 +20,63 @@ const courses = [
 
 const loading = ref(false)
 const dialog = ref(false)
-
 const pdfSection = ref(null)
+const successAlert = ref(false)
+const successMessage = ref('')
+const errorAlert = ref(false)
+const errorMessage = ref('')
+
+let successTimeout = null
+let errorTimeout = null
+
+const showAlert = (message, type) => {
+  if (type === 'success') {
+    successMessage.value = message
+    successAlert.value = true
+    clearTimeout(successTimeout)
+    successTimeout = setTimeout(() => {
+      successAlert.value = false
+    }, 4000)
+  } else {
+    errorMessage.value = message
+    errorAlert.value = true
+    clearTimeout(errorTimeout)
+    errorTimeout = setTimeout(() => {
+      errorAlert.value = false
+    }, 4000)
+  }
+}
+
+const previewCertificate = async () => {
+  const { valid } = await studentForm.value.validate()
+  if (!valid) {
+    showAlert('Please fill in all required fields.', 'error')
+    return
+  }
+
+  loading.value = true
+  setTimeout(() => { // Simulate loading
+    loading.value = false
+    dialog.value = true
+  }, 1000)
+}
 
 const generatePdf = () => {
+  loading.value = true
+
+  setTimeout(() => {
+    loading.value = false
+    dialog.value = false
+    showAlert('Certificate downloaded successfully!', 'success')
+  }, 1000)
+
   if (pdfSection.value) {
     html2pdf(pdfSection.value, {
       margin: 0,
       filename: form.course + '.pdf',
-      image: { type: 'jpeg', quality: 3 },
+      image: { type: 'jpeg', quality: 1 },
       html2canvas: { scale: 7, useCORS: true },
-      jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
     })
   }
 }
@@ -38,19 +86,16 @@ const goBack = () => {
 }
 </script>
 <template>
-  <v-btn
-    @click="goBack"
-    variant="flat"
-    icon="mdi-arrow-left"
-    class="btn-css text-primary-emphasis bg-primary-subtle border border-primary-subtle"
-  ></v-btn>
+  <v-btn @click="goBack" variant="flat" icon="mdi-arrow-left"
+    class="btn-css text-primary-emphasis bg-primary-subtle border border-primary-subtle"></v-btn>
+  <GreenAlert v-model:successAlert="successAlert" :successMessage="successMessage" />
+  <RedAlert v-model:errorAlert="errorAlert" :errorMessage="errorMessage" />
   <v-container>
-    <v-card
-      class="text-primary-emphasis bg-success-subtle border-2 border-success-subtle rounded-4"
-    >
-      <v-card-title class="text-h4 text-wrap text-center text-white pa-4 bg-success">
-        Student Certificate
-      </v-card-title>
+    <div
+      class="text-h5 mb-3 p-3 text-center text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-4">
+      Student Certificate
+    </div>
+    <v-card class="text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-4" elevation="3">
       <v-card-text>
         <v-form ref="studentForm">
           <v-row>
@@ -59,42 +104,22 @@ const goBack = () => {
               <v-divider class="my-3"></v-divider>
             </v-col>
             <v-col cols="12" md="6">
-              <v-text-field
-                v-model="form.fname"
-                :rules="[(v) => !!v || 'Full Name is required']"
-                label="Full Name"
-                variant="outlined"
-                name="fname"
-                id="fname"
-                rounded="2"
-                aria-required="true"
-              ></v-text-field>
+              <v-text-field v-model="form.fname" :rules="[(v) => !!v || 'Full Name is required']" label="Full Name"
+                variant="outlined" name="fname" id="fname" rounded="2" aria-required="true"></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
-              <v-select
-                v-model="form.course"
-                :items="courses"
-                :rules="[(v) => !!v || 'Course is required']"
-                label="Course"
-                variant="outlined"
-                name="course"
-                id="course"
-                rounded="2"
-              ></v-select>
+              <v-select v-model="form.course" :items="courses" :rules="[(v) => !!v || 'Course is required']"
+                label="Course" variant="outlined" name="course" id="course" rounded="2"></v-select>
             </v-col>
           </v-row>
           <v-row class="mt-5 justify-content-center">
             <v-col cols="12" md="3" class="d-flex justify-center">
               <v-tooltip text="Preview and Download the certificate" location="top">
                 <template v-slot:activator="{ props }">
-                  <v-btn
-                    v-bind="props"
-                    @click="dialog = true"
-                    text="Certificate"
+                  <v-btn v-bind="props" @click="previewCertificate" text="Certificate" :loading="loading"
                     prepend-icon="mdi-file-certificate-outline"
-                    class="text-primary-emphasis bg-success-subtle border-3 border-success-subtle rounded-3"
-                    size="large"
-                  ></v-btn>
+                    class="text-primary-emphasis bg-primary-subtle border-3 border-primary-subtle rounded-3"
+                    size="large"></v-btn>
                 </template>
               </v-tooltip>
             </v-col>
@@ -107,32 +132,18 @@ const goBack = () => {
   <v-dialog v-model="dialog" max-width="840">
     <v-card>
       <v-card-title class="p-0 d-flex justify-space-between">
-        <v-btn
-          @click="generatePdf"
-          text="Download"
-          style="
+        <v-btn @click="generatePdf" text="Download" style="
             border-top-right-radius: 0;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 10px;
-          "
-          prepend-icon="mdi-download"
-          :loading="loading"
-          variant="text"
-          class="bg-primary"
-          height="45"
-        ></v-btn>
-        <v-btn
-          icon="mdi-close"
-          class="bg-primary"
-          style="
+          " prepend-icon="mdi-download" :loading="loading" variant="text"
+          class="text-primary-emphasis bg-primary-subtle border border-primary-subtle" height="45"></v-btn>
+        <v-btn icon="mdi-close" class="text-primary-emphasis bg-primary-subtle border border-primary-subtle" style="
             border-top-right-radius: 0;
             border-top-left-radius: 0;
             border-bottom-right-radius: 0;
-          "
-          @click="dialog = false"
-          variant="text"
-        ></v-btn>
+          " @click="dialog = false" variant="text"></v-btn>
       </v-card-title>
       <div>
         <div ref="pdfSection" class="certificate">
@@ -478,7 +489,7 @@ picture {
   width: calc(100% - 75px);
 }
 
-.lnt .borderr > div {
+.lnt .borderr>div {
   border: 1px solid #222222;
   width: 100%;
   display: block;

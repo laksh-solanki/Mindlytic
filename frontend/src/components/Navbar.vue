@@ -11,52 +11,15 @@ import { RouterLink } from 'vue-router'
         aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse w-100 navbar-collapse justify-content-center" id="navbarScroll">
-        <v-tabs inset density="comfortable" slider-color="info" style="box-shadow: none;" class="d-flex flex-wrap bg-white border tab-container">
+      <v-container class="collapse w-100 p-0 navbar-collapse justify-content-center" id="navbarScroll">
+        <v-tabs inset density="comfortable" slider-color="info" style="box-shadow: none;"
+          class="d-flex flex-wrap bg-white border tab-container">
           <v-tab to="/" class="px-0 tab-size">Home</v-tab>
           <v-tab to="/about" class="px-0 tab-size">About</v-tab>
           <v-tab to="/project" class="px-0 tab-size">Project</v-tab>
-          <v-tab to="/Settings" class="px-0 tab-size">Settings</v-tab>
+          <v-tab to="/settingsView" class="px-0 tab-size">Settings</v-tab>
         </v-tabs>
-        <!-- <ul
-          class="nav navbar-nav nav-underline gap-4 gap-lg-3 flex-row w-100 justify-content-center"
-        >
-          <li class="nav-item">
-            <router-link class="nav-link" to="/">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/about">About</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/project">project</router-link>
-          </li>
-          <li class="dropdown nav-item">
-            <a
-              class="nav-link dropdown-toggle"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Settings
-            </a>
-            <ul class="dropdown-menu rounded-3 position-absolute z-3">
-              <li>
-                <router-link class="dropdown-item" to="/settings"
-                  ><v-icon class="me-2">mdi-cog</v-icon> Settings</router-link
-                >
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/Help"
-                  ><v-icon class="me-2">mdi-help-circle-outline</v-icon> Help</router-link
-                >
-              </li>
-            </ul>
-          </li>
-        </ul> -->
-      </div>
+      </v-container>
     </div>
   </nav>
 </template>
