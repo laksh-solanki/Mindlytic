@@ -130,22 +130,10 @@ const router = createRouter({
     },
   ],
 })
-
-router.beforeEach((to, from, next) => {
-  const loadingStore = useLoadingStore()
-  loadingStore.startLoading() // Start loader
-  next()
-})
-
 router.afterEach((to) => {
   document.title = to.meta.title || 'Mindlytic'
   const description = document.querySelector('meta[name="description"]')
   if (description) description.setAttribute('content', to.meta.description || '')
-})
-
-router.afterEach(() => {
-  const loadingStore = useLoadingStore()
-  setTimeout(() => loadingStore.stopLoading(), 200) // Stop loader
 })
 
 export default router
