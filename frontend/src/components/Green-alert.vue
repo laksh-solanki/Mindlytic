@@ -15,7 +15,13 @@ const snackbar = computed({
 </script>
 
 <template>
-  <v-snackbar v-model="snackbar" location="top" style="margin-top: 70px !important;" color="success" variant="flat">
+  <v-snackbar
+    v-model="snackbar"
+    location="top"
+    style="margin-top: 70px !important"
+    color="success"
+    variant="flat"
+  >
     ✔ {{ successMessage }}
     <template #actions>
       <v-btn icon="mdi-close" @click="snackbar = false"></v-btn>

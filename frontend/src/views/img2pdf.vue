@@ -256,19 +256,36 @@ onUnmounted(() => {
 })
 </script>
 <template>
-  <v-btn @click="goBack" variant="flat" icon="mdi-arrow-left"
-    class="btn-css text-primary-emphasis bg-primary-subtle border border-primary-subtle"></v-btn>
+  <v-btn
+    @click="goBack"
+    variant="flat"
+    icon="mdi-arrow-left"
+    class="btn-css text-primary-emphasis bg-primary-subtle border border-primary-subtle"
+  ></v-btn>
   <GreenAlert v-model:successAlert="successAlert" :successMessage="successMessage" />
   <RedAlert v-model:errorAlert="errorAlert" :errorMessage="errorMessage" />
   <v-container>
     <div
-      class="text-h5 mb-3 p-3 text-center text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-4">
+      class="text-h5 mb-3 p-3 text-center text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-4"
+    >
       Convert Images to PDF
     </div>
     <!-- Upload Zone -->
     <div class="mb-12">
-      <div class="upload-zone rounded-4" @dragover.prevent @drop.prevent="handleDrop" @click="triggerFileInput()">
-        <input ref="fileInput" type="file" multiple accept="image/*" @change="handleFileSelect" class="file-input" />
+      <div
+        class="upload-zone rounded-4"
+        @dragover.prevent
+        @drop.prevent="handleDrop"
+        @click="triggerFileInput()"
+      >
+        <input
+          ref="fileInput"
+          type="file"
+          multiple
+          accept="image/*"
+          @change="handleFileSelect"
+          class="file-input"
+        />
         <div class="text-center">
           <div class="upload-zone-header">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -277,7 +294,11 @@ onUnmounted(() => {
               <g id="SVGRepo_iconCarrier">
                 <path
                   d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15"
-                  stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  stroke="#000000"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
               </g>
             </svg>
             <p>Browse File to upload!</p>
@@ -286,8 +307,10 @@ onUnmounted(() => {
             Drop images here or click to browse
           </h3>
           <p class="text-slate-600 mb-4">Supports JPG, PNG, GIF, and WebP formats</p>
-          <v-btn variant="outlined"
-            class="text-primary-emphasis bg-primary-subtle border-none border-primary-subtle rounded-3">
+          <v-btn
+            variant="outlined"
+            class="text-primary-emphasis bg-primary-subtle border-none border-primary-subtle rounded-3"
+          >
             Choose Files
           </v-btn>
         </div>
@@ -301,23 +324,40 @@ onUnmounted(() => {
       <div v-if="images.length > 0" class="mb-12">
         <div class="flex justify-between items-center mb-6">
           <div
-            class="text-h6 font-bold p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+            class="text-h6 font-bold p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"
+          >
             Uploaded Images <v-icon>mdi-menu-right</v-icon> {{ images.length }}
           </div>
           <div class="d-flex justify-content-start align-content-center mt-4 gap-1 flex-wrap">
-            <v-btn variant="outlined" @click="clearAll" append-icon="mdi-window-close"
-              class="text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
+            <v-btn
+              variant="outlined"
+              @click="clearAll"
+              append-icon="mdi-window-close"
+              class="text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3"
+            >
               Clear All
             </v-btn>
-            <v-btn append-icon="mdi mdi-file-pdf-box"
-              class="text-success-emphasis bg-success-subtle border border-success-subtle rounded-3" variant="outlined"
-              @click="generatePDF" :disabled="isConverting || images.length === 0">
+            <v-btn
+              append-icon="mdi mdi-file-pdf-box"
+              class="text-success-emphasis bg-success-subtle border border-success-subtle rounded-3"
+              variant="outlined"
+              @click="generatePDF"
+              :disabled="isConverting || images.length === 0"
+            >
               {{ isConverting ? 'Converting...' : 'Download PDF' }}
             </v-btn>
             <v-label
               class="file-btn px-3 py-1 text-center opacity-100 align-content-center text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"
-              text="ADD MORE">
-              <input ref="fileInput" type="file" id="fileInput" multiple accept="image/*" @change="handleFileSelect" />
+              text="ADD MORE"
+            >
+              <input
+                ref="fileInput"
+                type="file"
+                id="fileInput"
+                multiple
+                accept="image/*"
+                @change="handleFileSelect"
+              />
               <v-icon class="ms-1">mdi-plus</v-icon>
             </v-label>
           </div>
@@ -325,17 +365,33 @@ onUnmounted(() => {
 
         <v-row dense>
           <v-col v-for="(image, index) in images" :key="image.id" cols="12" sm="6" md="5" lg="4">
-            <v-card class="mx-auto text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-4"
-              max-width="400">
-              <v-img :src="image.url" :alt="image.name" class="align-end text-white img-thumbnail m-2 rounded-4"
-                height="200" contain>
+            <v-card
+              class="mx-auto text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-4"
+              max-width="400"
+            >
+              <v-img
+                :src="image.url"
+                :alt="image.name"
+                class="align-end text-white img-thumbnail m-2 rounded-4"
+                height="200"
+                contain
+              >
                 <v-card-title>
                   <div class="image-controls">
-                    <button @click="moveUp(index)" :disabled="index === 0" class="control-btn" title="Move up">
+                    <button
+                      @click="moveUp(index)"
+                      :disabled="index === 0"
+                      class="control-btn"
+                      title="Move up"
+                    >
                       <i class="mdi mdi-arrow-up"></i>
                     </button>
-                    <button @click="moveDown(index)" :disabled="index === images.length - 1" class="control-btn"
-                      title="Move down">
+                    <button
+                      @click="moveDown(index)"
+                      :disabled="index === images.length - 1"
+                      class="control-btn"
+                      title="Move down"
+                    >
                       <i class="mdi mdi-arrow-down"></i>
                     </button>
                     <button @click="removeImage(index)" class="control-btn" title="Remove">
@@ -376,8 +432,10 @@ onUnmounted(() => {
             <span class="text-sm text-slate-600">{{ conversionProgress }}%</span>
           </div>
           <div class="w-full bg-gray-200 rounded-full h-3">
-            <div class="bg-gradient-to-r from-teal-500 to-amber-500 h-3 rounded-full transition-all duration-300"
-              :style="{ width: conversionProgress + '%' }"></div>
+            <div
+              class="bg-gradient-to-r from-teal-500 to-amber-500 h-3 rounded-full transition-all duration-300"
+              :style="{ width: conversionProgress + '%' }"
+            ></div>
           </div>
           <p class="text-sm text-slate-600 mt-2">{{ conversionStatus }}</p>
         </div>

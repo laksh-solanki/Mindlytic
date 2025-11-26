@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <v-footer class=" Footer border-top border-secondary d-flex justify-content-center">
+  <v-footer class="Footer border-top border-secondary d-flex justify-content-center">
     <p class="text-center m-0">
       &copy; {{ new Date().getFullYear() }} Mindlytic. All rights reserved.
     </p>

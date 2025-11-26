@@ -1,10 +1,16 @@
 <template>
-  <v-container style="max-height: 85.73vh !important;">
+  <v-container style="max-height: 85.73vh !important">
     <v-row>
       <v-col cols="12">
         <v-card class="pa-4 text-center">
           <h1 class="display-1 font-weight-bold">How can we help you?</h1>
-          <v-text-field v-model="search" label="Search for help" outlined clearable class="mt-4"></v-text-field>
+          <v-text-field
+            v-model="search"
+            label="Search for help"
+            outlined
+            clearable
+            class="mt-4"
+          ></v-text-field>
         </v-card>
       </v-col>
     </v-row>
