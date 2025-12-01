@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import AboutView from '@/views/AboutView.vue'
-import ProjectView from '@/views/ProjectView.vue'
 import Project from '@/views/Project.vue'
 import SettingsView from '@/views/SettingsView.vue'
 import Settings from '@/views/MainSettings.vue'
@@ -37,7 +36,7 @@ const router = createRouter({
     },
     {
       path: '/project',
-      component: ProjectView,
+      component: Project,
       children: [
         {
           path: '',

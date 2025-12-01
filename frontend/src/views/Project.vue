@@ -1,4 +1,5 @@
 <template>
+
   <v-container class="animation-bottom">
     <!-- Hero -->
     <v-row justify="center" class="mb-8">
@@ -13,12 +14,9 @@
     <!-- Project cards -->
     <v-row>
       <v-col v-for="p in projects" :key="p.id" cols="12" sm="6" lg="4">
-        <v-card
-          height="100%"
-          hover
+        <v-card height="100%" hover
           class="text-primary-emphasis bg-primary-subtle border-none border-primary-subtle rounded-4"
-          :to="p.live"
-        >
+          @click="dialog = true" :to="p.live">
           <v-img :src="p.thumb" height="200" class="m-2 img-thumbnail rounded-4" content-class />
           <v-card-title class="font-weight-bold">{{ p.title }}</v-card-title>
           <v-card-text>
@@ -32,13 +30,47 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-dialog v-model="dialog" transition="dialog-bottom-transition" fullscreen>
+      <v-card>
+        <router-view></router-view>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 <script setup>
-import { computed, ref } from 'vue'
-import projects from '@/data/Projects.js'
+import { shallowRef } from 'vue'
 
-const uniqueTech = computed(() => [...new Set(projects.flatMap((p) => p.tech))])
+const dialog = shallowRef(false)
+
+const projects = [
+  {
+    id: 1,
+    title: 'Certificate Generator',
+    slug: 'L & T EduTech Certificate',
+    desc: 'L & T EduTech Certificate',
+    tech: ['Vue 3', 'Vuetify', 'Bootstrap'],
+    live: '/project/certificate',
+    thumb: new URL('../assets/Picture/certificate-page.png', import.meta.url).href,
+  },
+  {
+    id: 2,
+    title: 'Image to PDF Converter',
+    slug: 'task-saas',
+    desc: 'Multi Image Converter to PDF with drag and drop',
+    tech: ['Vue 3', 'Vuetify', 'Bootstrap'],
+    live: '/project/img2pdf',
+    thumb: new URL('../assets/Picture/IMGTOPDF.png', import.meta.url).href,
+  },
+  {
+    id: 3,
+    title: 'AI Content Generator',
+    slug: 'ai-content',
+    desc: 'OpenAI-powered blog post generator with markdown export.',
+    tech: ['Nuxt 3', 'Vuetify', 'OpenAI API', 'Server-Side Rendering'],
+    live: '/project/Spotifiy',
+    thumb: 'https://picsum.photos/seed/ai/500/300',
+  },
+]
 </script>
 <style scoped>
 .animation-bottom {

@@ -6,9 +6,9 @@ const drawer = ref(true)
 const route = useRoute()
 
 const links = [
-  ['mdi-account-box-outline', 'Profile', '/settingsView/profile'],
-  ['mdi-cogs', 'Settings', '/settingsView/settings'],
-  ['mdi-help-circle-outline', 'Help', '/settingsView/help'],
+  ['mdi-account-cog', 'Profile', '/settingsView/profile'],
+  ['mdi-cog', 'Settings', '/settingsView/settings'],
+  ['mdi-account-question', 'Help', '/settingsView/help'],
 ]
 </script>
 
