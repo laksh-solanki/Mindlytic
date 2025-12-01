@@ -133,6 +133,20 @@ const goBack = () => {
         </v-form>
       </v-card-text>
     </v-card>
+    <v-card class="text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-4 mt-4" elevation="3">
+      <v-card-text>
+        <div>
+          Note: Please ensure that you have filled in your full name and selected the correct course before
+          generating the certificate. The certificate will be generated in PDF format, which you can <div
+            class="text-no-wrap bg-secondary rounded-4 p-1" style="width: 8.2rem; display: inline-flex;">
+            Download For Free
+          </div>.
+        </div>
+        <div class="mt-2">
+          Certificates: The 10 courses available for certificate generation.
+        </div>
+      </v-card-text>
+    </v-card>
   </v-container>
 
   <v-dialog v-model="dialog" max-width="840">
