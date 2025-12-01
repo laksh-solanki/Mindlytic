@@ -10,11 +10,7 @@
         </p>
         <div class="hero-buttons">
           <v-btn class="btn btn-primary" to="/project">Start Build</v-btn>
-          <v-btn
-            class="text-primary-emphasis bg-primary-subtle border-3 border-primary rounded-3"
-            to="/project/img2pdf"
-            >img2pdf</v-btn
-          >
+          <v-btn class="btn btn-secondary" to="/about">Learn More</v-btn>
         </div>
       </div>
     </v-container>

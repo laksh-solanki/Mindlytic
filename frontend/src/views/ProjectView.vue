@@ -17,7 +17,7 @@
         <v-card height="100%" hover
           class="text-primary-emphasis bg-primary-subtle border-none border-primary-subtle rounded-4"
           @click="dialog = true" :to="p.live">
-          <v-img :src="p.thumb" height="200" class="m-2 img-thumbnail rounded-4" content-class />
+          <v-img :src="p.thumb" height="200" class="m-2 img-thumbnail d-none d-md-flex d-lg-flex rounded-4" content-class />
           <v-card-title class="font-weight-bold">{{ p.title }}</v-card-title>
           <v-card-text>
             {{ p.desc }}
@@ -66,7 +66,7 @@ const projects = [
     title: 'AI Content Generator',
     slug: 'ai-content',
     desc: 'OpenAI-powered blog post generator with markdown export.',
-    tech: ['Nuxt 3', 'Vuetify', 'OpenAI API', 'Server-Side Rendering'],
+    tech: null,
     live: '/project/Spotifiy',
     thumb: 'https://picsum.photos/seed/ai/500/300',
   },
