@@ -52,7 +52,7 @@ const quickLinks = [
           <h3 class="text-h6 mb-3">Quick Links</h3>
           <v-list density="comfortable" class="transparent p-0">
             <v-list-item v-for="(link, index) in quickLinks" :key="index" :to="link.path"
-              class="px-2 my-1 rounded rounded-4 hoverable">
+              class="px-2 my-1 rounded-3 hoverable">
               <template v-slot:prepend>
                 <v-icon size="small" class="mr-2">{{ link.icon }}</v-icon>
               </template>

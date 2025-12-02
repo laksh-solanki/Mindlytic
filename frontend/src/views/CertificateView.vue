@@ -1,9 +1,8 @@
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive } from 'vue'
 import html2pdf from 'html2pdf.js/dist/html2pdf.min.js'
 import RedAlert from '@/components/Red-alert.vue'
 import GreenAlert from '@/components/Green-alert.vue'
-import axios from 'axios';
 
 const studentForm = ref(null)
 const form = reactive({
@@ -11,17 +10,18 @@ const form = reactive({
   course: '',
 })
 
-const courses = ref([]);
-
-onMounted(async () => {
-  try {
-    const response = await axios.get('http://localhost:5001/api/courses');
-    courses.value = response.data;
-  } catch (error) {
-    console.error('Error fetching courses:', error);
-    showAlert('Failed to load courses from the server.', 'error');
-  }
-});
+const courses = [
+  'Window Server administrator/IT Support Specialist',
+  'Web Developer',
+  'Cloud Engineer/Cloud Solution Architect',
+  'Web & API Development Specialist',
+  'Python for Computer Vision: Theory and Project',
+  'Web Application Security Essentials',
+  'VLSI Design Engineering',
+  'Unity Android Gaming',
+  'Time Series Analysis',
+  'Tools for Predictive Analytics',
+]
 
 const loading = ref(false)
 const dialog = ref(false)
@@ -60,22 +60,11 @@ const previewCertificate = async () => {
   }
 
   loading.value = true
-  try {
-    const response = await axios.post('http://localhost:5001/api/certificate', {
-      name: form.fname,
-      courseName: form.course,
-    });
-    if (response.data.success) {
-      dialog.value = true;
-    } else {
-      showAlert('Certificate generation failed. Please try again.', 'error');
-    }
-  } catch (error) {
-    console.error('Error generating certificate:', error);
-    showAlert('An error occurred while generating the certificate.', 'error');
-  } finally {
-    loading.value = false;
-  }
+  setTimeout(() => {
+    // Simulate loading
+    loading.value = false
+    dialog.value = true
+  }, 1000)
 }
 
 const generatePdf = () => {
