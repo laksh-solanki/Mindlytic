@@ -63,7 +63,7 @@
   padding: 5rem 0;
   position: relative;
   overflow: hidden;
-  min-height: 80vh;
+  min-height: 90.9vh;
 }
 
 .hero::before,
