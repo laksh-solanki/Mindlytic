@@ -67,7 +67,7 @@ const projects = [
     slug: 'ai-content',
     desc: 'OpenAI-powered blog post generator with markdown export.',
     tech: null,
-    live: '/project/Spotifiy',
+    live: '/project/compress-pdf',
     thumb: 'https://picsum.photos/seed/ai/500/300',
   },
 ]
