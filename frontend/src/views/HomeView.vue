@@ -9,7 +9,7 @@
           Create modern, responsive, and lightning-fast web apps with Vue 3 and modern tooling.
         </p>
         <div class="hero-buttons">
-          <v-btn class="btn btn-primary" to="/project">Start Build</v-btn>
+          <v-btn class="btn btn-primary" to="/project">Start Projects</v-btn>
           <v-btn class="btn btn-secondary" to="/about">Learn More</v-btn>
         </div>
       </div>

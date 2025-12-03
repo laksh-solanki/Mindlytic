@@ -3,39 +3,21 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <nav
-    class="navbar navbar-expand-lg border-1 border-bottom border-black w-100 z-3 position-sticky top-0 bg-white"
-  >
+  <nav class="navbar navbar-expand-lg border-1 border-bottom border-black w-100 z-3 position-sticky top-0 bg-white">
     <div class="container">
-      <router-link class="navbar-brand" to="/"
-        ><img src="../assets/Picture/mindlytic-Main-logo.png" alt="" width="120"
-      /></router-link>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarScroll"
-        aria-controls="navbarScroll"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <router-link class="navbar-brand" to="/"><img src="../assets/Picture/mindlytic-Main-logo.png" alt=""
+          width="120" /></router-link>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+        aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <v-container
-        class="collapse w-100 p-0 navbar-collapse justify-content-center"
-        id="navbarScroll"
-      >
-        <v-tabs
-          inset
-          density="comfortable"
-          slider-color="info"
-          style="box-shadow: none"
-          class="d-flex flex-wrap bg-white border tab-container"
-        >
-          <v-tab to="/" class="px-0 tab-size">Home</v-tab>
-          <v-tab to="/about" class="px-0 tab-size">About</v-tab>
-          <v-tab to="/project" class="px-0 tab-size">Project</v-tab>
-          <v-tab to="/settingsView" class="px-0 tab-size">Settings</v-tab>
+      <v-container class="collapse w-100 p-0 navbar-collapse justify-content-center" id="navbarScroll">
+        <v-tabs inset density="comfortable" slider-color="info" style="box-shadow: none"
+          class="d-flex flex-wrap bg-white border tab-container">
+          <v-tab to="/" class="px-0 tab-size" rounded="shaped">Home</v-tab>
+          <v-tab to="/about" class="px-0 tab-size" rounded="shaped">About</v-tab>
+          <v-tab to="/project" class="px-0 tab-size" rounded="shaped">Project</v-tab>
+          <v-tab to="/settingsView" class="px-0 tab-size" rounded="shaped">Settings</v-tab>
         </v-tabs>
       </v-container>
     </div>

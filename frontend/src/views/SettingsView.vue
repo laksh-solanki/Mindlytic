@@ -26,7 +26,7 @@ const links = [
         </v-btn>
       </v-sheet>
       <v-list>
-        <v-list-item v-for="[icon, text, to] in links" class="rounded-3 m-1" :key="icon" :prepend-icon="icon"
+        <v-list-item v-for="[icon, text, to] in links" class="m-1" color="primary" rounded="shaped" :key="icon" :prepend-icon="icon"
           :title="text" :to="to" link>
           <template v-slot:append>
             <v-icon v-if="route.path.startsWith(to)">mdi-chevron-right</v-icon>
