@@ -9,14 +9,12 @@ const conversionProgress = ref(0)
 const conversionStatus = ref('')
 const imageIdCounter = ref(0)
 const fileInput = ref(null)
-const dragOver = ref(false)
-const show = ref(false)
+
 const successAlert = ref(false)
 const successMessage = ref('')
 const errorAlert = ref(false)
 const errorMessage = ref('')
 
-let counter = 0
 let successTimeout = null
 let errorTimeout = null
 
@@ -52,36 +50,7 @@ const handleFileSelect = (event) => {
   processFiles(files)
 }
 
-const handleDrop = (event) => {
-  dragOver.value = false
-  const files = Array.from(event.dataTransfer.files)
-  processFiles(files)
-}
-
-const onDragEnter = () => {
-  counter++
-  show.value = true
-}
-
-const onDragLeave = () => {
-  counter--
-  if (counter === 0) show.value = false
-}
-
-const onDragOver = (e) => e.preventDefault()
-
-const onWindowDrop = (e) => {
-  e.preventDefault()
-  counter = 0
-  show.value = false
-  showAlert('Add Image File', 'success')
-}
-
 onMounted(() => {
-  window.addEventListener('dragenter', onDragEnter)
-  window.addEventListener('dragleave', onDragLeave)
-  window.addEventListener('dragover', onDragOver)
-  window.addEventListener('drop', onWindowDrop)
 })
 
 const processFiles = (files) => {
@@ -315,9 +284,7 @@ onUnmounted(() => {
           </v-btn>
         </div>
       </div>
-      <div id="overlay" v-show="show">
-        <div class="icon">📁</div>
-      </div>
+      
     </div>
     <!-- Image Gallery -->
     <transition name="slide-up">
