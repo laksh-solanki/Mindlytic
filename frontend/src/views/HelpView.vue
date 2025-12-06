@@ -1,21 +1,21 @@
 <template>
   <v-container style="max-height: 90.9vh !important">
-    <v-row>
+    <v-row dense="">
       <v-col cols="12">
-        <v-card class="pa-4 text-center">
+        <v-card class="pa-4 text-center rounded-4" color="indigo-darken-2">
           <h1 class="display-1 font-weight-bold">How can we help you?</h1>
           <v-text-field v-model="search" label="Search for help" variant="outlined" clearable class="mt-4"></v-text-field>
         </v-card>
       </v-col>
     </v-row>
-    <v-row class="animation-bottom">
+    <v-row class="animation-bottom" dense>
       <template v-if="filteredTopics.length > 0">
         <v-col v-for="topic in filteredTopics" :key="topic.title" cols="12" md="4">
-          <v-card class="pa-3 text-center" height="100%">
+          <v-card class="pa-4 text-center rounded-4" height="100%" color="indigo-darken-2">
             <v-card-title>{{ topic.title }}</v-card-title>
             <v-card-text>{{ topic.description }}</v-card-text>
             <v-card-actions>
-              <v-btn :to="topic.link" color="primary">Learn more</v-btn>
+              <v-btn :to="topic.link">Learn more</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -81,10 +81,6 @@ const filteredTopics = computed(() => {
 </script>
 
 <style scoped>
-.display-1 {
-  color: #1976d2;
-}
-
 .animation-bottom {
   -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
