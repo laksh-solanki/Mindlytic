@@ -77,7 +77,7 @@ const quickLinks = [
         </v-col>
       </v-row>
 
-      <!-- Social Media Icons -->
+      <!-- Social Media Icons
       <v-divider class="my-4"></v-divider>
       <div class="social-icons d-flex justify-center gap-4 my-4">
         <a v-for="item in icons" :key="item.href" :href="item.href" target="_blank" class="social-icon-link">
@@ -87,7 +87,7 @@ const quickLinks = [
             </v-btn>
           </v-hover>
         </a>
-      </div>
+      </div> -->
 
       <!-- Copyright -->
       <v-divider class="mb-4"></v-divider>
