@@ -50,8 +50,7 @@ const handleFileSelect = (event) => {
   processFiles(files)
 }
 
-onMounted(() => {
-})
+onMounted(() => {})
 
 const processFiles = (files) => {
   const imageFiles = files.filter((file) => file.type.startsWith('image/'))
@@ -284,7 +283,6 @@ onUnmounted(() => {
           </v-btn>
         </div>
       </div>
-      
     </div>
     <!-- Image Gallery -->
     <transition name="slide-up">

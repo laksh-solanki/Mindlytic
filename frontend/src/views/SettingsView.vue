@@ -14,20 +14,43 @@ const links = [
 
 <template>
   <v-layout ref="app" class="z-0">
-    <v-navigation-drawer v-model="drawer" class="border-secondary border-end container-animate" elevation="2" app>
+    <v-navigation-drawer
+      v-model="drawer"
+      class="border-secondary border-end container-animate"
+      elevation="2"
+      app
+    >
       <v-sheet class="pa-4 border-bottom border-black">
-        <v-avatar class="mb-4" color="grey-darken-1" size="70"><img src="@/assets/Picture/profile-pic.webp" alt=""
-            class="rounded-5 object-fit-cover" width="60" /></v-avatar>
+        <v-avatar class="mb-4" color="grey-darken-1" size="70"
+          ><img
+            src="@/assets/Picture/profile-pic.webp"
+            alt=""
+            class="rounded-5 object-fit-cover"
+            width="60"
+        /></v-avatar>
         <v-card-title class="p-0">Laksh Solanki</v-card-title>
         <v-card-subtitle class="p-0">lakshsolanki848@gmail.com</v-card-subtitle>
-        <v-btn icon class="mobile-toggle-btn z-3" @click="drawer = !drawer"
-          :aria-label="drawer ? 'Close navigation drawer' : 'Open navigation drawer'">
+        <v-btn
+          icon
+          class="mobile-toggle-btn z-3"
+          @click="drawer = !drawer"
+          :aria-label="drawer ? 'Close navigation drawer' : 'Open navigation drawer'"
+        >
           <v-icon>{{ drawer ? 'mdi-menu-open' : 'mdi-menu' }}</v-icon>
         </v-btn>
       </v-sheet>
       <v-list>
-        <v-list-item v-for="[icon, text, to] in links" class="m-1" color="primary" rounded="shaped" :key="icon" :prepend-icon="icon"
-          :title="text" :to="to" link>
+        <v-list-item
+          v-for="[icon, text, to] in links"
+          class="m-1"
+          color="primary"
+          rounded="shaped"
+          :key="icon"
+          :prepend-icon="icon"
+          :title="text"
+          :to="to"
+          link
+        >
           <template v-slot:append>
             <v-icon v-if="route.path.startsWith(to)">mdi-chevron-right</v-icon>
           </template>

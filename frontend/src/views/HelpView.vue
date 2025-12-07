@@ -4,7 +4,13 @@
       <v-col cols="12">
         <v-card class="pa-4 text-center rounded-4" color="indigo-darken-2">
           <h1 class="display-1 font-weight-bold">How can we help you?</h1>
-          <v-text-field v-model="search" label="Search for help" variant="outlined" clearable class="mt-4"></v-text-field>
+          <v-text-field
+            v-model="search"
+            label="Search for help"
+            variant="outlined"
+            clearable
+            class="mt-4"
+          ></v-text-field>
         </v-card>
       </v-col>
     </v-row>
@@ -21,9 +27,13 @@
         </v-col>
       </template>
       <v-col v-else-if="search" cols="12" class="d-flex justify-center">
-        <v-empty-state headline="Whoops, 404" style="min-height: 52.1vh;" title="Page not found"
+        <v-empty-state
+          headline="Whoops, 404"
+          style="min-height: 52.1vh"
+          title="Page not found"
           text="The page you were looking for does not exist"
-          image="https://static.vecteezy.com/system/resources/previews/059/904/717/non_2x/hand-holding-a-question-mark-symbol-in-a-minimal-flat-design-illustration-vector.jpg"></v-empty-state>
+          image="https://static.vecteezy.com/system/resources/previews/059/904/717/non_2x/hand-holding-a-question-mark-symbol-in-a-minimal-flat-design-illustration-vector.jpg"
+        ></v-empty-state>
       </v-col>
     </v-row>
   </v-container>
