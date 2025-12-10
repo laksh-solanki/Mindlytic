@@ -1,15 +1,16 @@
 <template>
-  <v-container class="animation-bottom" style="min-height: 90.9vh">
-    <!-- Hero -->
-    <v-row justify="center" class="mb-8">
-      <v-col cols="12" md="8" class="text-center">
+  <!-- Hero -->
+  <v-row justify="center" class="mb-8">
+    <v-col cols="12" md="12" class="text-center bg-primary-subtle">
+      <v-container fluid>
         <h1 class="text-h3 text-sm-h2 font-weight-bold">My Projects</h1>
         <p class="text-body-1 mt-2">
           A selection of open-source and client work I’ve built with Vue & Vuetify.
         </p>
-      </v-col>
-    </v-row>
-
+      </v-container>
+    </v-col>
+  </v-row>
+  <v-container class="animation-bottom" style="min-height: 90.9vh">
     <!-- Project cards -->
     <v-row>
       <v-col v-for="p in projects" :key="p.id" cols="12" sm="6" lg="4">

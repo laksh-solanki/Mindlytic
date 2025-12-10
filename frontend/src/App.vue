@@ -1,5 +1,4 @@
 <script setup>
-import './assets/main.css'
 import { RouterView, RouterLink } from 'vue-router'
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
@@ -30,43 +29,19 @@ const quickLinks = [
 
 <template>
   <v-app>
-    <nav
-      class="navbar navbar-expand-lg border-1 border-bottom border-black w-100 z-3 position-sticky top-0 bg-white"
-    >
+    <nav class="navbar navbar-expand-lg border-1 border-bottom border-black w-100 z-3 position-sticky top-0 bg-white">
       <div class="container">
-        <router-link class="navbar-brand" to="/"
-          ><img src="@/assets/Picture/mindlytic-Main-logo.png" alt="" width="120"
-        /></router-link>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarScroll"
-          aria-controls="navbarScroll"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <router-link class="navbar-brand" to="/"><img src="@/assets/Picture/mindlytic-Main-logo.png" alt=""
+            width="120" /></router-link>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+          aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <v-container
-          class="collapse w-100 p-0 navbar-collapse justify-content-center"
-          id="navbarScroll"
-        >
-          <v-tabs
-            inset
-            density="compact"
-            slider-color="info"
-            style="box-shadow: none"
-            class="d-flex flex-wrap bg-white border tab-container"
-          >
-            <v-tab
-              v-for="(link, index) in quickLinks"
-              :key="index"
-              :to="link.path"
-              class="px-0 tab-size"
-              rounded="shaped"
-              >{{ link.title }}</v-tab
-            >
+        <v-container class="collapse w-100 p-0 navbar-collapse justify-content-center" id="navbarScroll">
+          <v-tabs inset density="compact" slider-color="info" style="box-shadow: none"
+            class="d-flex flex-wrap bg-white border tab-container">
+            <v-tab v-for="(link, index) in quickLinks" :key="index" :to="link.path" class="px-0 tab-size">{{ link.title
+            }}</v-tab>
           </v-tabs>
         </v-container>
       </div>
@@ -79,11 +54,7 @@ const quickLinks = [
         <!-- Logo Section -->
         <div class="d-flex justify-center align-center mb-6">
           <div class="footer-logo p-1 rounded">
-            <img
-              src="@/assets/Picture/mindlytic-Main-logo.png"
-              alt="Shubh Marketing Logo"
-              class="logo-image"
-            />
+            <img src="@/assets/Picture/mindlytic-Main-logo.png" alt="Shubh Marketing Logo" class="logo-image" />
           </div>
         </div>
 
@@ -101,14 +72,8 @@ const quickLinks = [
           <v-col cols="12" md="4" class="px-4">
             <h3 class="text-h6 mb-3">Quick Links</h3>
             <v-list density="comfortable" class="transparent text-light p-0">
-              <v-list-item
-                v-for="(link, index) in quickLinks"
-                :key="index"
-                :to="link.path"
-                class="px-2 my-1 hoverable"
-                rounded="shaped"
-                color="light"
-              >
+              <v-list-item v-for="(link, index) in quickLinks" :key="index" :to="link.path" class="px-2 my-1 hoverable"
+                rounded="shaped" color="light">
                 <template v-slot:prepend>
                   <v-icon size="small" class="mr-2">{{ link.icon }}</v-icon>
                 </template>
@@ -150,13 +115,9 @@ const quickLinks = [
         <div class="text-center text-body-2">
           © {{ new Date().getFullYear() }} <strong>Mindlytic</strong>. All rights reserved.
           <div class="mt-1">
-            <router-link to="/privacy" class="text-decoration-none mr-2"
-              >Privacy Policy</router-link
-            >
+            <router-link to="/privacy" class="text-decoration-none mr-2">Privacy Policy</router-link>
             |
-            <router-link to="/terms" class="text-decoration-none mx-2"
-              >Terms of Service</router-link
-            >
+            <router-link to="/terms" class="text-decoration-none mx-2">Terms of Service</router-link>
           </div>
         </div>
       </v-container>
