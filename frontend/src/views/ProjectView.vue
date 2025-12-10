@@ -13,19 +13,11 @@
     <!-- Project cards -->
     <v-row>
       <v-col v-for="p in projects" :key="p.id" cols="12" sm="6" lg="4">
-        <v-card
-          height="100%"
-          hover
+        <v-card height="100%" hover
           class="text-primary-emphasis bg-primary-subtle border-none border-primary-subtle rounded-4"
-          @click="dialog = true"
-          :to="p.live"
-        >
-          <v-img
-            :src="p.thumb"
-            height="200"
-            class="m-2 img-thumbnail d-none d-md-flex d-lg-flex rounded-4"
-            content-class
-          />
+          @click="dialog = true" :to="p.live">
+          <v-img :src="p.thumb" height="200" class="m-2 img-thumbnail d-none d-md-flex d-lg-flex rounded-4"
+            content-class />
           <v-card-title class="font-weight-bold">{{ p.title }}</v-card-title>
           <v-card-text>
             {{ p.desc }}
@@ -75,7 +67,7 @@ const projects = [
     slug: 'ai-content',
     desc: 'OpenAI-powered blog post generator with markdown export.',
     tech: null,
-    live: '/project/compress-pdf',
+    live: '/project/musicplayer',
     thumb: 'https://picsum.photos/seed/ai/500/300',
   },
 ]
