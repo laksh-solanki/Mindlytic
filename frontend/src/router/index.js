@@ -6,7 +6,7 @@ import SettingsView from '@/views/SettingsView.vue'
 import Settings from '@/views/MainSettings.vue'
 import HelpView from '@/views/HelpView.vue'
 import CertificateView from '@/views/CertificateView.vue'
-import NotmatchView from '@/views/NotmatchView.vue'
+// import NotmatchView from '@/views/NotmatchView.vue'
 import GlobalLoader from '@/views/GlobalLoader.vue'
 import Profile from '@/views/Profile.vue'
 import img2pdf from '@/views/img2pdf.vue'
@@ -114,15 +114,15 @@ const router = createRouter({
       name: 'Globalloader',
       component: GlobalLoader,
     },
-    {
-      path: '/notfound',
-      name: 'NotMatch',
-      component: NotmatchView,
-      meta: {
-        title: 'Mindlytic | Not Found',
-        description: 'Page Not Found',
-      },
-    },
+    // {
+    //   path: '/notfound',
+    //   name: 'NotMatch',
+    //   component: NotmatchView,
+    //   meta: {
+    //     title: 'Mindlytic | Not Found',
+    //     description: 'Page Not Found',
+    //   },
+    // },
     {
       path: '/:pathMatch(.*)*',
       redirect: '/notfound',
