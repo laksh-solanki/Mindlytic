@@ -16,11 +16,7 @@ const courses = [
   "Tools for Predictive Analytics",
 ];
 
-app.use(
-  cors({
-    origin: ["https://mindlytic.onrender.com", "http://localhost:5173"],
-  })
-);
+app.use(cors()); // ✅ allow all origins (BEST for now)
 
 app.use(express.json());
 
