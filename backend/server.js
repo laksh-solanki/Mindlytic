@@ -24,6 +24,10 @@ app.get("/", (req, res) => {
   res.json({ status: "Backend working", time: new Date() });
 });
 
+app.get("/test", (req, res) => {
+  res.json({ test: "route works" });
+});
+
 app.get("/project/certificate", (req, res) => {
   res.json(courses);
 });
