@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import html2pdf from 'html2pdf.js/dist/html2pdf.min.js'
 import RedAlert from '@/components/Red-alert.vue'
 import GreenAlert from '@/components/Green-alert.vue'
@@ -10,18 +10,24 @@ const form = reactive({
   course: '',
 })
 
-const courses = [
-  'Window Server administrator/IT Support Specialist',
-  'Web Developer',
-  'Cloud Engineer/Cloud Solution Architect',
-  'Web & API Development Specialist',
-  'Python for Computer Vision: Theory and Project',
-  'Web Application Security Essentials',
-  'VLSI Design Engineering',
-  'Unity Android Gaming',
-  'Time Series Analysis',
-  'Tools for Predictive Analytics',
-]
+const courses = ref([])
+
+const fetchCourses = async () => {
+  try {
+    const response = await fetch('http://localhost:5001/api/courses')
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    courses.value = await response.json()
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error)
+    showAlert('Failed to load courses.', 'error')
+  }
+}
+
+onMounted(() => {
+  fetchCourses()
+})
 
 const loading = ref(false)
 const dialog = ref(false)
