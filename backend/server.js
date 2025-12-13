@@ -6,7 +6,7 @@ const app = express();
 // Allow requests from frontend (or use '*' for dev)
 app.use(
   cors({
-    origin: "*",
+    origin: "https://mindlytic.onrender.com/",
   })
 );
 
