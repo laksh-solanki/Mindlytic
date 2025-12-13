@@ -14,7 +14,7 @@ const courses = ref([])
 
 const fetchCourses = async () => {
   try {
-    const response = await fetch('http://localhost:5001/api/courses')
+    const response = await fetch('https://mindlytic.onrender.com/project/certificate')
     if (!response.ok) {
       throw new Error('Network response was not ok')
     }
